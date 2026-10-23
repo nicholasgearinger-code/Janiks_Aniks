@@ -98,3 +98,57 @@ form{align-items:flex-start}
 
 .inner-page{min-height:60vh;padding:44px 20px 72px}.breadcrumb{max-width:1100px;margin:0 auto 22px;font-size:14px}.breadcrumb a{font-weight:700}.page-heading{text-align:center;max-width:760px;margin:0 auto 34px}.page-heading h1,.product-copy h1{font-size:clamp(52px,9vw,76px);line-height:1.05}.page-heading p{max-width:58ch;margin:14px auto 0}.category-toolbar{max-width:1100px;margin:0 auto 24px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.category-toolbar label{display:flex;gap:8px;align-items:center}.category-toolbar select,.category-toolbar input{min-height:44px;padding:9px 12px;border:1px solid #b88b95;border-radius:12px;background:#fff;color:var(--wine);font:inherit;max-width:100%}.catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1100px;margin:0 auto}.catalog-card{background:#fff;border:1px solid #f1d5dc;border-radius:18px;padding:12px;text-align:center}.catalog-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px}.catalog-card h2{font:700 17px 'Quicksand',sans-serif;margin:12px 0 4px}.catalog-card p{margin:4px 0 12px}.empty-state{max-width:700px;margin:24px auto;padding:30px 22px;border:2px dashed #d9a4b1;border-radius:22px;text-align:center;background:#fff9fa}.empty-state .empty-icon{font-size:46px}.empty-state h2{font-size:36px;margin:8px 0}.empty-state p{margin:8px auto;max-width:50ch}.page-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}.product-layout{max-width:1000px;margin:0 auto;display:grid;gap:30px}.product-photo-placeholder{min-height:300px;aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:24px;border:2px dashed #d9a4b1;border-radius:24px;background:#fff}.product-photo-placeholder span{display:block;font-size:60px}.product-copy{display:flex;flex-direction:column;gap:14px}.product-copy h1{margin:0}.product-copy .product-price{font-size:25px;font-weight:700}.product-copy .btn{align-self:flex-start}.product-note{font-size:14px;background:#fff;border-radius:12px;padding:12px 14px}
 @media(min-width:760px){.inner-page{padding:58px 48px 88px}.catalog-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.product-layout{grid-template-columns:1fr 1fr;align-items:start}.product-photo-placeholder{min-height:460px}}
+
+
+/* Coquette refresh: soft blush, ribbons, pearls and delicate vintage details */
+:root{--pink:#f7c4d2;--cream:#fff8f5;--red:#ad1738;--wine:#5a1026;--blush:#fde7ed;--rose-line:#e8a5b7}
+body{background-color:var(--cream);background-image:radial-gradient(rgba(173,23,56,.055) .8px,transparent .8px);background-size:16px 16px}
+.top{position:relative;border-bottom:1px solid rgba(173,23,56,.12);box-shadow:0 4px 18px rgba(90,16,38,.045)}
+.top:after{content:"✧  ♡  ✧";position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);padding:0 14px;background:var(--cream);color:var(--red);font-size:13px;letter-spacing:.3em;white-space:nowrap}
+nav{flex-wrap:wrap;justify-content:center}
+nav a{font-size:14px;transition:background .2s ease,color .2s ease,transform .2s ease}
+nav a:hover{background:#fff;color:var(--red);transform:translateY(-1px)}
+.hero{position:relative;overflow:hidden;background-color:#f9d0db;background-image:radial-gradient(rgba(255,255,255,.46) 1.2px,transparent 1.2px),linear-gradient(135deg,#f9d0db 0%,#fbe1e7 52%,#f7c4d2 100%);background-size:22px 22px,auto}
+.hero:before,.hero:after{position:absolute;color:rgba(173,23,56,.65);font-family:Georgia,serif;pointer-events:none;line-height:1}
+.hero:before{content:"✧";font-size:56px;top:22px;left:5%;transform:rotate(-12deg)}
+.hero:after{content:"♡";font-size:42px;right:6%;bottom:20px;transform:rotate(12deg)}
+.hero-text{position:relative;z-index:1;width:100%;padding:clamp(18px,3vw,34px);background:rgba(255,248,245,.72);border:1px solid rgba(255,255,255,.9);border-radius:34px;box-shadow:0 14px 36px rgba(90,16,38,.09);backdrop-filter:blur(4px)}
+.hero-logo{width:min(100%,650px);max-height:none;filter:drop-shadow(0 7px 5px rgba(90,16,38,.07));margin:-4px auto 0}
+.hero .lead{color:var(--wine);font-size:clamp(17px,2vw,21px);letter-spacing:.015em}
+.hero .lead:before,.hero .lead:after{content:"  ♡  ";color:var(--red);font-size:.9em}
+.hero .btn{box-shadow:0 5px 0 #7f1028,0 10px 18px rgba(90,16,38,.13);transition:transform .2s ease,box-shadow .2s ease}
+.hero .btn:hover{transform:translateY(2px);box-shadow:0 3px 0 #7f1028}
+.arch{box-shadow:0 12px 28px rgba(90,16,38,.12);outline-offset:4px}
+h2{ text-wrap:balance}
+.category-hub,.fall,.visit,.pay{position:relative}
+.category-links a{background:rgba(255,255,255,.85);border:1px solid #edc4ce;box-shadow:0 5px 16px rgba(90,16,38,.045);position:relative;overflow:hidden}
+.category-links a:after{content:"✧";position:absolute;top:8px;right:12px;color:#d98ba0;font-size:17px;opacity:.8}
+.category-links a:hover{border-color:#d98ba0}
+.card{border:1px solid rgba(255,255,255,.72);box-shadow:0 8px 22px rgba(65,8,25,.13);transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(65,8,25,.2)}
+.card .btn{box-shadow:0 3px 0 #7f1028}
+.season-card{box-shadow:0 5px 18px rgba(90,16,38,.05);position:relative;overflow:hidden}
+.christmas{background:linear-gradient(145deg,#f0f5e9,#fff8f5)}
+.halloween{background:linear-gradient(145deg,#fae7df,#fff8f5)}
+.color-chip{box-shadow:0 3px 0 rgba(90,16,38,.12);transition:transform .18s ease}
+.color-chip:hover{transform:translateY(-2px)}
+.pay-list li{border:1px solid #f0cbd4;box-shadow:0 6px 18px rgba(90,16,38,.06)}
+.frame{box-shadow:0 8px 24px rgba(90,16,38,.13)}
+footer{position:relative}
+footer:before{content:"♡  ✧  ♡";display:block;color:var(--pink);letter-spacing:.4em;margin-bottom:12px;font-size:18px}
+@media(min-width:760px){
+ .hero-text{padding:clamp(24px,3vw,42px)}
+ .hero-logo{width:min(100%,700px)}
+}
+@media(max-width:759px){
+ .top{justify-content:center;padding:12px 16px 18px}
+ .brand{width:150px;max-width:58vw}
+ nav{gap:3px}
+ nav a{padding:8px 10px;font-size:12px}
+ .hero{gap:24px}
+ .hero-text{padding:18px 14px;border-radius:24px}
+ .hero:before{font-size:38px;top:12px;left:4%}
+ .hero:after{font-size:32px;right:4%;bottom:12px}
+ .hero-logo{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.card,.color-chip,nav a,.hero .btn{transition:none}}

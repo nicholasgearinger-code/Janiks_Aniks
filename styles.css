@@ -25,6 +25,7 @@ section{padding:56px 24px}
 .hero,.fall,.visit{display:grid;gap:32px;align-items:center;max-width:none;justify-items:center;text-align:center}
 .hero-text,.fall-text,.visit-text{display:flex;flex-direction:column;align-items:center;gap:18px}
 .cherry{width:84px;height:84px}
+.hero-logo{width:min(100%,560px);height:auto;max-height:300px;object-fit:contain;margin:0 auto}
 .hero h1{font-size:clamp(72px,16vw,120px);line-height:.95}
 .lead{margin:0;font-size:20px;font-weight:500}
 .arch{width:min(320px,100%);aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 24px 24px;border:6px solid var(--cream);outline:2px solid var(--red)}

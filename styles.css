@@ -8,7 +8,8 @@ a{color:inherit}
 .red :focus-visible,footer :focus-visible{outline-color:var(--cream)}
 .gingham-strip{height:30px;background-color:var(--red);background-image:linear-gradient(90deg,rgba(255,244,240,.55) 50%,transparent 50%),linear-gradient(rgba(255,244,240,.55) 50%,transparent 50%);background-size:30px 30px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 24px;background:var(--cream)}
-.brand{font-family:'Pinyon Script',cursive;font-size:34px;text-decoration:none;color:var(--red)}
+.brand{display:block;flex:0 0 auto;width:180px;max-width:42vw;text-decoration:none;color:var(--red)}
+.brand img{display:block;width:100%;height:auto;max-height:76px;object-fit:contain;object-position:left center}
 nav{display:flex;gap:6px}
 nav a{padding:10px 14px;font-weight:700;text-decoration:none;border-radius:999px}
 nav a:hover{background:var(--pink)}

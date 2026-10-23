@@ -62,3 +62,34 @@ section{padding:80px 48px}
 .pay-list{grid-template-columns:1fr 1fr}
 form{align-items:flex-start}
 }
+
+
+/* Shopping category navigation */
+.category-hub{text-align:center}
+.category-hub h2,.seasonal h2{font-size:clamp(48px,9vw,64px);margin-bottom:12px}
+.category-intro,.shop-intro{max-width:58ch;margin:0 auto 28px;text-align:center}
+.category-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:1100px;margin:0 auto}
+.category-links a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:155px;padding:18px 12px;background:#fff;border:2px solid var(--pink);border-radius:20px;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+.category-links a:hover,.season-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(90,15,31,.12)}
+.category-links a>span{font-size:30px}
+.category-links strong{font-size:16px}
+.category-links small,.season-card small{font-size:13px;line-height:1.4}
+.shop-intro{color:var(--cream)}
+.seasonal{text-align:center}
+.seasonal>p{max-width:58ch;margin:0 auto 28px}
+.seasonal-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto}
+.season-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:28px 20px;min-height:220px;border-radius:24px;border:2px solid var(--pink);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+.season-card>span:first-child{font-size:42px}
+.season-card strong{font-size:22px}
+.christmas{background:#e5f0df}.halloween{background:#f7e1d5}
+.text-link{font-weight:700;text-decoration:underline;text-underline-offset:4px;margin-top:auto}
+.color-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:900px;margin:0 auto}
+.color-chip{padding:12px 20px;border-radius:999px;border:2px solid var(--cream);font-weight:700;text-decoration:none;color:var(--wine);background:#fff}
+.pink-chip{background:#f9c6d3}.yellow-chip{background:#fff0a6}.green-chip{background:#cce5c5}.white-chip{background:#fff}.red-chip{background:#f2a08b}.multi-chip{background:linear-gradient(110deg,#f9c6d3,#fff0a6,#cce5c5,#c5def4)}
+.category-feature{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;text-align:center}
+.category-feature h2{font-size:clamp(48px,9vw,64px);margin-bottom:12px}
+.category-feature p{max-width:54ch;margin:0 auto 22px}
+.feature-icon{font-size:76px;line-height:1}
+@media(min-width:600px){.category-links{grid-template-columns:repeat(3,minmax(0,1fr))}.seasonal-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:760px){.category-links{grid-template-columns:repeat(5,minmax(0,1fr))}.category-feature{grid-template-columns:220px 1fr;text-align:left;max-width:1000px;margin:0 auto}.category-feature p{margin-left:0}.feature-icon{text-align:center;font-size:100px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.category-links a,.season-card{transition:none}}

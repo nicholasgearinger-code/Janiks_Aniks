@@ -230,3 +230,40 @@ footer:before{content:"♡  ✧  ♡";display:block;color:var(--pink);letter-spa
   .main-nav .nav-shop span{font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){.main-nav .nav-shop{transition:none}}
+
+
+/* Unified Janiks Aniks brand system */
+:root{--red:#B3122E;--pink:#F9C6D3;--cream:#FFF4F0;--wine:#5A0F1F;--line:#EBC1CD;--soft-white:#FFFAF8}
+body{background:var(--cream);color:var(--wine)}
+.top{gap:12px 20px;padding:12px clamp(12px,3vw,42px) 18px;background:var(--cream)}
+.brand{width:clamp(130px,15vw,180px);max-width:100%;flex:0 1 auto}
+.brand img{width:100%;height:auto;max-height:72px;object-fit:contain}
+.main-nav{display:flex;flex:1 1 620px;min-width:0;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px}
+.main-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:39px;padding:9px clamp(10px,1.2vw,16px);border:1px solid var(--red);border-radius:999px;background:var(--red);color:var(--cream);font-size:clamp(12px,.95vw,14px);font-weight:700;line-height:1.15;white-space:nowrap;text-align:center;text-decoration:none;box-shadow:0 3px 0 #7D1028;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.main-nav a:hover,.main-nav a:focus-visible{background:var(--wine);border-color:var(--wine);color:#fff;transform:translateY(1px);box-shadow:0 2px 0 #3D0B16}
+@media(max-width:900px){.top{justify-content:center;gap:10px;padding:10px 14px 18px}.brand{width:142px}.main-nav{flex:1 1 100%;justify-content:center;gap:7px}.main-nav a{font-size:13px;padding:8px 12px}}
+@media(max-width:480px){.top{padding:9px 10px 18px;gap:8px}.brand{width:130px}.main-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%}.main-nav a{width:100%;min-width:0;min-height:40px;padding:8px 3px;font-size:11.5px;white-space:normal;overflow-wrap:anywhere}}
+/* The same transparent SVG logo is used in the header, hero and footer. */
+.hero-logo{width:min(100%,650px);max-height:none;object-fit:contain;margin:0 auto;filter:none}
+.footer-brand{display:block;width:min(300px,72vw);margin:0 auto 18px;padding:0;background:transparent;border:0}
+.footer-brand img{display:block;width:100%;height:auto;max-height:110px;object-fit:contain;margin:0 auto}
+footer{background:var(--cream);color:var(--wine);border-top:1px solid var(--line);padding:34px 20px 42px}
+footer:before{content:none;display:none}
+footer p{margin:10px 0 0}
+footer a{color:var(--red);border-bottom-color:var(--pink)}
+/* Consistent blush, cream and cherry surfaces across every category. */
+.season-card,.christmas,.halloween{background:var(--soft-white);border:1px solid var(--line);color:var(--wine)}
+.season-card{box-shadow:0 5px 16px rgba(90,15,31,.07)}
+.season-card:hover{box-shadow:0 9px 22px rgba(90,15,31,.12)}
+.category-hub,.fall,.visit,.pay{border-color:var(--line)}
+.category-links a{background:var(--soft-white);border:1px solid var(--line);box-shadow:0 5px 16px rgba(90,15,31,.06)}
+.category-links a:hover{border-color:var(--red);box-shadow:0 9px 22px rgba(90,15,31,.11)}
+.category-feature{border-top:1px solid rgba(179,18,46,.1);border-bottom:1px solid rgba(179,18,46,.1)}
+.card,.catalog-card{background:var(--soft-white);border:1px solid var(--line);color:var(--wine);box-shadow:0 7px 18px rgba(90,15,31,.08)}
+.card:hover,.catalog-card:hover{box-shadow:0 12px 24px rgba(90,15,31,.14)}
+.pay-list li{background:var(--soft-white);border:1px solid var(--line)}
+.empty-state,.product-photo-placeholder,.product-note{background:var(--soft-white);border-color:var(--line)}
+.category-toolbar select,.category-toolbar input{border-color:var(--line);border-radius:999px;background:var(--soft-white)}
+.color-chip{border-color:var(--cream)}
+.scallop{height:14px}
+@media(prefers-reduced-motion:reduce){.main-nav a{transition:none}}

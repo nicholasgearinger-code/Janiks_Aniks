@@ -1,6 +1,6 @@
 # Janiks Aniks shop catalog setup
 
-The site now has a reusable category page (category.html) and product detail template (product.html). They intentionally show a coming-soon state until actual products have been photographed and entered. No prices, inventory, or payment URLs have been invented.
+The site has a reusable category page (category.html), product detail template (product.html), and one shared catalog data file (catalog.js). The pages intentionally show a coming-soon state until actual products have been photographed and entered. No prices, inventory, or payment URLs have been invented.
 
 ## Add product photography
 - Create an images/products/ folder.
@@ -8,8 +8,19 @@ The site now has a reusable category page (category.html) and product detail tem
 - Use descriptive filenames, e.g. pink-bow-mug-front.webp.
 - Keep photos bright, consistent, and cropped similarly; use your own photos of the exact item sold.
 
-## Add a product to the catalog
-In category.html, the products array inside the page script is currently empty. Add records with slug (unique URL-safe ID), name, description, price (numeric PHP price), image (photo path), category (mugs, plushies, or accessories), and optional color (pink, yellow, green, white, redorange, or colorpop). Add the same product under the products object in product.html, keyed by the same slug, and include a verified paymentUrl only after configuring and testing checkout.
+## Add a product
+Add a record to the JANIKS_PRODUCTS array in catalog.js with:
+- slug: unique URL-safe ID, e.g. pink-bow-mug
+- name: product name
+- description: honest product details
+- price: numeric price in PHP
+- image: photo path, e.g. images/products/pink-bow-mug-front.webp
+- category: mugs, plushies, or accessories
+- color: optional mug color key such as pink, yellow, green, white, redorange, or colorpop
+- tags: optional tags such as christmas or halloween
+- paymentUrl: optional verified checkout link; leave blank until checkout is configured and tested
+
+The category and product pages read from this shared file, so each product only needs to be entered once.
 
 ## Suggested photo checklist
 1. Main product photo on a simple background.

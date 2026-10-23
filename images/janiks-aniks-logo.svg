@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+<title id="title">Janiks Aniks</title><desc id="desc">Burgundy script lettering with pink bow cherries and sparkle accents.</desc>
+<g fill="none" stroke="#5A0F1F" stroke-width="2.4" stroke-linejoin="round">
+<path d="M45 70 l9 17 17 9 -17 9 -9 17 -9 -17 -17 -9 17 -9z"/>
+<path d="M85 132 l7 13 13 7 -13 7 -7 13 -7 -13 -13 -7 13 -7z"/>
+<path d="M636 210 l7 13 13 7 -13 7 -7 13 -7 -13 -13 -7 13 -7z"/>
+</g><g fill="#B3122E"><circle cx="95" cy="75" r="4"/><circle cx="118" cy="145" r="4"/><circle cx="668" cy="242" r="4"/></g>
+<g fill="#B3122E" font-family="'Pinyon Script','Brush Script MT',cursive" font-style="italic" font-weight="600">
+<text x="80" y="126" font-size="112" letter-spacing="-3">Janiks</text><text x="135" y="225" font-size="112" letter-spacing="-2">Aniks</text>
+</g>
+<g fill="none" stroke="#F9C6D3" stroke-width="3" stroke-linecap="round"><path d="M120 70 Q170 42 215 44"/><path d="M170 166 Q220 144 254 147"/></g>
+<g transform="translate(575 82)">
+<path d="M-4 40 Q-17 9 -3 -17 M-4 40 Q22 8 22 -12" fill="none" stroke="#5A0F1F" stroke-width="4" stroke-linecap="round"/>
+<path d="M-4 40 C-28 16 -61 34 -51 58 C-40 82 -7 71 -4 40Z" fill="#B3122E" stroke="#5A0F1F" stroke-width="2.5"/>
+<path d="M-4 40 C17 14 48 33 39 56 C30 79 1 69 -4 40Z" fill="#B3122E" stroke="#5A0F1F" stroke-width="2.5"/>
+<ellipse cx="-36" cy="45" rx="5" ry="9" fill="#F9C6D3" transform="rotate(35 -36 45)"/><ellipse cx="17" cy="43" rx="5" ry="9" fill="#F9C6D3" transform="rotate(35 17 43)"/>
+<path d="M-5 -16 C-44 -42 -61 -9 -26 -2 L-5 -1 C-42 14 -25 30 -5 5 C13 30 34 11 6 -1 C48 -7 29 -40 -5 -16Z" fill="#F9C6D3" stroke="#B3122E" stroke-width="2.5"/>
+<circle cx="-5" cy="-7" r="5" fill="#B3122E"/>
+</g>
+<text x="340" y="270" text-anchor="middle" fill="#B3122E" font-family="'Pinyon Script','Brush Script MT',cursive" font-size="30" font-style="italic">byj naksheets</text>
+</svg>

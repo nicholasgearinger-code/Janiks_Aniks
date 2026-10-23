@@ -267,3 +267,32 @@ footer a{color:var(--red);border-bottom-color:var(--pink)}
 .color-chip{border-color:var(--cream)}
 .scallop{height:14px}
 @media(prefers-reduced-motion:reduce){.main-nav a{transition:none}}
+
+
+/* Playful motion system: soft entrances, gentle hover lift, reduced-motion safe */
+@keyframes logo-arrive{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes hero-copy-arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sparkle-drift{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-5px) rotate(5deg)}}
+@keyframes ribbon-sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+.hero-logo{animation:logo-arrive .75s cubic-bezier(.2,.75,.25,1) both}
+.hero-text{animation:hero-copy-arrive .7s .1s both}
+.hero:before{animation:sparkle-drift 4s ease-in-out infinite}
+.hero:after{animation:ribbon-sway 5s ease-in-out infinite}
+.main-nav a{transition:transform .2s ease,background .2s ease,box-shadow .2s ease,border-color .2s ease}
+.main-nav a:active{transform:translateY(2px) scale(.98);box-shadow:0 1px 0 #7D1028}
+.btn,.category-links a,.color-chip,.season-card,.card,.catalog-card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background-color .22s ease}
+.btn:active{transform:translateY(2px) scale(.99)}
+.motion-ready{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.motion-ready.motion-in{opacity:1;transform:translateY(0)}
+.catalog-card:nth-child(3n+2),.card:nth-child(3n+2){transition-delay:.06s}
+.catalog-card:nth-child(3n+3),.card:nth-child(3n+3){transition-delay:.12s}
+img[loading="lazy"]{transition:opacity .35s ease}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #D46B88;outline-offset:3px}
+@media(hover:hover){
+ .category-links a:hover,.season-card:hover,.card:hover,.catalog-card:hover{transform:translateY(-4px)}
+ .color-chip:hover{transform:translateY(-2px) scale(1.025)}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+ .motion-ready{opacity:1;transform:none}
+}

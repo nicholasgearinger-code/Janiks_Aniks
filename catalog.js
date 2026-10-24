@@ -1,21 +1,26 @@
-/* Shared product catalog for Janiks Aniks.
-   Add products here after photos, prices and stock have been confirmed.
-   Never invent product details or enable checkout without a tested payment URL. */
+/* Shared, hand-maintained product data for Janiks Aniks.
+   Only publish a product after its exact product photo, name, description, price,
+   category, and availability have been confirmed by the shop owner.
+   Do not place payment secrets here. paymentUrl must be a verified HTTPS hosted checkout URL.
+   GitHub Pages is static hosting: never add private API keys or card-processing code here. */
 window.JANIKS_PRODUCTS = [
-  /* Example structure — replace this comment with real product objects:
+  /* Add confirmed products using this shape:
   {
-    slug: "pink-bow-mug",
-    name: "Pink Bow Mug",
-    description: "Add confirmed product details here.",
+    slug: "unique-product-slug",
+    name: "Confirmed product name",
+    description: "Confirmed description and care details.",
     price: 0,
-    image: "images/products/pink-bow-mug-front.webp",
+    image: "images/products/exact-product-photo.webp",
     category: "mugs",
     color: "pink",
     tags: [],
+    available: true,
     paymentUrl: ""
   }
   */
 ];
 window.JANIKS_PRODUCTS_BY_SLUG = Object.fromEntries(
-  window.JANIKS_PRODUCTS.map(function (product) { return [product.slug, product]; })
+  window.JANIKS_PRODUCTS.map(function (product) {
+    return [product.slug, product];
+  })
 );

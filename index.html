@@ -73,12 +73,34 @@
 </section>
 <div class="scallop" style="--from:#FFF4F0;--to:#FFF4F0" aria-hidden="true"></div>
 
-<section id="colors" class="shop red">
+<section id="colors" class="shop color-browser">
 <h2>Shop mugs by color</h2>
-<p class="shop-intro">Looking for a particular shade? Start with one of these color collections.</p>
-<div class="color-links">
-<a href="category.html?category=pink" class="color-chip pink-chip">Pink</a><a href="category.html?category=yellow" class="color-chip yellow-chip">Yellow</a><a href="category.html?category=green" class="color-chip green-chip">Green</a><a href="category.html?category=white" class="color-chip white-chip">White &amp; Cream</a><a href="category.html?category=redorange" class="color-chip red-chip">Red &amp; Orange</a><a href="category.html?category=colorpop" class="color-chip multi-chip">Colorful</a>
+<p class="shop-intro">Choose a collection to narrow your search, or browse a different category.</p>
+<div class="collection-selects">
+<label for="color-collection">Shop by color
+<select id="color-collection" onchange="if(this.value) window.location.href=this.value">
+<option value="">Choose a color…</option>
+<option value="category.html?category=pink">Pink</option>
+<option value="category.html?category=yellow">Yellow</option>
+<option value="category.html?category=green">Green</option>
+<option value="category.html?category=white">White &amp; Cream</option>
+<option value="category.html?category=redorange">Red &amp; Orange</option>
+<option value="category.html?category=colorpop">Colorful</option>
+</select>
+</label>
+<label for="category-collection">Browse category
+<select id="category-collection" onchange="if(this.value) window.location.href=this.value">
+<option value="">Choose a category…</option>
+<option value="category.html?category=mugs">Character Mugs</option>
+<option value="category.html?category=seasonal">Christmas &amp; Halloween</option>
+<option value="category.html?category=christmas">Christmas Mugs</option>
+<option value="category.html?category=halloween">Halloween Mugs</option>
+<option value="category.html?category=plushies">Plushies</option>
+<option value="category.html?category=accessories">Stickers &amp; Accessories</option>
+</select>
+</label>
 </div>
+<p class="color-browser-note">Your next favorite is just a selection away.</p>
 </section>
 <div class="scallop" style="--from:#FFF4F0;--to:#F9C6D3" aria-hidden="true"></div>
 

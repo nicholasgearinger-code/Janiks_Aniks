@@ -483,3 +483,100 @@ body{overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){
   .category-links a,.color-chip{transition:none!important}
 }
+
+
+/* Explicitly render custom category artwork and provide compact dropdown navigation */
+.category-links a>span.category-icon{
+  display:grid!important;
+  flex:0 0 54px;
+  width:54px;
+  height:54px;
+  min-height:54px;
+  margin:0 auto 8px;
+  padding:0;
+  font-size:initial;
+  line-height:1;
+  visibility:visible;
+  opacity:1;
+  color:#8f1b39;
+  background:#fde7ed;
+  border-radius:18px;
+}
+.category-links a>span.category-icon svg{
+  display:block!important;
+  visibility:visible;
+  opacity:1;
+  width:34px;
+  height:34px;
+  overflow:visible;
+  fill:none!important;
+  stroke:#8f1b39!important;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.category-links a>span.category-icon svg circle{fill:#fde7ed}
+.category-links a>span.category-icon svg path,
+.category-links a>span.category-icon svg circle{vector-effect:non-scaling-stroke}
+.category-links a:after{content:none!important;display:none!important}
+.color-browser{
+  background:#fff8f5!important;
+  color:#5a1026!important;
+  border-top:1px solid #f0d5dd;
+  border-bottom:1px solid #f0d5dd;
+  text-align:center;
+}
+.color-browser h2{
+  color:#74152f;
+  font-size:clamp(44px,8vw,60px);
+  line-height:1.08;
+  margin-bottom:16px;
+}
+.color-browser .shop-intro{
+  color:#70414c;
+  max-width:48ch;
+  margin:0 auto 30px;
+}
+.collection-selects{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  max-width:760px;
+  margin:0 auto;
+  text-align:left;
+}
+.collection-selects label{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  color:#74152f;
+  font-size:15px;
+  font-weight:700;
+}
+.collection-selects select{
+  width:100%;
+  min-height:56px;
+  padding:12px 42px 12px 16px;
+  border:1.5px solid #e7a9ba;
+  border-radius:16px;
+  background-color:#fffdfc;
+  color:#5a1026;
+  font:600 16px 'Quicksand',sans-serif;
+  box-shadow:0 4px 12px rgba(90,16,38,.045);
+  cursor:pointer;
+}
+.collection-selects select:focus-visible{
+  outline:3px solid #b94c6a;
+  outline-offset:3px;
+}
+.color-browser-note{
+  margin:18px 0 0;
+  color:#90606c;
+  font-size:14px;
+}
+@media(max-width:600px){
+  .category-links a>span.category-icon{flex-basis:48px;width:48px;height:48px;min-height:48px;border-radius:16px}
+  .category-links a>span.category-icon svg{width:30px;height:30px}
+  .collection-selects{grid-template-columns:1fr;gap:14px;max-width:420px}
+  .collection-selects select{min-height:54px}
+}

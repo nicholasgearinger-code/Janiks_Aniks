@@ -34,7 +34,7 @@
     $('empty-products').hidden = filtered.length !== 0;
     filtered.forEach(function (p) {
       var card = document.createElement('article');
-      card.className = 'admin-product-card'; card.draggable = true; card.dataset.id = p.id;
+      card.className = 'admin-product-card'; card.draggable = !$('product-search').value.trim() && !$('filter-category').value && !$('filter-status').value; card.dataset.id = p.id;
       var image = p.image_url ? '<img src="' + escapeHTML(p.image_url) + '" alt="' + escapeHTML(p.name) + '" loading="lazy">' : '<div class="no-photo" aria-label="No photo yet">♡</div>';
       card.innerHTML = image +
         '<h3>' + escapeHTML(p.name) + '</h3><p>₱' + p.price.toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2}) + '</p>' +
@@ -128,6 +128,8 @@
         available:$('product-available').checked,published:$('product-published').checked,
         payment_url:$('product-payment-url').value.trim(),sort_order:0};
       if(record.published && !record.image_url) throw new Error('Add a product photo before publishing.');
+      if(record.published && price <= 0) throw new Error('Enter a price greater than zero before publishing.');
+      if(record.image_url && !/^https:\/\//i.test(record.image_url) && !/^images\//i.test(record.image_url)) throw new Error('Use an HTTPS image URL or a local images/ path.');
       if(record.payment_url && !/^https:\/\//i.test(record.payment_url)) throw new Error('Payment URL must start with https://.');
       var id=$('product-id').value, result;
       if(id) { record.id=id; result=await client.from('products').update(record).eq('id',id); }

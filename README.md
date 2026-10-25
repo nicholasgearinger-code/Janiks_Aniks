@@ -11,3 +11,12 @@ Files: index.html, styles.css, images/
 ## Deploy
 1. Make a new GitHub repo and upload these files at the repo root.
 2. Cloudflare Pages: Create > Connect to Git > pick the repo. No build command, output directory "/".
+
+
+## Owner product manager
+- Setup guide: [ADMIN_SETUP.md](ADMIN_SETUP.md)
+- Private owner manager page: `admin.html`
+- Supabase database/storage policies: `supabase/schema.sql`
+- Browser-safe project config: `supabase-config.js` (project URL + publishable key only; never a service-role/secret key)
+
+The admin and live database catalog remain inactive until Supabase is configured and the owner account is added to the `store_admins` allowlist. See the setup guide before use.

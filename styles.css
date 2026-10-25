@@ -715,3 +715,36 @@ footer{margin-left:0}
  .page-main .hero-image{grid-column:1/-1;width:100%;justify-self:stretch;justify-content:center}
  .page-main .hero .arch{width:min(82vw,390px);max-width:100%;margin-inline:auto}
 }
+
+
+/* Compact the home collection cards on phones */
+@media(max-width:520px){
+ .page-main>.home-welcome{padding:30px 18px 34px}
+ .page-main .home-welcome h2{font-size:clamp(38px,10vw,48px);line-height:1.05}
+ .page-main .home-welcome>p{margin:10px auto 20px;font-size:14px;line-height:1.45}
+ .page-main .home-shortcuts{grid-template-columns:1fr;gap:10px;width:100%;max-width:460px}
+ .page-main .home-shortcuts a{
+   display:grid;
+   grid-template-columns:58px minmax(0,1fr);
+   grid-template-rows:auto auto auto;
+   align-items:center;
+   column-gap:14px;
+   row-gap:2px;
+   padding:14px 16px;
+   min-height:0;
+   border-radius:18px;
+ }
+ .page-main .home-shortcuts a img.card-icon{
+   grid-column:1;
+   grid-row:1 / 4;
+   width:54px!important;
+   height:54px!important;
+   max-width:54px;
+   object-fit:contain;
+   align-self:center;
+ }
+ .page-main .home-shortcuts a>span{grid-column:2;grid-row:1;font-size:10px;line-height:1.25}
+ .page-main .home-shortcuts a>strong{grid-column:2;grid-row:2;font-size:17px;line-height:1.25}
+ .page-main .home-shortcuts a>small{grid-column:2;grid-row:3;font-size:12px;line-height:1.35}
+ .page-main>.home-shortcut-banner{padding-top:32px;padding-bottom:36px}
+}

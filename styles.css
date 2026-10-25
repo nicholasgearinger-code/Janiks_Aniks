@@ -702,3 +702,16 @@ footer{margin-left:0}
  .page-main .hero .arch{width:min(78%,340px)}
 }
 @media(prefers-reduced-motion:reduce){.hero-brand-logo{filter:none}}
+
+
+/* Homepage refinements from mobile review */
+.page-main>.hero:after{content:none!important;display:none!important}
+.page-main .hero .page-kicker{display:none!important}
+.page-main .hero h1{font-size:clamp(23px,2.75vw,38px)!important;line-height:1.08}
+.page-main .hero-image{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;margin-inline:auto}
+.page-main .hero .arch{display:block;margin-inline:auto;width:min(100%,390px)}
+@media(max-width:850px){
+ .page-main .hero h1{font-size:clamp(21px,4.5vw,31px)!important;line-height:1.1}
+ .page-main .hero-image{grid-column:1/-1;width:100%;justify-self:stretch;justify-content:center}
+ .page-main .hero .arch{width:min(82vw,390px);max-width:100%;margin-inline:auto}
+}

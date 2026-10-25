@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Private Janiks Aniks store management.">
+  <title>Store Manager | Janiks Aniks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <div class="gingham-strip" aria-hidden="true"></div>
+  <header class="admin-top">
+    <a class="admin-brand" href="index.html"><img src="images/PNG%20image.png" alt="Janiks Aniks" width="200" height="84"><span>Store Manager</span></a>
+    <div class="admin-top-actions"><a href="index.html">View storefront ↗</a><button id="sign-out" class="admin-button secondary" type="button" hidden>Sign out</button></div>
+  </header>
+  <main class="admin-main">
+    <section id="setup-warning" class="admin-notice" hidden>
+      <h1>One little setup step first 🎀</h1>
+      <p>The secure store connection hasn't been configured yet. Follow <a href="https://github.com/nicholasgearinger-code/Janiks_Aniks/blob/main/ADMIN_SETUP.md">the setup guide</a> to create the backend, add the database policies, and set the public project configuration.</p>
+      <p>This page is not a working login until that configuration is completed.</p>
+    </section>
+    <section id="login-panel" class="admin-login-panel" hidden>
+      <div class="admin-kicker">PRIVATE OWNER ACCESS</div>
+      <h1>Welcome back, lovely</h1>
+      <p>Sign in with the owner account created in your Supabase project. New registrations are intentionally not offered here.</p>
+      <form id="login-form">
+        <label for="email">Owner email</label><input id="email" name="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="admin-button primary" type="submit">Sign in to your shop</button>
+        <p id="login-message" class="admin-message" role="status"></p>
+      </form>
+    </section>
+    <section id="access-denied" class="admin-notice" hidden>
+      <h1>This account doesn't have store access</h1>
+      <p>You're signed in, but this account is not on the store's administrator allowlist. Sign out and use the owner account.</p>
+      <button id="denied-sign-out" class="admin-button secondary" type="button">Sign out</button>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="admin-heading-row">
+        <div><div class="admin-kicker">YOUR LITTLE SHOP, IN YOUR HANDS</div><h1>Product studio</h1><p>Update products, photos, prices, and collections without editing code.</p></div>
+        <button id="new-product" class="admin-button primary" type="button">＋ Add product</button>
+      </div>
+      <div class="admin-stats" aria-live="polite">
+        <article><span>Total products</span><strong id="stat-total">0</strong></article>
+        <article><span>Published</span><strong id="stat-published">0</strong></article>
+        <article><span>Drafts / hidden</span><strong id="stat-drafts">0</strong></article>
+      </div>
+      <div class="admin-workspace">
+        <aside class="admin-sidebar">
+          <label for="product-search">Find a product</label><input id="product-search" type="search" placeholder="Search name or slug">
+          <label for="filter-category">Collection</label><select id="filter-category"><option value="">All collections</option><option value="mugs">Mugs</option><option value="plushies">Plushies</option><option value="accessories">Accessories</option></select>
+          <label for="filter-status">Status</label><select id="filter-status"><option value="">All products</option><option value="published">Published</option><option value="draft">Draft / hidden</option></select>
+          <p class="admin-hint">Tip: drag product cards to change their display order. Changes save to the database.</p>
+        </aside>
+        <div class="admin-products-area">
+          <div class="admin-list-heading"><h2>Your products</h2><span id="product-count">0 items</span></div>
+          <div id="admin-message" class="admin-message" role="status"></div>
+          <div id="product-list" class="admin-product-list"></div>
+          <div id="empty-products" class="admin-empty" hidden><span aria-hidden="true">🎀</span><h3>No products here yet</h3><p>Add your first product or adjust your filters.</p><button class="admin-button primary" id="empty-add" type="button">Add a product</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="product-dialog" class="product-dialog">
+    <form id="product-form" method="dialog" class="product-form">
+      <div class="dialog-heading"><div><div class="admin-kicker">PRODUCT DETAILS</div><h2 id="dialog-title">Add a product</h2></div><button id="close-dialog" class="icon-button" type="button" aria-label="Close editor">×</button></div>
+      <input id="product-id" type="hidden">
+      <div class="form-grid">
+        <div class="form-field"><label for="product-name-input">Product name *</label><input id="product-name-input" maxlength="160" required></div>
+        <div class="form-field"><label for="product-slug">Product URL slug *</label><input id="product-slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="pink-bow-mug" required><small>Lowercase letters, numbers and hyphens.</small></div>
+        <div class="form-field full"><label for="product-description-input">Description</label><textarea id="product-description-input" rows="3" maxlength="3000"></textarea></div>
+        <div class="form-field"><label for="product-price">Price (PHP) *</label><input id="product-price" type="number" min="0" step="0.01" inputmode="decimal" required></div>
+        <div class="form-field"><label for="product-category">Collection *</label><select id="product-category" required><option value="mugs">Mugs</option><option value="plushies">Plushies</option><option value="accessories">Accessories</option></select></div>
+        <div class="form-field"><label for="product-color">Color</label><select id="product-color"><option value="">Not specified</option><option value="pink">Pink</option><option value="yellow">Yellow</option><option value="green">Green</option><option value="white">White & cream</option><option value="redorange">Red & orange</option><option value="colorpop">Colorful</option></select></div>
+        <div class="form-field"><label for="product-tags">Tags</label><input id="product-tags" placeholder="seasonal, christmas, halloween"><small>Separate tags with commas.</small></div>
+        <div class="form-field full"><label for="product-image-file">Product photo</label><input id="product-image-file" type="file" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG or WebP, up to 8 MB. A new upload replaces the photo URL.</small><div class="image-preview" id="image-preview"><span>♡ Product preview</span></div><label for="product-image-url">Or image URL</label><input id="product-image-url" type="url" placeholder="https://… or images/products/photo.webp"></div>
+        <div class="form-field full"><label for="product-payment-url">Verified payment URL (optional)</label><input id="product-payment-url" type="url" placeholder="https://…"><small>Use only a verified hosted checkout link. This editor does not collect card details.</small></div>
+        <div class="form-field checkbox-field"><input id="product-available" type="checkbox" checked><label for="product-available">Available to buy</label></div>
+        <div class="form-field checkbox-field"><input id="product-published" type="checkbox"><label for="product-published">Publish on storefront</label></div>
+      </div>
+      <p id="form-message" class="admin-message" role="status"></p>
+      <div class="dialog-actions"><button id="cancel-edit" class="admin-button secondary" type="button">Cancel</button><button id="save-product" class="admin-button primary" type="submit">Save product</button></div>
+    </form>
+  </dialog>
+
+  <script src="supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

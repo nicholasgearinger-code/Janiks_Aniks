@@ -148,11 +148,27 @@
     if(!configured || !window.supabase || !window.supabase.createClient) { showOnly('setup-warning'); return; }
     client=window.supabase.createClient(config.projectUrl,config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
     $('login-form').addEventListener('submit',async function(event){
-      event.preventDefault(); var button=$('login-form').querySelector('button');button.disabled=true;status($('login-message'),'Signing in…');
-      var result=await client.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
-      button.disabled=false;
-      if(result.error){status($('login-message'),'Sign-in failed. Check your email and password, then try again.','error');return;}
-      await routeSession(result.data.session);
+      event.preventDefault();
+      var button=$('login-form').querySelector('button');
+      button.disabled=true;
+      status($('login-message'),'Signing in…');
+      try {
+        var result=await client.auth.signInWithPassword({
+          email:$('email').value.trim(),
+          password:$('password').value
+        });
+        if(result.error){
+          // Supabase's Auth error message helps distinguish credentials, confirmation,
+          // provider, and rate-limit issues without exposing passwords or tokens.
+          status($('login-message'),'Sign-in failed: '+(result.error.message || 'Supabase rejected the login.') ,'error');
+          return;
+        }
+        await routeSession(result.data.session);
+      } catch(error) {
+        status($('login-message'),'Could not reach Supabase. Check your connection and project URL, then try again. '+(error && error.message ? '('+error.message+')' : ''),'error');
+      } finally {
+        button.disabled=false;
+      }
     });
     $('sign-out').addEventListener('click',signOut); $('denied-sign-out').addEventListener('click',signOut);
     $('new-product').addEventListener('click',function(){openEditor(null);}); $('empty-add').addEventListener('click',function(){openEditor(null);});

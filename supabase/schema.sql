@@ -50,28 +50,33 @@ revoke all on table public.products from anon, authenticated;
 -- Signed-in users can only verify their own allowlist row; only the database owner
 -- (via SQL Editor) can add/remove store admins.
 grant select on table public.store_admins to authenticated;
+drop policy if exists "Admins can read their own allowlist row" on public.store_admins;
 create policy "Admins can read their own allowlist row"
 on public.store_admins for select to authenticated
 using ((select auth.uid()) = user_id);
 
 -- Public storefront can read published products only.
 grant select on table public.products to anon, authenticated;
+drop policy if exists "Anyone can read published products" on public.products;
 create policy "Anyone can read published products"
 on public.products for select to anon, authenticated
 using (published = true);
 
 -- The owner allowlist is the authorization source for all product mutations.
 grant insert, update, delete on table public.products to authenticated;
+drop policy if exists "Store admins can read all products" on public.products;
 create policy "Store admins can read all products"
 on public.products for select to authenticated
 using (exists (
   select 1 from public.store_admins a where a.user_id = (select auth.uid())
 ));
+drop policy if exists "Store admins can insert products" on public.products;
 create policy "Store admins can insert products"
 on public.products for insert to authenticated
 with check (exists (
   select 1 from public.store_admins a where a.user_id = (select auth.uid())
 ));
+drop policy if exists "Store admins can update products" on public.products;
 create policy "Store admins can update products"
 on public.products for update to authenticated
 using (exists (
@@ -80,6 +85,7 @@ using (exists (
 with check (exists (
   select 1 from public.store_admins a where a.user_id = (select auth.uid())
 ));
+drop policy if exists "Store admins can delete products" on public.products;
 create policy "Store admins can delete products"
 on public.products for delete to authenticated
 using (exists (

@@ -483,7 +483,21 @@ body{overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){
   .category-links a,.color-chip{transition:none!important}
 }
+.category-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+}
 
+.card-icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 
 /* Explicitly render custom category artwork and provide compact dropdown navigation */
 .category-links a>span.category-icon{

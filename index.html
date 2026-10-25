@@ -1,113 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Janiks Aniks</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <!-- Header -->
-  <header class="header">
-    <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="Janiks Aniks">
-    </a>
-    <button class="nav-toggle" aria-label="Open navigation">☰</button>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="shop-mugs.html">Shop mugs</a>
-      <a href="fall-collection.html">Fall collection</a>
-      <a href="seasonal.html">Seasonal</a>
-      <a href="shop-by-color.html">Shop by color</a>
-      <a href="plushies.html">Plushies</a>
-      <a href="accessories.html">Accessories</a>
-      <a href="payments.html">Payments</a>
-      <a href="visit-us.html">Visit us</a>
-      <a href="cart.html">Cart 0</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Tagline -->
-    <div class="tagline">
-      JANIKS ANIKS · LITTLE THINGS, BIG JOY
-    </div>
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-card">
-        <img src="images/hero-logo.png" alt="Janiks Aniks logo with cherries and pink bow" class="hero-logo">
-        <p class="hero-subtitle">♡ Cute character mugs, plushies, stickers &amp; more ♡</p>
-        <a href="shop-mugs.html" class="btn-primary">Shop now</a>
-      </div>
-      <div class="hero-image">
-        <img src="images/hello-kitty-mugs.png" alt="Hello Kitty mugs with colorful handles on a fluffy rug">
-      </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories">
-      <h1 class="section-title">Find your favorite</h1>
-      <p class="section-subtitle">Everything you love, now in its own little corner.</p>
-
-      <div class="category-grid">
-        
-        <!-- 01 | Shop Mugs -->
-        <a href="shop-mugs.html" class="category-card">
-          <img src="images/IMG_5002.png" alt="Shop Mugs" class="card-icon">
-          <div class="card-content">
-            <span class="card-number">01</span>
-            <h2>Shop mugs</h2>
-            <p>Browse the mug collection</p>
-          </div>
-        </a>
-
-        <!-- 02 | Seasonal -->
-        <a href="seasonal.html" class="category-card">
-          <img src="images/IMG_5005.png" alt="Seasonal" class="card-icon">
-          <div class="card-content">
-            <span class="card-number">02</span>
-            <h2>Seasonal</h2>
-            <p>Holiday and spooky-cute picks</p>
-          </div>
-        </a>
-
-        <!-- 03 | Shop by Color -->
-        <a href="shop-by-color.html" class="category-card">
-          <img src="images/IMG_5004.png" alt="Shop by Color" class="card-icon">
-          <div class="card-content">
-            <span class="card-number">03</span>
-            <h2>Shop by color</h2>
-            <p>Find your perfect palette</p>
-          </div>
-        </a>
-
-        <!-- 04 | Plushies & Extras -->
-        <a href="plushies.html" class="category-card">
-          <img src="images/IMG_5003.png" alt="Plushies & Extras" class="card-icon">
-          <div class="card-content">
-            <span class="card-number">04</span>
-            <h2>Plushies &amp; extras</h2>
-            <p>Soft gifts and cute accessories</p>
-          </div>
-        </a>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <a href="index.html" class="footer-logo">
-      <img src="images/logo.png" alt="Janiks Aniks">
-    </a>
-    <p class="location">Ayala Mall, Legazpi City Albay, Philippines</p>
-    <div class="footer-links">
-      <a href="visit-us.html">Visit us</a> · 
-      <a href="payments.html">Payments</a>
-    </div>
-  </footer>
-
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Shop cute character mugs, seasonal gifts, plushies and accessories at Janiks Aniks."><title>Home | Janiks Aniks</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quicksand:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body><div class="gingham-strip" aria-hidden="true"></div>
+<header class="top" id="site-sidebar">
+<a class="brand" href="index.html" aria-label="Janiks Aniks home"><img src="images/PNG%20image.png" alt="Janiks Aniks" width="240" height="100"></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true">☰</span><span class="sr-only">Open navigation</span></button>
+<nav class="main-nav" id="primary-nav" aria-label="Main navigation">
+<a href="index.html" data-nav="index"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Home</span></a>
+<a href="shop.html" data-nav="shop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Shop mugs</span></a>
+<a href="fall.html" data-nav="fall"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9M12 14c-5 0-8-3-8-8 5 0 8 3 8 8ZM12 11c0-5 3-8 8-8 0 5-3 8-8 8Z"/></svg><span>Fall collection</span></a>
+<a href="seasonal.html" data-nav="seasonal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2-5 7h3l-5 6h5v6h4v-6h5l-5-6h3Z"/></svg><span>Seasonal</span></a>
+<a href="colors.html" data-nav="colors"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 1.7-4.3c-.8-.8-.2-2.2 1-2.2H18a3 3 0 0 0 3-3 8.5 8.5 0 0 0-9-8.5Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10" r="1"/></svg><span>Shop by color</span></a>
+<a href="plushies.html" data-nav="plushies"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8a3 3 0 1 1 4-3l1 1 1-1a3 3 0 1 1 4 3c2 1 3 3 3 6 0 4-3 7-8 7s-8-3-8-7c0-3 1-5 3-6Z"/><path d="M9 12h.1M15 12h.1M10 15q2 2 4 0"/></svg><span>Plushies</span></a>
+<a href="accessories.html" data-nav="accessories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11 4 4C2 3 2 7 3 11l9 2 9-2c1-4 1-8-1-7l-8 7Z"/><circle cx="12" cy="12" r="2.5"/><path d="m10 14-2 7 4-2 4 2-2-7"/></svg><span>Accessories</span></a>
+<a href="payments.html" data-nav="payments"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span>Payments</span></a>
+<a href="visit.html" data-nav="visit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Visit us</span></a>
+<a href="cart.html" data-nav="cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg><span>Cart</span><span class="cart-count" data-cart-count>0</span></a>
+</nav><div class="sidebar-note"><span class="sidebar-heart" aria-hidden="true">♡</span><span>Made with love</span></div></header><main class="page-main"><section class="hero">
+<div class="hero-text">
+<p class="page-kicker">JANIKS ANIKS · LITTLE THINGS, BIG JOY</p>
+<h1 class="hero-title">Cute things, <em>happy days</em></h1>
+<p class="hero-subtitle">Character mugs, plushies, stickers and little extras to love.</p>
+<a href="shop.html" class="btn-primary">Explore the shop <span aria-hidden="true">→</span></a>
+</div>
+<div class="hero-image"><img class="arch" src="images/kitty.webp" alt="Featured character mug collection" width="900" height="900"></div>
+</section><section class="home-welcome">
+<h2>Find your favorite</h2>
+<p>Shop by what you love — each collection has its own little corner.</p>
+<div class="home-shortcuts">
+<a href="shop.html"><img src="images/IMG_5002.png" alt="" class="card-icon" width="72" height="72"><span>01</span><strong>Shop mugs</strong><small>Browse the mug collection</small></a>
+<a href="seasonal.html"><img src="images/IMG_5005.png" alt="" class="card-icon" width="72" height="72"><span>02</span><strong>Seasonal</strong><small>Holiday and spooky-cute picks</small></a>
+<a href="colors.html"><img src="images/IMG_5004.png" alt="" class="card-icon" width="72" height="72"><span>03</span><strong>Shop by color</strong><small>Find your perfect palette</small></a>
+<a href="plushies.html"><img src="images/IMG_5003.png" alt="" class="card-icon" width="72" height="72"><span>04</span><strong>Plushies &amp; extras</strong><small>Soft gifts and cute accessories</small></a>
+</div>
+</section>
+<section class="home-shortcut-banner"><h2>Something cute is waiting</h2><p>Explore seasonal finds, colorful collections, and thoughtful little gifts.</p><a class="btn-primary" href="fall.html">Explore the fall collection</a></section></main><footer><a class="footer-brand" href="index.html" aria-label="Janiks Aniks home"><img src="images/PNG%20image.png" alt="Janiks Aniks" width="240" height="100"></a><p>Ayala Mall, Legazpi City<br>Albay, Philippines</p><p><a href="visit.html">Visit us</a> · <a href="payments.html">Payments</a></p></footer><script src="catalog.js"></script><script src="store.js" defer></script><script src="animations.js" defer></script></body></html>

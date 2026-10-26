@@ -1147,3 +1147,54 @@ footer p{line-height:1.7}
   #site-sidebar .main-nav a{min-height:49px;padding:6px 10px;gap:10px}
   #site-sidebar .main-nav a svg{width:34px;height:34px;flex-basis:34px;padding:7px}
 }
+
+
+/* Kawaii Charm navigation theme — playful illustrated emoji icons + candy pastel tiles */
+#site-sidebar .main-nav a{position:relative;gap:11px;font-weight:700}
+#site-sidebar .main-nav a svg{display:none!important}
+#site-sidebar .main-nav a::before{
+  content:"";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 36px;
+  width:36px;height:36px;
+  border-radius:12px;
+  background:#ffe0ea;
+  font-family:system-ui,sans-serif;
+  font-size:22px;
+  line-height:1;
+  box-shadow:inset 0 -2px 0 rgba(150,35,65,.08);
+  transition:transform .2s ease;
+}
+#site-sidebar .main-nav a[data-nav="shop"]::before{content:"☕";background:#ffe1ec}
+#site-sidebar .main-nav a[data-nav="fall"]::before{content:"🎃";background:#ffebc9}
+#site-sidebar .main-nav a[data-nav="seasonal"]::before{content:"🎄";background:#ddf2df}
+#site-sidebar .main-nav a[data-nav="colors"]::before{content:"🎨";background:#e7e5ff}
+#site-sidebar .main-nav a[data-nav="plushies"]::before{content:"🐰";background:#fff0c9}
+#site-sidebar .main-nav a[data-nav="accessories"]::before{content:"🎀";background:#dff2e5}
+#site-sidebar .main-nav a[data-nav="payments"]::before{content:"💳";background:#ffe1ec}
+#site-sidebar .main-nav a[data-nav="visit"]::before{content:"📍";background:#e7e5ff}
+#site-sidebar .main-nav a[data-nav="cart"]::before{content:"🛍️";background:#dff2e5}
+#site-sidebar .main-nav a:hover::before{transform:rotate(-7deg) scale(1.06)}
+#site-sidebar .main-nav a[aria-current="page"]::before{background:#fff0c9}
+#site-sidebar .main-nav a[aria-current="page"]{background:linear-gradient(100deg,#ffedf3,#fff8df)!important;color:#851b3a!important;border-color:#f5b7c9!important}
+#site-sidebar .main-nav a .cart-count{border:2px solid #fff8f5}
+@media(max-width:850px){
+ #site-sidebar>.main-nav{background:linear-gradient(150deg,#fffafd,#fff1f6 65%,#fff8e7)!important;border:1px solid #f4c4d2!important;box-shadow:0 18px 42px rgba(151,35,72,.19),inset 0 0 0 4px rgba(255,255,255,.7)!important}
+ #site-sidebar>.main-nav.is-open{gap:5px!important;padding:10px!important}
+ #site-sidebar .main-nav a{min-height:43px!important;padding:5px 9px!important;gap:10px!important;border:1px solid #f5d5df!important;border-radius:15px!important;background:rgba(255,255,255,.91)!important;color:#74172e!important;box-shadow:0 3px 0 #f4d6e0!important;font-size:14px!important}
+ #site-sidebar .main-nav a::before{flex-basis:34px;width:34px;height:34px;border-radius:12px;font-size:21px}
+ #site-sidebar .main-nav a:nth-child(3n+1){border-color:#f5cfdd!important}
+ #site-sidebar .main-nav a:nth-child(3n+2){border-color:#f4dfb7!important}
+ #site-sidebar .main-nav a:nth-child(3n){border-color:#d6e9d7!important}
+ #site-sidebar .main-nav a[aria-current="page"]{background:linear-gradient(100deg,#ffdce8,#fff0c9)!important;color:#74172e!important;border-color:#eaa4bb!important;box-shadow:0 3px 0 #e9b6c7!important}
+ #site-sidebar .main-nav a[aria-current="page"]::before{display:inline-flex!important}
+ #site-sidebar .main-nav a .cart-count{min-width:25px!important;min-height:25px!important}
+ #site-sidebar>.nav-toggle{background:linear-gradient(145deg,#ffe7ef,#fff0c9)!important;border:1px solid #eaa4bb!important;color:#8f1b39!important;box-shadow:0 3px 0 #efc1cf!important}
+}
+@media(min-width:851px){
+ #site-sidebar .main-nav a{min-height:47px;padding:6px 9px}
+ #site-sidebar .main-nav a::before{flex-basis:34px;width:34px;height:34px;font-size:21px}
+}
+@media(prefers-reduced-motion:reduce){#site-sidebar .main-nav a::before{transition:none!important}}

@@ -838,3 +838,11 @@ footer{margin-left:0}
  #site-sidebar>.header-wordmark{width:clamp(150px,42vw,210px)!important;height:52px!important}
  #site-sidebar>.header-wordmark img{max-height:52px!important}
 }
+
+
+/* Product cards: clear, thumb-friendly purchase actions */
+.catalog-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;align-items:stretch}
+.catalog-card-actions .btn{display:flex;align-items:center;justify-content:center;min-width:0;width:100%;margin:0;padding:11px 10px;font:inherit;font-size:13px;line-height:1.2;text-align:center;white-space:normal;cursor:pointer}
+.catalog-card-actions button:disabled{opacity:.58;cursor:not-allowed;box-shadow:none;transform:none}
+.catalog-card-actions .catalog-add-button.is-added{background:#2f6b4f;border-color:#2f6b4f;color:#fff}
+@media(max-width:420px){.catalog-card-actions{grid-template-columns:1fr}.catalog-card-actions .btn{min-height:42px}}

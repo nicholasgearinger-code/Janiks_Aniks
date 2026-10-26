@@ -775,3 +775,7 @@ footer{margin-left:0}
  .page-main .home-shortcuts strong{font-size:16px}
  .page-main .home-shortcuts small{font-size:12px}
 }
+
+
+/* Seasonal collection artwork */
+.standalone-section .season-card .season-artwork{display:block;width:min(100%,180px);height:190px;object-fit:contain;flex:0 0 auto;margin:0 auto 2px}

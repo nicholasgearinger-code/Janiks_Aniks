@@ -779,3 +779,25 @@ footer{margin-left:0}
 
 /* Seasonal collection artwork */
 .standalone-section .season-card .season-artwork{display:block;width:min(100%,180px);height:190px;object-fit:contain;flex:0 0 auto;margin:0 auto 2px}
+
+
+/* Compact cherry Home button with centered full wordmark */
+#site-sidebar{position:relative}
+#site-sidebar .brand{flex:0 0 auto;width:72px;max-width:72px;display:flex;align-items:center;justify-content:center;padding:0}
+#site-sidebar .brand img{display:block;width:68px;height:68px;max-height:68px;object-fit:contain;object-position:center}
+#site-sidebar .header-wordmark{position:absolute;left:50%;top:7px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;width:clamp(112px,14vw,168px);height:62px;z-index:2}
+#site-sidebar .header-wordmark img{display:block;width:100%;height:100%;max-height:62px;object-fit:contain;object-position:center}
+#site-sidebar .main-nav{flex:1 1 100%;justify-content:center}
+@media(max-width:900px){
+ #site-sidebar .brand{width:62px;max-width:62px}
+ #site-sidebar .brand img{width:60px;height:60px;max-height:60px}
+ #site-sidebar .header-wordmark{top:6px;width:clamp(105px,30vw,145px);height:54px}
+ #site-sidebar .header-wordmark img{max-height:54px}
+ #site-sidebar .main-nav{flex:1 1 100%;justify-content:center}
+}
+@media(max-width:480px){
+ #site-sidebar .brand{width:52px;max-width:52px}
+ #site-sidebar .brand img{width:50px;height:50px;max-height:50px}
+ #site-sidebar .header-wordmark{top:4px;width:clamp(100px,34vw,130px);height:46px}
+ #site-sidebar .header-wordmark img{max-height:46px}
+}

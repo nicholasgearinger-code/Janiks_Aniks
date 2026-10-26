@@ -1105,3 +1105,45 @@ footer p{line-height:1.7}
 @media(prefers-reduced-motion:reduce){
   #site-sidebar .main-nav a svg{transition:none!important}
 }
+
+
+/* Compact coquette menu refinement */
+@media(max-width:850px){
+  #site-sidebar>.main-nav{
+    max-height:calc(100dvh - 185px)!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain;
+    gap:4px!important;
+    padding:0 8px!important;
+    border-radius:22px!important;
+  }
+  #site-sidebar>.main-nav.is-open{
+    padding:9px!important;
+    gap:4px!important;
+  }
+  #site-sidebar .main-nav a{
+    min-height:43px!important;
+    padding:5px 9px!important;
+    gap:10px!important;
+    border-radius:13px!important;
+    box-shadow:0 2px 0 #f2d6de!important;
+    font-size:14px!important;
+  }
+  #site-sidebar .main-nav a svg{
+    width:32px!important;
+    height:32px!important;
+    flex-basis:32px!important;
+    padding:6px!important;
+    border-radius:10px!important;
+  }
+  #site-sidebar .main-nav a .cart-count{
+    min-width:25px!important;
+    min-height:25px!important;
+    padding:3px 7px!important;
+    font-size:13px!important;
+  }
+}
+@media(min-width:851px){
+  #site-sidebar .main-nav a{min-height:49px;padding:6px 10px;gap:10px}
+  #site-sidebar .main-nav a svg{width:34px;height:34px;flex-basis:34px;padding:7px}
+}

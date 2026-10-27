@@ -1653,3 +1653,15 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 .seasonal-grid .season-card.halloween{background:linear-gradient(145deg,#f8f2ff,#e8dcf5)!important;border-color:#cdb9e6!important;color:#5e4077}
 .seasonal-grid .season-card.valentines{display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none}
 .seasonal-grid .season-card.valentines .text-link{text-decoration:underline;text-underline-offset:3px}
+
+/* Valentine's collection: stronger dusty-rose contrast against the cream-pink page */
+.seasonal-grid .season-card.valentines{
+ background:linear-gradient(145deg,#f6d0dd 0%,#edb8cc 100%)!important;
+ border:2px solid #d78ca9!important;
+ color:#74172e!important;
+ box-shadow:0 5px 0 #e8a9bf,0 12px 22px rgba(116,23,46,.10);
+}
+.seasonal-grid .season-card.valentines:hover,
+.seasonal-grid .season-card.valentines:focus-visible{
+ border-color:#b95f84!important;
+}

@@ -1715,3 +1715,26 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
  border:0!important;border-radius:0!important;background:transparent!important;
  box-shadow:none!important;padding:0!important;
 }
+
+/* Seasonal collection cards: matching dimensional borders, distinct palettes. */
+.seasonal-grid .season-card.christmas{
+ border:3px solid #bd9275!important;
+ box-shadow:0 6px 0 #dec1a9,0 13px 24px rgba(101,62,49,.13)!important;
+}
+.seasonal-grid .season-card.halloween{
+ border:3px solid #ad8dcc!important;
+ box-shadow:0 6px 0 #d2bce8,0 13px 24px rgba(94,64,119,.13)!important;
+}
+.seasonal-grid .season-card.valentines{
+ border-width:3px!important;
+}
+.seasonal-grid .season-card.christmas:hover,
+.seasonal-grid .season-card.christmas:focus-visible{
+ border-color:#966d54!important;
+ box-shadow:0 8px 0 #dec1a9,0 16px 26px rgba(101,62,49,.18)!important;
+}
+.seasonal-grid .season-card.halloween:hover,
+.seasonal-grid .season-card.halloween:focus-visible{
+ border-color:#8f6db6!important;
+ box-shadow:0 8px 0 #d2bce8,0 16px 26px rgba(94,64,119,.18)!important;
+}

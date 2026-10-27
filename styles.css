@@ -1449,3 +1449,20 @@ footer p{line-height:1.7}
  .page-main > .page-sticker,.inner-page > .page-sticker{width:clamp(128px,38vw,174px)!important;margin:12px auto 16px!important}
  .feature-page .category-feature{padding-top:12px}
 }
+
+/* Force centered page stickers regardless of page-specific layout rules */
+body .page-main > img.page-sticker,
+body .inner-page > img.page-sticker,
+body main img.page-sticker {
+ display:block!important;
+ position:relative!important;
+ inset:auto!important;
+ float:none!important;
+ clear:both!important;
+ margin-left:auto!important;
+ margin-right:auto!important;
+ align-self:center!important;
+ justify-self:center!important;
+ transform:none!important;
+ max-width:min(190px,45vw)!important;
+}

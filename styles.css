@@ -1648,3 +1648,8 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
  font-weight:700;
 }
 @media(prefers-reduced-motion:reduce){.seasonal-grid .season-card.valentines{transition:none}}
+
+.seasonal-grid .season-card.christmas{background:linear-gradient(145deg,#f9f0e7,#e8d2bf)!important;border-color:#d9b99f!important;color:#653e31}
+.seasonal-grid .season-card.halloween{background:linear-gradient(145deg,#f8f2ff,#e8dcf5)!important;border-color:#cdb9e6!important;color:#5e4077}
+.seasonal-grid .season-card.valentines{display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none}
+.seasonal-grid .season-card.valentines .text-link{text-decoration:underline;text-underline-offset:3px}

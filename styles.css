@@ -1704,3 +1704,14 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker,.main-nav img.figurines-nav-sticker{display:block!important;object-fit:contain!important;width:100px!important;height:100px!important;min-width:0!important;flex:0 0 100px!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
 
 #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker,.main-nav img.figurines-nav-sticker{width:72px!important;height:72px!important;flex:0 0 72px!important;min-width:72px!important;max-width:72px!important;object-fit:contain!important}
+
+/* Shared final navigation normalization: all stickers use one footprint. */
+#site-sidebar .main-nav a img.nav-sticker,
+#site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+ box-sizing:border-box!important;display:block!important;
+ width:72px!important;height:72px!important;min-width:72px!important;
+ max-width:72px!important;flex:0 0 72px!important;
+ object-fit:contain!important;object-position:center!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;padding:0!important;
+}

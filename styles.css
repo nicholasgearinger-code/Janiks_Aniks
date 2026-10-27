@@ -1692,3 +1692,11 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 .page-main .figurines-theme h2{color:#604678!important}
 .page-main .figurines-theme .coming-soon{background:#faf7ff;border-color:#d9c9eb}
 #site-sidebar .main-nav a[data-nav="figurines"] .figurines-nav-sticker{display:grid!important;place-items:center!important;flex:0 0 80px!important;width:80px!important;height:80px!important;min-width:80px!important;border-radius:50%;background:#e9e1f6;border:3px solid #c9b7e7;color:#775a9c;font:normal 54px/1 Georgia,serif!important;box-shadow:inset 0 0 0 5px #f8f3ff}
+
+/* Accessories: distinct pastel sage palette, same structure as Figurines. */
+.page-main .feature-page.accessories-theme{background:linear-gradient(160deg,#f0f7ed,#e0efdc)!important;border:1px solid #bfd7ba!important;border-radius:26px}
+.page-main .category-feature.accessories-theme{background:linear-gradient(145deg,#dcebd6,#f4faf0)!important;border:1px solid #b9d3b2!important;border-radius:22px;color:#385f49}
+.page-main .accessories-theme .btn{background:#46755a!important;border-color:#46755a!important;color:#fff!important}
+.page-main .accessories-theme .btn:hover{background:#345b44!important}
+.page-main .accessories-theme h2{color:#385f49!important}
+.page-main .accessories-theme .coming-soon{background:#f9fdf7;border-color:#c7dec1}

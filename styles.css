@@ -1255,3 +1255,60 @@ footer p{line-height:1.7}
     object-fit:contain;
   }
 }
+
+/* Mobile menu viewport fix: scrolling works in portrait AND landscape.
+   Fixed panel avoids absolute-position clipping; start alignment prevents
+   flexbox from centering overflowing links outside the scrollable area. */
+@media (max-width:850px){
+  #site-sidebar > .main-nav{
+    position:fixed!important;
+    top:calc(76px + env(safe-area-inset-top,0px))!important;
+    bottom:8px!important;
+    left:12px!important;
+    right:12px!important;
+    transform:none!important;
+    width:auto!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    display:none!important;
+    flex-direction:column!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    touch-action:pan-y;
+    box-sizing:border-box!important;
+    padding:12px 10px calc(20px + env(safe-area-inset-bottom,0px))!important;
+    scrollbar-width:thin;
+    scrollbar-color:#e9a6bc transparent;
+  }
+  #site-sidebar > .main-nav.is-open{
+    display:flex!important;
+    position:fixed!important;
+    top:calc(76px + env(safe-area-inset-top,0px))!important;
+    bottom:8px!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    flex-wrap:nowrap!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))!important;
+  }
+  #site-sidebar .main-nav a{flex:0 0 auto!important;width:100%!important}
+}
+@media (max-width:850px) and (orientation:landscape){
+  #site-sidebar > .main-nav,
+  #site-sidebar > .main-nav.is-open{
+    top:calc(66px + env(safe-area-inset-top,0px))!important;
+    bottom:4px!important;
+  }
+}

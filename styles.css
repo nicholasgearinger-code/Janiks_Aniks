@@ -1665,3 +1665,20 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 .seasonal-grid .season-card.valentines:focus-visible{
  border-color:#b95f84!important;
 }
+
+/* Mug style collections share the Seasonal card system. */
+.mug-style-section{max-width:1050px;margin:12px auto 38px;text-align:center;padding:0 12px}
+.mug-style-section>p{max-width:650px;margin:10px auto 22px}
+.mug-style-grid{max-width:1000px;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.mug-style-grid .mug-style-card{min-width:0;min-height:250px;padding:22px 16px;justify-content:center;text-align:center;border-width:2px;box-shadow:0 5px 0 rgba(116,23,46,.08),0 10px 20px rgba(116,23,46,.06)}
+.mug-style-grid .mug-style-card strong{font-family:Georgia,serif;font-size:clamp(23px,3vw,32px);line-height:1.15}
+.mug-style-grid .mug-style-card small{font-size:15px;max-width:260px}
+.mug-style-grid .mug-style-card .text-link{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.mug-style-grid .mug-style-emblem{display:grid;place-items:center;width:94px;height:94px;border-radius:28px;background:rgba(255,255,255,.65);font-size:62px!important;line-height:1;color:#8b3658;border:2px solid rgba(255,255,255,.8)}
+.mug-style-grid .cute{background:#ffe0e9;border-color:#edb4c9;color:#74172e}
+.mug-style-grid .coquette{background:#f3dfe9;border-color:#dcb1cb;color:#74172e}
+.mug-style-grid .whimsy{background:#eee4fa;border-color:#cdb7e8;color:#584075}
+.mug-style-grid .character{background:#e5f2df;border-color:#bdd7b6;color:#345f4a}
+.mug-style-grid .dimensional{background:#fff0d1;border-color:#e8cc98;color:#74512c}
+@media(min-width:950px){.mug-style-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.mug-style-grid{grid-template-columns:1fr;gap:12px}.mug-style-grid .mug-style-card{min-height:190px;padding:16px 12px}.mug-style-grid .mug-style-emblem{width:76px;height:76px;font-size:48px!important}}

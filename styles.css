@@ -1614,3 +1614,37 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
  .page-main .home-shortcuts a strong{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){.page-main .home-shortcuts a img.card-icon{transition:none!important}}
+
+/* Valentine's seasonal collection, styled to match existing holiday cards */
+.seasonal-grid .season-card.valentines{
+ background:linear-gradient(145deg,#fff8f8,#ffe7ee);
+ border:2px solid #f1b8c9;
+ color:#74172e;
+ text-align:center;
+}
+.seasonal-grid .valentines-art{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+ width:180px;
+ height:190px;
+ margin:0 auto 2px;
+ font:normal 132px/1 Georgia,serif;
+ color:#e56a94;
+ text-shadow:0 4px 0 #fff,0 7px 15px rgba(116,23,46,.13);
+}
+.seasonal-grid .valentines-bow{
+ position:absolute;
+ font:normal 58px/1 system-ui,sans-serif;
+ bottom:23px;
+ right:7px;
+ transform:rotate(-14deg);
+ text-shadow:none;
+}
+.seasonal-grid .season-card.valentines .text-link{
+ text-decoration:none;
+ color:#a43c62;
+ font-weight:700;
+}
+@media(prefers-reduced-motion:reduce){.seasonal-grid .season-card.valentines{transition:none}}

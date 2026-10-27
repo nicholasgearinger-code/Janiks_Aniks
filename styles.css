@@ -1198,3 +1198,30 @@ footer p{line-height:1.7}
  #site-sidebar .main-nav a::before{flex-basis:34px;width:34px;height:34px;font-size:21px}
 }
 @media(prefers-reduced-motion:reduce){#site-sidebar .main-nav a::before{transition:none!important}}
+
+
+/* Kawaii Charm custom illustration finish */
+#site-sidebar .main-nav a::before{display:none!important;content:none!important}
+#site-sidebar .main-nav a svg{
+ display:block!important;
+ width:44px!important;height:44px!important;flex:0 0 44px!important;
+ padding:4px!important;box-sizing:border-box!important;
+ border-radius:42% 58% 52% 48% / 52% 44% 56% 48%!important;
+ background:#ffe1eb!important;
+ stroke:none;
+ filter:drop-shadow(0 2px 0 rgba(139,36,60,.08));
+ transition:transform .18s ease;
+}
+#site-sidebar .main-nav a[data-nav="fall"] svg{background:#ffebc9!important}
+#site-sidebar .main-nav a[data-nav="seasonal"] svg{background:#e1f3df!important}
+#site-sidebar .main-nav a[data-nav="colors"] svg{background:#eee3ff!important}
+#site-sidebar .main-nav a[data-nav="plushies"] svg{background:#ffe4ed!important}
+#site-sidebar .main-nav a[data-nav="accessories"] svg{background:#e3efff!important}
+#site-sidebar .main-nav a[data-nav="payments"] svg{background:#fff0cc!important}
+#site-sidebar .main-nav a[data-nav="visit"] svg{background:#f0e2ff!important}
+#site-sidebar .main-nav a[data-nav="cart"] svg{background:#ffdce8!important}
+#site-sidebar .main-nav a:hover svg{transform:rotate(-5deg) scale(1.06)}
+@media(max-width:850px){
+ #site-sidebar .main-nav a svg{width:39px!important;height:39px!important;flex:0 0 39px!important;padding:3px!important}
+}
+@media(prefers-reduced-motion:reduce){#site-sidebar .main-nav a svg{transition:none!important}}

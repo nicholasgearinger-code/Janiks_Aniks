@@ -1682,3 +1682,5 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 .mug-style-grid .dimensional{background:#fff0d1;border-color:#e8cc98;color:#74512c}
 @media(min-width:950px){.mug-style-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.mug-style-grid{grid-template-columns:1fr;gap:12px}.mug-style-grid .mug-style-card{min-height:190px;padding:16px 12px}.mug-style-grid .mug-style-emblem{width:76px;height:76px;font-size:48px!important}}
+
+.main-nav .figurines-nav-sticker{display:grid;place-items:center;flex:none;width:80px;height:80px;border-radius:50%;background:#e9e1f6;border:3px solid #c9b7e7;color:#775a9c;font-size:54px;line-height:1;box-shadow:inset 0 0 0 5px #f8f3ff}

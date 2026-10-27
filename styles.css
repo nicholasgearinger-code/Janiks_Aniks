@@ -1575,3 +1575,42 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
  body h2{font-size:clamp(26px,7vw,36px)!important}
  body .hero h1{font-size:clamp(34px,9vw,48px)!important}
 }
+
+/* Homepage sticker cards: bring the same cheerful emphasis as the nav. */
+.page-main .home-shortcuts{gap:14px}
+.page-main .home-shortcuts a{
+ position:relative;
+ overflow:visible;
+ grid-template-columns:clamp(76px,9vw,104px) minmax(0,1fr);
+ column-gap:14px;
+ min-height:120px;
+ padding:15px 18px;
+ border:2px solid #efc2d0;
+ border-radius:22px;
+ background:linear-gradient(135deg,#fffefd 55%,#fff1f5);
+ box-shadow:0 5px 0 #f4d6e0,0 10px 20px rgba(116,23,46,.075);
+}
+.page-main .home-shortcuts a:nth-child(3n+2){border-color:#f3d7aa;background:linear-gradient(135deg,#fffefd 55%,#fff6e5);box-shadow:0 5px 0 #f8e5c8,0 10px 20px rgba(116,23,46,.065)}
+.page-main .home-shortcuts a:nth-child(3n){border-color:#c9dfc9;background:linear-gradient(135deg,#fffefd 55%,#f0f8ef);box-shadow:0 5px 0 #dcebdc,0 10px 20px rgba(116,23,46,.065)}
+.page-main .home-shortcuts a img.card-icon{
+ width:clamp(76px,9vw,104px)!important;
+ height:clamp(76px,9vw,104px)!important;
+ max-width:none!important;
+ object-fit:contain;
+ filter:drop-shadow(0 4px 3px rgba(116,23,46,.15)) saturate(1.12);
+ transition:transform .22s ease,filter .22s ease;
+}
+.page-main .home-shortcuts a strong{font-size:clamp(18px,2vw,23px);color:#74172e;line-height:1.18}
+.page-main .home-shortcuts a:hover,.page-main .home-shortcuts a:focus-visible{transform:translateY(-3px);border-color:#d989a4}
+.page-main .home-shortcuts a:hover img.card-icon,.page-main .home-shortcuts a:focus-visible img.card-icon{transform:rotate(-5deg) scale(1.07);filter:drop-shadow(0 6px 5px rgba(116,23,46,.18)) saturate(1.2)}
+@media(max-width:650px){
+ .page-main .home-shortcuts a{grid-template-columns:78px minmax(0,1fr);min-height:104px;padding:12px;column-gap:10px}
+ .page-main .home-shortcuts a img.card-icon{width:78px!important;height:78px!important}
+ .page-main .home-shortcuts a strong{font-size:18px}
+}
+@media(max-width:380px){
+ .page-main .home-shortcuts a{grid-template-columns:66px minmax(0,1fr)}
+ .page-main .home-shortcuts a img.card-icon{width:66px!important;height:66px!important}
+ .page-main .home-shortcuts a strong{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.page-main .home-shortcuts a img.card-icon{transition:none!important}}

@@ -1738,3 +1738,9 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
  border-color:#8f6db6!important;
  box-shadow:0 8px 0 #d2bce8,0 16px 26px rgba(94,64,119,.18)!important;
 }
+
+/* Category sticker artwork on Shop Mugs cards */
+.mug-style-grid .mug-style-card .mug-style-sticker{display:block;width:clamp(130px,17vw,190px);height:auto;aspect-ratio:1;object-fit:contain;margin:0 auto 8px;filter:drop-shadow(0 5px 5px rgba(91,38,64,.12));transition:transform .2s ease}
+.mug-style-grid .mug-style-card:hover .mug-style-sticker,.mug-style-grid .mug-style-card:focus-visible .mug-style-sticker{transform:scale(1.045)}
+@media(max-width:560px){.mug-style-grid .mug-style-card .mug-style-sticker{width:clamp(150px,45vw,205px)}}
+@media(prefers-reduced-motion:reduce){.mug-style-grid .mug-style-card .mug-style-sticker{transition:none}}

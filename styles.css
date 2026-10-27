@@ -1354,3 +1354,31 @@ footer p{line-height:1.7}
     max-height:calc(100dvh - 85px - env(safe-area-inset-bottom,0px))!important;
   }
 }
+
+/* Kawaii menu typography: use the generous space beside the stickers */
+@media(max-width:850px){
+  #site-sidebar .main-nav a{
+    font-size:clamp(19px,5.1vw,25px)!important;
+    font-weight:800!important;
+    line-height:1.18!important;
+    letter-spacing:-.025em!important;
+    gap:16px!important;
+    padding-inline:16px!important;
+    text-align:left!important;
+  }
+  #site-sidebar .main-nav a > span:not(.cart-count){
+    font-size:inherit!important;
+    font-weight:inherit!important;
+    line-height:inherit!important;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  #site-sidebar .main-nav a .cart-count{
+    font-size:16px!important;
+    font-weight:800!important;
+    flex:0 0 auto;
+  }
+}
+@media(max-width:850px) and (orientation:landscape){
+  #site-sidebar .main-nav a{font-size:clamp(18px,3vw,23px)!important}
+}

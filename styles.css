@@ -1543,3 +1543,35 @@ body main img.page-sticker {
   padding-top:10px!important;
  }
 }
+
+/* Readable editorial typography: match the navigation's Georgia serif. */
+:root{--ja-heading-font:Georgia,'Times New Roman',serif}
+body h1,body h2,
+body .foot-logo,
+body .hero h1,
+body .page-heading h1,
+body .product-copy h1,
+body .category-feature h2,
+body .shop h2,
+body .seasonal h2,
+body .fall h2,
+body .visit h2,
+body .pay h2,
+body .category-hub h2{
+ font-family:var(--ja-heading-font)!important;
+ font-style:normal!important;
+ font-weight:700!important;
+ letter-spacing:-.035em;
+ line-height:1.15!important;
+ text-wrap:balance;
+}
+body h1{font-size:clamp(32px,6vw,56px)!important}
+body h2{font-size:clamp(27px,4.5vw,42px)!important}
+body .hero h1{font-size:clamp(36px,7vw,64px)!important}
+body .foot-logo{font-size:clamp(26px,4vw,36px)!important}
+body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!important}
+@media(max-width:600px){
+ body h1{font-size:clamp(30px,8vw,42px)!important}
+ body h2{font-size:clamp(26px,7vw,36px)!important}
+ body .hero h1{font-size:clamp(34px,9vw,48px)!important}
+}

@@ -1225,3 +1225,33 @@ footer p{line-height:1.7}
  #site-sidebar .main-nav a svg{width:39px!important;height:39px!important;flex:0 0 39px!important;padding:3px!important}
 }
 @media(prefers-reduced-motion:reduce){#site-sidebar .main-nav a svg{transition:none!important}}
+
+/* Scrollable Kawaii sticker menu: keep every destination reachable on phones */
+@media (max-width:850px){
+  #site-sidebar > .main-nav{
+    box-sizing:border-box!important;
+    max-height:calc(100dvh - 125px)!important;
+    max-height:calc(100svh - 125px)!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    touch-action:pan-y!important;
+    scrollbar-width:thin;
+    scrollbar-color:#e9a6bc transparent;
+    padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))!important;
+  }
+  #site-sidebar > .main-nav.is-open{
+    overflow-y:auto!important;
+    overscroll-behavior-y:contain;
+    touch-action:pan-y!important;
+  }
+  #site-sidebar .main-nav a{flex-shrink:0!important}
+  #site-sidebar .main-nav a .nav-sticker{
+    display:block;
+    width:72px!important;
+    height:72px!important;
+    flex:0 0 72px!important;
+    object-fit:contain;
+  }
+}

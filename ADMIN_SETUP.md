@@ -47,3 +47,10 @@ Visit `admin.html` on your published site. Sign in with the owner email/password
 - **Sign-in works but access is denied**: verify that the logged-in user's UUID has a row in `public.store_admins`.
 - **Products do not appear publicly**: check `published`, ensure the SQL ran without errors, and inspect the browser console/network panel for Supabase errors.
 - **Photo upload fails**: verify the bucket and storage policies from `supabase/schema.sql`, file type, and 8 MB size limit.
+
+## Orders workspace (new)
+The Store Manager now has **Products** and **Orders** tabs. To enable Orders, run [supabase/orders.sql](supabase/orders.sql) in your existing Supabase project's SQL Editor **after** the original schema. The Orders tab reads the latest 200 orders, shows customer/shipping details and itemized totals, and allows owner-only fulfillment status, courier, tracking number and internal notes updates.
+
+**Important:** This migration does not create customer orders or enable checkout, payment processing, email notifications, or automatic shipping updates. Orders and items must be created by a trusted server-side checkout function using validated product prices, shipping fees and totals. Only a verified payment-provider webhook may update payment status; do not expose service-role keys in GitHub Pages or let browser requests mark payments paid. Never insert real customer data just to test the dashboard. Test with fictional data in a separate development project.
+
+The browser owner account must already be configured and present in `store_admins`. Customer personal details are protected by RLS. Order status here refers to fulfillment only, not payment verification.

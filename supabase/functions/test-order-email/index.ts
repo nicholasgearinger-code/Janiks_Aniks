@@ -11,7 +11,7 @@ Deno.serve(async(req)=>{
  const token=req.headers.get('Authorization')?.match(/^Bearer (.+)$/)?.[1];
  if(!token)return json({error:'Authentication required'},401);
  const url=Deno.env.get('SUPABASE_URL'),anon=Deno.env.get('SUPABASE_ANON_KEY'),key=Deno.env.get('RESEND_API_KEY');
- if(!url||!anon||!key)return json({error:'Email service is not configured'},503);
+ if(!url||!anon||!key){console.error('Email function missing environment variables',{SUPABASE_URL:!url,SUPABASE_ANON_KEY:!anon,RESEND_API_KEY:!key});return json({error:'Email service is not configured',missing:[!url?'SUPABASE_URL':null,!anon?'SUPABASE_ANON_KEY':null,!key?'RESEND_API_KEY':null].filter(Boolean)},503);}
  const client=createClient(url,anon,{global:{headers:{Authorization:'Bearer '+token}},auth:{persistSession:false}});
  const {data:{user},error:authError}=await client.auth.getUser(token);
  if(authError||!user?.email)return json({error:'Authentication required'},401);

@@ -2493,3 +2493,92 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     object-fit:contain!important;
   }
 }
+
+
+/* Collection-specific color stories inspired by the plushies page.
+   Soft tinted canvas + deeper contrasting feature surface for each page. */
+@media(min-width:851px){
+  .page-main:has(.shop-page){--theme-bg:#fff0f3;--theme-strong:#a23f61;--theme-ink:#fff;--theme-border:#eab8c8}
+  .page-main:has(.fall-page){--theme-bg:#fff0df;--theme-strong:#a85c38;--theme-ink:#fff;--theme-border:#e5b995}
+  .page-main:has(.seasonal-page){--theme-bg:#ecf6ed;--theme-strong:#477c62;--theme-ink:#fff;--theme-border:#b7d8bd}
+  .page-main:has(.color-page){--theme-bg:#f9eafb;--theme-strong:#815a9b;--theme-ink:#fff;--theme-border:#d9bfe6}
+  .page-main:has(.figurines-theme){--theme-bg:#f1eafa;--theme-strong:#74569a;--theme-ink:#fff;--theme-border:#d2bfe7}
+  .page-main:has(.accessories-theme){--theme-bg:#eaf5e8;--theme-strong:#47765b;--theme-ink:#fff;--theme-border:#bcd9bf}
+  .page-main:has(.payments-page){--theme-bg:#fff0f7;--theme-strong:#a34d7b;--theme-ink:#fff;--theme-border:#e5bbd2}
+  .page-main:has(.visit-page){--theme-bg:#fff1e7;--theme-strong:#9b574e;--theme-ink:#fff;--theme-border:#e9c2b4}
+  .page-main:has(.feature-page.pink){--theme-bg:#ffecf3;--theme-strong:#9e365e;--theme-ink:#fff;--theme-border:#eab2ca}
+  .page-main:has(.shop-page),
+  .page-main:has(.fall-page),
+  .page-main:has(.seasonal-page),
+  .page-main:has(.color-page),
+  .page-main:has(.figurines-theme),
+  .page-main:has(.accessories-theme),
+  .page-main:has(.payments-page),
+  .page-main:has(.visit-page),
+  .page-main:has(.feature-page.pink){
+    background:var(--theme-bg)!important;
+  }
+  .page-main:has(.shop-page)>.collection-page-header,
+  .page-main:has(.fall-page)>.collection-page-header,
+  .page-main:has(.seasonal-page)>.collection-page-header,
+  .page-main:has(.color-page)>.collection-page-header,
+  .page-main:has(.figurines-theme)>.collection-page-header,
+  .page-main:has(.accessories-theme)>.collection-page-header,
+  .page-main:has(.payments-page)>.collection-page-header,
+  .page-main:has(.visit-page)>.collection-page-header,
+  .page-main:has(.feature-page.pink)>.collection-page-header{
+    background:var(--theme-bg)!important;
+  }
+  .page-main .standalone-section.shop-page,
+  .page-main .standalone-section.fall-page,
+  .page-main .standalone-section.seasonal-page,
+  .page-main .standalone-section.color-page,
+  .page-main .standalone-section.figurines-theme,
+  .page-main .standalone-section.accessories-theme,
+  .page-main .standalone-section.payments-page,
+  .page-main .standalone-section.visit-page,
+  .page-main .standalone-section.feature-page.pink{
+    background:var(--theme-bg)!important;
+  }
+  /* Rich headline surfaces; retain readable, light product cards underneath. */
+  .page-main .fall-page>.coming-soon,
+  .page-main .shop-page>.mug-style-section,
+  .page-main .seasonal-page>.seasonal,
+  .page-main .color-page>.color-browser,
+  .page-main .payments-page>.pay,
+  .page-main .visit-page>.visit,
+  .page-main .feature-page>.category-feature{
+    background:var(--theme-strong)!important;
+    color:var(--theme-ink)!important;
+    border:1px solid var(--theme-border)!important;
+    border-radius:26px!important;
+    box-shadow:0 12px 28px rgba(81,35,51,.10)!important;
+    padding:clamp(24px,3vw,44px)!important;
+  }
+  .page-main .fall-page>.coming-soon h2,
+  .page-main .shop-page>.mug-style-section h2,
+  .page-main .seasonal-page>.seasonal>h2,
+  .page-main .color-page>.color-browser>h2,
+  .page-main .payments-page>.pay>h2,
+  .page-main .visit-page>.visit h2,
+  .page-main .feature-page>.category-feature h2{
+    color:var(--theme-ink)!important;
+  }
+  .page-main .fall-page>.coming-soon p,
+  .page-main .shop-page>.mug-style-section>p,
+  .page-main .seasonal-page>.seasonal>p,
+  .page-main .color-page>.color-browser>.shop-intro,
+  .page-main .payments-page>.pay>.fine,
+  .page-main .visit-page>.visit p,
+  .page-main .feature-page>.category-feature p{
+    color:#fff8fb!important;
+  }
+  /* Cards remain light for contrast and legibility against rich sections. */
+  .page-main .season-card,
+  .page-main .pay-list li,
+  .page-main .collection-selects label{
+    color:#653b4c!important;
+  }
+  .page-main .visit-page>.visit{grid-template-columns:minmax(280px,.9fr) minmax(0,1fr)!important}
+  .page-main .visit-page .frame{background:#fff8f5!important;border-radius:18px!important}
+}

@@ -25,3 +25,14 @@
 .order-fields label:last-child{grid-column:1/-1}
 @media(max-width:900px){.manager-order-card{grid-template-columns:1fr 1fr}.order-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.order-controls,.order-detail-grid,.order-fields{grid-template-columns:1fr}.manager-order-card{grid-template-columns:1fr 1fr}.manager-order-card button{grid-column:1/-1}.order-fields label:last-child{grid-column:auto}}
+
+/* Analytics and business performance */
+.analytics-toolbar{display:flex;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:16px}.analytics-toolbar label{display:grid;gap:6px;min-width:180px}
+.analytics-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.analytics-kpis article,.analytics-card{background:#fff;border:1px solid var(--admin-line);border-radius:20px;padding:20px;min-width:0}
+.analytics-kpis article{display:flex;flex-direction:column;gap:8px}.analytics-kpis span{font-size:12px;font-weight:700;color:var(--admin-muted)}.analytics-kpis strong{font-size:clamp(19px,2.5vw,30px);color:var(--admin-red);overflow-wrap:anywhere}.analytics-kpis small{font-size:11px;color:var(--admin-muted)}
+.analytics-charts{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin:16px 0}.analytics-card h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}.analytics-card>p{font-size:12px;color:var(--admin-muted)}.analytics-chart{width:100%;min-height:230px}.analytics-chart svg{width:100%;height:auto;display:block}
+.metric-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--admin-line);font-size:13px}.metric-row span{overflow-wrap:anywhere}.metric-row button{border:1px solid var(--admin-line);background:white;border-radius:50%;cursor:pointer;color:var(--admin-red);width:30px;height:30px}
+.expense-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:none;margin:12px 0}.expense-form label{display:grid;gap:5px}.expense-form button{grid-column:1/-1}
+@media(max-width:950px){.analytics-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-charts{grid-template-columns:1fr}}
+@media(max-width:550px){.analytics-kpis{gap:8px}.analytics-kpis article,.analytics-card{padding:13px}.expense-form{grid-template-columns:1fr}.manager-tabs{overflow-x:auto}.manager-tab{white-space:nowrap}}

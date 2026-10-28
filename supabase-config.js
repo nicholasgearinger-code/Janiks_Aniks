@@ -1,5 +1,6 @@
 /* Public browser configuration only. Never put a service-role/secret key here. */
 window.JANIKS_SUPABASE_CONFIG = {
   projectUrl: "https://cjexvxqpmsumgizulpym.supabase.co",
-  publishableKey: "sb_publishable_qAJrNpvkgLmtZMDwMzvQVQ_XEEsUlFO"
+  publishableKey: "sb_publishable_qAJrNpvkgLmtZMDwMzvQVQ_XEEsUlFO",
+  checkoutEnabled: false // Enable only after verified payment webhook, merchant setup, and live testing
 };

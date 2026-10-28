@@ -188,7 +188,7 @@
     if(!session){showOnly('login-panel');$('sign-out').hidden=true;return;}
     var result=await client.from('store_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
     if(result.error || !result.data){showOnly('access-denied');$('sign-out').hidden=false;return;}
-    $('sign-out').hidden=false;showOnly('dashboard');await loadProducts();
+    $('sign-out').hidden=false;showOnly('dashboard');if(window.JaniksInventory)window.JaniksInventory.init(client);await loadProducts();
   }
   async function signOut() { await client.auth.signOut(); showOnly('login-panel');$('sign-out').hidden=true; }
   document.addEventListener('DOMContentLoaded',start);

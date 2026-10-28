@@ -1,0 +1,16 @@
+(function(){'use strict';let client=null,rows=[];const $=id=>document.getElementById(id);const status=s=>$('inventory-message').textContent=s;
+function draw(){const q=$('inventory-search').value.toLowerCase(),filter=$('inventory-filter').value;const tracked=rows.filter(x=>x.stock_quantity!==null),low=tracked.filter(x=>x.stock_quantity>0&&x.stock_quantity<=x.low_stock_threshold),out=tracked.filter(x=>x.stock_quantity===0);
+$('inventory-tracked').textContent=tracked.length;$('inventory-low').textContent=low.length;$('inventory-out').textContent=out.length;
+$('inventory-list').replaceChildren();
+rows.filter(x=>(x.name+' '+x.slug).toLowerCase().includes(q)&&(!filter||(filter==='untracked'?x.stock_quantity===null:filter==='low'?low.includes(x):out.includes(x)))).forEach(p=>{
+const card=document.createElement('article');card.className='manager-order-card';
+const info=document.createElement('div'),name=document.createElement('strong'),sub=document.createElement('small');name.textContent=p.name;sub.textContent=p.stock_quantity===null?'Stock not tracked':p.stock_quantity+' in stock · alert at '+p.low_stock_threshold;info.append(name,sub);
+const label=document.createElement('label');label.textContent='New quantity';const input=document.createElement('input');input.type='number';input.min='0';input.max='1000000';input.step='1';input.placeholder='Quantity';input.style.maxWidth='110px';input.value=p.stock_quantity??'';label.append(input);
+const reason=document.createElement('input');reason.type='text';reason.maxLength=300;reason.placeholder='Reason (restock, correction…)';reason.setAttribute('aria-label','Reason for '+p.name);
+const save=document.createElement('button');save.type='button';save.className='admin-button secondary';save.textContent='Save stock';save.addEventListener('click',async()=>{const n=Number(input.value);if(!input.value||!Number.isInteger(n)||n<0||n>1000000||reason.value.trim().length<3){status('Enter a valid stock quantity and a reason of at least 3 characters.');return;}save.disabled=true;const r=await client.rpc('adjust_inventory',{p_product_id:p.id,p_new_quantity:n,p_reason:reason.value.trim()});save.disabled=false;if(r.error){status('Could not update stock: '+r.error.message);return;}await load();status('Stock updated and logged for '+p.name+'.');});
+card.append(info,label,reason,save);$('inventory-list').append(card);
+});}
+async function load(){if(!client)return;status('Loading inventory…');const r=await client.from('products').select('id,slug,name,stock_quantity,low_stock_threshold').order('name');if(r.error){status('Inventory unavailable. Run supabase/inventory.sql first. '+r.error.message);return;}rows=r.data||[];draw();status(rows.length+' products loaded. Stock is not automatically deducted at checkout yet.');}
+document.addEventListener('DOMContentLoaded',()=>{$('inventory-refresh').addEventListener('click',load);$('inventory-search').addEventListener('input',draw);$('inventory-filter').addEventListener('change',draw);});
+window.JaniksInventory={init(c){client=c;},load,clear(){rows=[];draw();}};
+})();

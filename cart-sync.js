@@ -1,7 +1,7 @@
 /* Versioned customer cart sync: optimistic concurrency, per-item reconciliation, polling. */
 (function(){
 'use strict';
-const cfg=window.JANIKS_SUPABASE_CONFIG||{},KEY='janiks-aniks-cart-v1';
+const cfg=window.JANIKS_SUPABASE_CONFIG||{},KEY='janiks-aniks-cart-v1',OWNER='janiks-cart-owner-v1';
 let client=null,user=null,version=0,base=new Map(),pending=new Map(),ready=false,busy=false,dirty=false,debounce=null,epoch=0;
 const clean=a=>Array.isArray(a)?a.filter(x=>x&&typeof x.slug==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(x.slug)&&Number.isInteger(x.quantity)&&x.quantity>=1&&x.quantity<=99).slice(0,100):[];
 const read=()=>{try{return clean(JSON.parse(localStorage.getItem(KEY)||'[]'));}catch{return [];}};
@@ -35,7 +35,7 @@ async function flush(){
 async function refresh(){
  if(!ready||!user||busy)return;busy=true;const ticket=epoch;
  try{const r=await fetchRemote();if(ticket!==epoch)return;
-  capture();if(r.version!==version){version=r.version;base=r.items;write(overlay(base,pending));note(pending.size?'Merging your changes…':'♡ Your bag updated from another device');}
+  capture();if(r.version!==version){version=r.version;base=r.items;localStorage.setItem(OWNER,u.id);write(overlay(base,pending));note(pending.size?'Merging your changes…':'♡ Your bag updated from another device');}
   if(pending.size)schedule();
  }catch{note('Offline or sync unavailable. Your bag is saved on this device.');}
  finally{busy=false;}
@@ -43,7 +43,7 @@ async function refresh(){
 async function begin(u){
  const ticket=++epoch;user=u;ready=false;pending.clear();busy=true;note('Syncing your bag…');
  try{
-  const local=map(read()),r=await fetchRemote();if(ticket!==epoch)return;
+  const previous=localStorage.getItem(OWNER),local=previous&&previous!==u.id?new Map():map(read()),r=await fetchRemote();if(ticket!==epoch)return;
   version=r.version;base=r.items;
   // On sign-in, only bring local items missing from cloud; never overwrite cloud quantities.
   for(const [k,v] of local)if(!base.has(k))pending.set(k,v);
@@ -51,7 +51,7 @@ async function begin(u){
  }catch(e){note('Cart sync needs setup. Your bag remains on this device.');}
  finally{busy=false;if(ready&&pending.size)schedule();}
 }
-function signout(){epoch++;user=null;ready=false;pending.clear();base.clear();clearTimeout(debounce);note('Sign in to sync your bag across devices.');}
+function signout(){const hadOwner=!!localStorage.getItem(OWNER);epoch++;user=null;ready=false;pending.clear();base.clear();clearTimeout(debounce);if(hadOwner){localStorage.removeItem(OWNER);write(new Map());}note('Sign in to sync your bag across devices.');}
 document.addEventListener('DOMContentLoaded',async()=>{
  if(!window.supabase||!cfg.projectUrl||!cfg.publishableKey){note('Bag saved on this device.');return;}
  client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey);

@@ -2756,3 +2756,37 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   body .cart-page>.breadcrumb,
   body .cart-page>#cart-sync-status{color:#547c9a!important}
 }
+
+
+/* Desktop navigation: each collection button mirrors its own contrast panel.
+   Keep the illustrated mobile drawer unchanged. */
+@media(min-width:851px){
+  #site-sidebar .main-nav a[data-nav="shop"]{--nav-fill:#f3b9ce;--nav-edge:#d894ae;--nav-ink:#73344d}
+  #site-sidebar .main-nav a[data-nav="fall"]{--nav-fill:#f1c7a2;--nav-edge:#dca97f;--nav-ink:#744b32}
+  #site-sidebar .main-nav a[data-nav="seasonal"]{--nav-fill:#bfdfc7;--nav-edge:#96c3a5;--nav-ink:#365d45}
+  #site-sidebar .main-nav a[data-nav="colors"]{--nav-fill:#b9e4e1;--nav-edge:#8ccac6;--nav-ink:#285c61}
+  #site-sidebar .main-nav a[data-nav="plushies"]{--nav-fill:#efb3cc;--nav-edge:#d998b5;--nav-ink:#7a3456}
+  #site-sidebar .main-nav a[data-nav="figurines"]{--nav-fill:#d5c1f2;--nav-edge:#bba1df;--nav-ink:#503775}
+  #site-sidebar .main-nav a[data-nav="accessories"]{--nav-fill:#cce6c4;--nav-edge:#a7cea0;--nav-ink:#42674a}
+  #site-sidebar .main-nav a[data-nav="payments"]{--nav-fill:#f0c4da;--nav-edge:#dca5c2;--nav-ink:#783d5e}
+  #site-sidebar .main-nav a[data-nav="visit"]{--nav-fill:#f0d1be;--nav-edge:#ddb49d;--nav-ink:#755145}
+  #site-sidebar .main-nav a[data-nav="cart"]{--nav-fill:#c3e0f5;--nav-edge:#9fc9e7;--nav-ink:#315b7c}
+  #site-sidebar .main-nav a[data-nav]{
+    background:var(--nav-fill)!important;
+    border-color:var(--nav-edge)!important;
+    color:var(--nav-ink)!important;
+    box-shadow:0 3px 0 var(--nav-edge),0 6px 12px rgba(72,47,65,.10)!important;
+    transition:transform .18s ease,box-shadow .18s ease,filter .18s ease!important;
+  }
+  #site-sidebar .main-nav a[data-nav] span{color:var(--nav-ink)!important}
+  #site-sidebar .main-nav a[data-nav]:hover,
+  #site-sidebar .main-nav a[data-nav]:focus-visible{
+    filter:saturate(1.12) brightness(1.025)!important;
+    transform:translateY(-2px)!important;
+    box-shadow:0 5px 0 var(--nav-edge),0 9px 14px rgba(72,47,65,.14)!important;
+  }
+  #site-sidebar .main-nav a[data-nav][aria-current="page"]{
+    outline:2px solid var(--nav-ink)!important;
+    outline-offset:2px!important;
+  }
+}

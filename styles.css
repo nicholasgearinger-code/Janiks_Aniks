@@ -2582,3 +2582,90 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   .page-main .visit-page>.visit{grid-template-columns:minmax(280px,.9fr) minmax(0,1fr)!important}
   .page-main .visit-page .frame{background:#fff8f5!important;border-radius:18px!important}
 }
+
+
+/* Softer, distinct pastel themes across every primary page (desktop only).
+   Keep existing nav styling and mobile layouts unchanged. */
+@media(min-width:851px){
+  .page-main:has(.shop-page){--theme-bg:#fff4f7;--theme-strong:#f3b9ce;--theme-text:#73344d;--theme-border:#e8a8bf}
+  .page-main:has(.fall-page){--theme-bg:#fff5e9;--theme-strong:#f1c7a2;--theme-text:#744b32;--theme-border:#e8b587}
+  .page-main:has(.seasonal-page){--theme-bg:#f1f9f2;--theme-strong:#bfdfc7;--theme-text:#365d45;--theme-border:#9fceb0}
+  .page-main:has(.color-page){--theme-bg:#fff0f6;--theme-strong:#f3c1d7;--theme-text:#763d5d;--theme-border:#e7a9c4}
+  .page-main:has(.figurines-theme){--theme-bg:#f5f1ff;--theme-strong:#d9c8f3;--theme-text:#5e477c;--theme-border:#c6afe7}
+  .page-main:has(.accessories-theme){--theme-bg:#f0f9ed;--theme-strong:#cce6c4;--theme-text:#42674a;--theme-border:#aed6a5}
+  .page-main:has(.payments-page){--theme-bg:#fff2f8;--theme-strong:#f0c4da;--theme-text:#783d5e;--theme-border:#e2aac6}
+  .page-main:has(.visit-page){--theme-bg:#fff6ef;--theme-strong:#f0d1be;--theme-text:#755145;--theme-border:#e5bea8}
+  .page-main:has(.feature-page.pink){--theme-bg:#fff0f6;--theme-strong:#efb3cc;--theme-text:#7a3456;--theme-border:#e2a2bc}
+  .page-main .fall-page>.coming-soon,
+  .page-main .shop-page>.mug-style-section,
+  .page-main .seasonal-page>.seasonal,
+  .page-main .color-page>.color-browser,
+  .page-main .payments-page>.pay,
+  .page-main .visit-page>.visit,
+  .page-main .feature-page>.category-feature{
+    color:var(--theme-text)!important;
+    background:var(--theme-strong)!important;
+    border-color:var(--theme-border)!important;
+  }
+  .page-main .fall-page>.coming-soon h2,
+  .page-main .shop-page>.mug-style-section h2,
+  .page-main .seasonal-page>.seasonal>h2,
+  .page-main .color-page>.color-browser>h2,
+  .page-main .payments-page>.pay>h2,
+  .page-main .visit-page>.visit h2,
+  .page-main .feature-page>.category-feature h2,
+  .page-main .fall-page>.coming-soon p,
+  .page-main .shop-page>.mug-style-section>p,
+  .page-main .seasonal-page>.seasonal>p,
+  .page-main .color-page>.color-browser>.shop-intro,
+  .page-main .payments-page>.pay>.fine,
+  .page-main .visit-page>.visit p,
+  .page-main .feature-page>.category-feature p{
+    color:var(--theme-text)!important;
+  }
+  /* Shared treatment for non-collection pages, each with its own color. */
+  body:has(.cart-page){--utility-bg:#fff2f5;--utility-panel:#f7d0df;--utility-border:#e9b5c9}
+  body:has(#catalog-grid){--utility-bg:#fff5ed;--utility-panel:#f5d7bc;--utility-border:#e7c39f}
+  body:has(.customer-main):has(#account-auth){--utility-bg:#fff3f8;--utility-panel:#f3d1e1;--utility-border:#e4b6cb}
+  body:has(.customer-main):has(#checkout-form){--utility-bg:#f2f8f6;--utility-panel:#cce7de;--utility-border:#add5c7}
+  body:has(.cart-page) .cart-page,
+  body:has(#catalog-grid) main.inner-page,
+  body:has(.customer-main):has(#account-auth),
+  body:has(.customer-main):has(#checkout-form){
+    background:var(--utility-bg)!important;
+  }
+  .cart-page>.page-heading,
+  main.inner-page:has(#catalog-grid)>.page-heading,
+  body:has(#account-auth) .customer-intro,
+  body:has(#checkout-form) .customer-intro{
+    background:var(--utility-panel)!important;
+    border:1px solid var(--utility-border)!important;
+    border-radius:24px!important;
+    padding:22px clamp(20px,3vw,38px)!important;
+    box-shadow:0 8px 20px rgba(93,45,65,.07)!important;
+  }
+  .page-main>.hero{background:linear-gradient(125deg,#fff0f4,#f8d5e4)!important}
+  .page-main>.home-welcome{background:#fff7fa!important}
+  /* The previous sticker rules were overridden by generic header sizing.
+     Target the actual image and its container with stronger selectors. */
+  body main.inner-page.cart-page>header.collection-page-header{
+    min-height:205px!important;
+    padding:4px 0 12px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  body main.inner-page.cart-page>header.collection-page-header>img.page-sticker{
+    display:block!important;
+    width:200px!important;
+    height:200px!important;
+    min-width:200px!important;
+    min-height:200px!important;
+    max-width:none!important;
+    max-height:none!important;
+    object-fit:contain!important;
+    flex:none!important;
+    transform:none!important;
+    margin:0 auto!important;
+  }
+}

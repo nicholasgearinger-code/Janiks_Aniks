@@ -2826,3 +2826,82 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     color:var(--nav-ink)!important;
   }
 }
+
+
+/* Mobile collection color stories: content only. The mobile header, menu,
+   drawer, navigation links and their interactions are deliberately untouched. */
+@media(max-width:850px){
+  .page-main:has(.shop-page){--m-bg:#fff4f7;--m-panel:#f3b9ce;--m-edge:#e8a8bf;--m-ink:#73344d}
+  .page-main:has(.fall-page){--m-bg:#fff5e9;--m-panel:#f1c7a2;--m-edge:#e8b587;--m-ink:#744b32}
+  .page-main:has(.seasonal-page){--m-bg:#f1f9f2;--m-panel:#bfdfc7;--m-edge:#9fceb0;--m-ink:#365d45}
+  .page-main:has(.color-page){--m-bg:#edf9f8;--m-panel:#b9e4e1;--m-edge:#8ccac6;--m-ink:#285c61}
+  .page-main:has(.feature-page.pink){--m-bg:#fff0f6;--m-panel:#efb3cc;--m-edge:#e2a2bc;--m-ink:#7a3456}
+  .page-main:has(.figurines-theme){--m-bg:#f5f0ff;--m-panel:#d5c1f2;--m-edge:#bba1df;--m-ink:#503775}
+  .page-main:has(.accessories-theme){--m-bg:#f0f9ed;--m-panel:#cce6c4;--m-edge:#aed6a5;--m-ink:#42674a}
+  .page-main:has(.payments-page){--m-bg:#fff2f8;--m-panel:#f0c4da;--m-edge:#e2aac6;--m-ink:#783d5e}
+  .page-main:has(.visit-page){--m-bg:#fff6ef;--m-panel:#f0d1be;--m-edge:#e5bea8;--m-ink:#755145}
+  .page-main:has(.shop-page,.fall-page,.seasonal-page,.color-page,.feature-page,.payments-page,.visit-page){
+    background:var(--m-bg)!important;
+  }
+  .page-main:has(.shop-page,.fall-page,.seasonal-page,.color-page,.feature-page,.payments-page,.visit-page)>.collection-page-header,
+  .page-main .standalone-section:is(.shop-page,.fall-page,.seasonal-page,.color-page,.feature-page,.payments-page,.visit-page){
+    background:var(--m-bg)!important;
+  }
+  .page-main .shop-page>.mug-style-section,
+  .page-main .fall-page>.coming-soon,
+  .page-main .seasonal-page>.seasonal,
+  .page-main .color-page>.color-browser,
+  .page-main .feature-page>.category-feature,
+  .page-main .payments-page>.pay,
+  .page-main .visit-page>.visit{
+    background:var(--m-panel)!important;
+    border:1px solid var(--m-edge)!important;
+    border-radius:22px!important;
+    color:var(--m-ink)!important;
+    box-shadow:0 7px 18px rgba(69,45,57,.07)!important;
+    max-width:100%;
+  }
+  .page-main .shop-page>.mug-style-section :is(h2,p),
+  .page-main .fall-page>.coming-soon :is(h2,p),
+  .page-main .seasonal-page>.seasonal :is(h2,p),
+  .page-main .color-page>.color-browser :is(h2,p),
+  .page-main .feature-page>.category-feature :is(h2,p),
+  .page-main .payments-page>.pay :is(h2,p),
+  .page-main .visit-page>.visit :is(h2,p){color:var(--m-ink)!important}
+  /* The bag has the same blue identity on mobile as on desktop. */
+  body main.inner-page.cart-page{background:#edf7ff!important}
+  body .cart-page>.page-heading{
+    background:#c3e0f5!important;border:1px solid #9fc9e7!important;
+    border-radius:22px!important;color:#315b7c!important;
+    padding:18px clamp(16px,4vw,26px)!important;
+    box-shadow:0 7px 18px rgba(42,91,130,.08)!important;
+  }
+  body .cart-page>.page-heading :is(h1,p){color:#315b7c!important}
+  body .cart-page .cart-summary,
+  body .cart-page #cart-empty{
+    background:#f8fcff!important;border:1px solid #b7d9ee!important;
+    border-radius:20px!important;
+  }
+  body .cart-page .cart-summary h2,
+  body .cart-page #cart-empty h2{color:#34688e!important}
+  /* Customer pages keep their forms, buttons and layout; only surfaces change. */
+  body.customer-body:has(#account-auth){background:#fff3f8!important}
+  body.customer-body:has(#account-auth) .customer-intro{
+    background:#efb3cc!important;border:1px solid #d998b5!important;
+    border-radius:22px!important;padding:18px!important;color:#7a3456!important;
+  }
+  body.customer-body:has(#account-auth) .customer-intro :is(h1,p){color:#7a3456!important}
+  body.customer-body:has(#checkout-form){background:#f2f8f6!important}
+  body.customer-body:has(#checkout-form) .customer-intro{
+    background:#cce7de!important;border:1px solid #add5c7!important;
+    border-radius:22px!important;padding:18px!important;color:#365e53!important;
+  }
+  body.customer-body:has(#checkout-form) .customer-intro :is(h1,p){color:#365e53!important}
+  main.inner-page:has(#catalog-grid){background:#fff5ed!important}
+  main.inner-page:has(#catalog-grid)>.page-heading{
+    background:#f5d7bc!important;border:1px solid #e7c39f!important;
+    border-radius:22px!important;padding:18px!important;color:#744b32!important;
+  }
+  .page-main>.hero{background:linear-gradient(135deg,#fff0f4,#f8d5e4)!important}
+  .page-main>.home-welcome{background:#fff7fa!important}
+}

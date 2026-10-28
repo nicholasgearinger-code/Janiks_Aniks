@@ -46,7 +46,7 @@ async function begin(u){
   const previous=localStorage.getItem(OWNER),local=previous&&previous!==u.id?new Map():map(read()),r=await fetchRemote();if(ticket!==epoch)return;
   version=r.version;base=r.items;
   // On sign-in, only bring local items missing from cloud; never overwrite cloud quantities.
-  for(const [k,v] of local)if(!base.has(k))pending.set(k,v);
+  if(!previous)for(const [k,v] of local)if(!base.has(k))pending.set(k,v);
   ready=true;write(overlay(base,pending));note(pending.size?'Saving your bag…':'♡ Your bag is up to date');
  }catch(e){note('Cart sync needs setup. Your bag remains on this device.');}
  finally{busy=false;if(ready&&pending.size)schedule();}

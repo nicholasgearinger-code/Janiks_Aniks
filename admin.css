@@ -36,3 +36,6 @@
 .expense-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:none;margin:12px 0}.expense-form label{display:grid;gap:5px}.expense-form button{grid-column:1/-1}
 @media(max-width:950px){.analytics-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-charts{grid-template-columns:1fr}}
 @media(max-width:550px){.analytics-kpis{gap:8px}.analytics-kpis article,.analytics-card{padding:13px}.expense-form{grid-template-columns:1fr}.manager-tabs{overflow-x:auto}.manager-tab{white-space:nowrap}}
+
+/* Fulfillment pipeline */
+.order-workflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0 12px}.workflow-step{padding:14px 10px;text-align:center;background:#fff;border:1px solid #efd4dc;border-radius:14px;color:#7e2940;font:700 12px Quicksand,sans-serif}.order-stage{text-transform:capitalize}.order-stage.stage-delivered{background:#dff4e6;color:#236b43}.order-stage.stage-shipped{background:#e7eafb;color:#384c91}.order-stage.stage-processing{background:#fff0d5;color:#8b5a11}.order-stage.stage-cancelled{background:#f3e7e7;color:#8b3c48}@media(max-width:650px){.order-workflow{grid-template-columns:repeat(2,minmax(0,1fr))}.manager-tabs{overflow-x:auto}}

@@ -50,6 +50,6 @@ document.addEventListener('DOMContentLoaded',function(){
  // Share the owner session via the main admin controller, not a separate login.
  window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);},clear:function(){orders=[];render();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
  client.auth.getSession().then(async function(r){if(!r.data.session)return;var user=r.data.session.user;var check=await client.from('store_admins').select('user_id').eq('user_id',user.id).maybeSingle();if(!check.error&&check.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);});
- client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}});
+ client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}if(event==='SIGNED_IN'){setTimeout(async function(){var r=await client.auth.getUser();if(!r.data.user)return;var a=await client.from('store_admins').select('user_id').eq('user_id',r.data.user.id).maybeSingle();if(!a.error&&a.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);},0);}});
 });
 })();

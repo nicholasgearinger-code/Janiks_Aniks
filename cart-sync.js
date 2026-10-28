@@ -22,7 +22,7 @@ async function sync(initial){
  var updates=merged.map(x=>({user_id:user.id,product_slug:x.slug,quantity:x.quantity}));
  if(updates.length){var up=await client.from('customer_cart_items').upsert(updates,{onConflict:'user_id,product_slug'});if(up.error)throw up.error;}
  if(!initial){var removed=remote.filter(x=>!map.has(x.product_slug)).map(x=>x.product_slug);if(removed.length){var del=await client.from('customer_cart_items').delete().eq('user_id',user.id).in('product_slug',removed);if(del.error)throw del.error;}}
- if(initial){write(merged);if(document.getElementById('cart-items'))location.reload();}else last=JSON.stringify(local);
+ if(initial){var changed=JSON.stringify(local)!==JSON.stringify(merged);write(merged);if(changed&&document.getElementById('cart-items'))location.reload();}else last=JSON.stringify(local);
  note('♡ Your bag is synced to your account');
  }catch(e){note('Cart sync unavailable — changes remain saved on this device. '+(e.message||''));}
  finally{busy=false;}

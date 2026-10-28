@@ -1744,3 +1744,101 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 .mug-style-grid .mug-style-card:hover .mug-style-sticker,.mug-style-grid .mug-style-card:focus-visible .mug-style-sticker{transform:scale(1.045)}
 @media(max-width:560px){.mug-style-grid .mug-style-card .mug-style-sticker{width:clamp(150px,45vw,205px)}}
 @media(prefers-reduced-motion:reduce){.mug-style-grid .mug-style-card .mug-style-sticker{transition:none}}
+
+
+/* Desktop-only navigation refinement: compact illustrated rail.
+   Mobile drawer (850px and below) is intentionally untouched. */
+@media (min-width:851px){
+  :root{--ja-desktop-rail:214px}
+  #site-sidebar.top{
+    width:var(--ja-desktop-rail)!important;
+    padding:14px 11px 18px!important;
+    gap:8px!important;
+    scrollbar-width:thin;
+    scrollbar-color:#e8b8c7 transparent;
+  }
+  #site-sidebar>.brand{
+    width:100%!important;
+    min-height:58px!important;
+    padding:0 6px 6px!important;
+    margin:0!important;
+  }
+  #site-sidebar>.brand img{
+    width:58px!important;height:58px!important;max-height:58px!important;
+    object-fit:contain!important;
+  }
+  #site-sidebar>.main-nav{
+    display:flex!important;
+    flex:0 0 auto!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:5px!important;
+    width:100%!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  #site-sidebar .main-nav a{
+    display:flex!important;
+    width:100%!important;
+    min-height:56px!important;
+    padding:5px 10px!important;
+    gap:10px!important;
+    border:1px solid #f1d5de!important;
+    border-radius:14px!important;
+    background:linear-gradient(110deg,#fffdfc,#fff5f8)!important;
+    box-shadow:0 2px 0 #e9c6d1!important;
+    font:700 14px/1.2 'Quicksand',system-ui,sans-serif!important;
+    letter-spacing:0!important;
+    white-space:normal!important;
+    text-align:left!important;
+    transform:none!important;
+    transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+  }
+  #site-sidebar .main-nav a img.nav-sticker,
+  #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+    width:43px!important;height:43px!important;min-width:43px!important;
+    max-width:43px!important;flex:0 0 43px!important;
+    object-fit:contain!important;
+  }
+  #site-sidebar .main-nav a>span:not(.cart-count){
+    flex:1 1 auto!important;
+    min-width:0!important;
+  }
+  #site-sidebar .main-nav a:hover,
+  #site-sidebar .main-nav a:focus-visible{
+    background:#ffeaf1!important;
+    border-color:#d998ae!important;
+    box-shadow:0 3px 0 #d9a7b8,0 6px 12px rgba(90,16,38,.09)!important;
+    transform:translateX(2px)!important;
+  }
+  #site-sidebar .main-nav a[aria-current="page"]{
+    background:#fce3ec!important;
+    border-color:#cc879f!important;
+  }
+  #site-sidebar .main-nav .cart-count{
+    margin-left:auto!important;
+    flex:0 0 auto!important;
+  }
+  #site-sidebar .sidebar-note{margin-top:10px!important}
+  .page-main{
+    width:calc(100% - var(--ja-desktop-rail))!important;
+    max-width:calc(100% - var(--ja-desktop-rail))!important;
+    margin-left:var(--ja-desktop-rail)!important;
+  }
+  .inner-page{margin-left:var(--ja-desktop-rail)!important}
+  footer{margin-left:var(--ja-desktop-rail)!important}
+}
+@media (min-width:851px) and (max-height:700px){
+  #site-sidebar.top{gap:4px!important;padding-top:8px!important}
+  #site-sidebar>.brand{min-height:44px!important;padding-bottom:0!important}
+  #site-sidebar>.brand img{width:44px!important;height:44px!important}
+  #site-sidebar>.main-nav{gap:3px!important}
+  #site-sidebar .main-nav a{min-height:48px!important;padding:3px 8px!important}
+  #site-sidebar .main-nav a img.nav-sticker,
+  #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+    width:37px!important;height:37px!important;min-width:37px!important;max-width:37px!important;flex-basis:37px!important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #site-sidebar .main-nav a{transition:none!important}
+}

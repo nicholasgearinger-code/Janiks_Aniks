@@ -2434,3 +2434,50 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   .cart-page .cart-shell{grid-template-columns:minmax(0,1.35fr) minmax(270px,.85fr)!important}
   .page-main .visit-page>.visit{gap:24px!important;padding:18px!important}
 }
+
+
+/* Desktop refinements from page screenshots: prominent Visit sticker and
+   centered, compact empty-bag state. Populated carts retain two columns. */
+@media(min-width:851px){
+  .page-main:has(.visit-page)>.collection-page-header{
+    padding:24px 20px 12px!important;
+    gap:10px!important;
+  }
+  .page-main:has(.visit-page)>.collection-page-header .page-sticker{
+    display:block!important;
+    width:clamp(155px,15vw,205px)!important;
+    height:auto!important;
+    max-width:205px!important;
+    object-fit:contain!important;
+  }
+  /* store.js toggles [hidden] on #cart-items when the bag is empty. */
+  .cart-page .cart-shell:has(#cart-items[hidden]){
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:20px!important;
+    max-width:760px!important;
+    margin:8px auto 0!important;
+  }
+  .cart-page .cart-shell:has(#cart-items[hidden]) #cart-empty{
+    display:block!important;
+    width:min(100%,580px)!important;
+    max-width:580px!important;
+    margin:0 auto!important;
+    padding:30px clamp(20px,4vw,44px)!important;
+    text-align:center!important;
+  }
+  .cart-page .cart-shell:has(#cart-items[hidden]) .cart-summary{
+    position:static!important;
+    width:min(100%,580px)!important;
+    max-width:580px!important;
+    margin:0 auto!important;
+  }
+  .cart-page .cart-shell:has(#cart-items[hidden]) #cart-items[hidden]{
+    display:none!important;
+  }
+  .cart-page .cart-shell:has(#cart-items[hidden]) #cart-empty h2{
+    font-size:clamp(30px,3vw,42px)!important;
+  }
+}

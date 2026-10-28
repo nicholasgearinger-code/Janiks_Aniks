@@ -25,6 +25,6 @@ Deno.serve(async(req)=>{
  text:'Janiks Aniks — TEST EMAIL ONLY\n\nYour email integration is working! This is a sample order confirmation, not a purchase, invoice, or payment receipt.\n\nCute things, happy days ♡'
  })});
  const payload=await result.json().catch(()=>({}));
- if(!result.ok){console.error('Resend test failed',result.status,payload);return json({error:'Resend could not send the test email. Check your verified Resend email and API key.'},502);}
+ if(!result.ok){console.error('Resend test failed',result.status,payload);return json({error:'Resend rejected the test email',resend_status:result.status,resend_code:typeof payload.name==='string'?payload.name:null,resend_message:typeof payload.message==='string'?payload.message:null},502);}
  return json({sent:true,id:typeof payload.id==='string'?payload.id:null,message:'Resend accepted the test email request. Delivery to the inbox is not yet confirmed.'});
 });

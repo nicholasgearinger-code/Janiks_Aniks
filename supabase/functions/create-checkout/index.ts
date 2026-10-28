@@ -5,6 +5,7 @@ function reply(body,status=200){return new Response(JSON.stringify(body),{status
 Deno.serve(async req=>{
  if(req.method==='OPTIONS')return new Response(null,{headers});
  if(req.method!=='POST')return reply({error:'Method not allowed'},405);
+ if(Deno.env.get('PAYMONGO_CHECKOUT_ENABLED')!=='true')return reply({error:'Payments are not activated yet.'},503);
  const secret=Deno.env.get('PAYMONGO_SECRET_KEY');
  if(!secret)return reply({error:'Checkout is not configured yet.'},503);
  try{

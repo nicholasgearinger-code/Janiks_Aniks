@@ -2790,3 +2790,39 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     outline-offset:2px!important;
   }
 }
+
+
+/* Shared desktop navigation: no selected-page ring, consistent colors on
+   every page, including customer Account and Checkout. */
+@media(min-width:851px){
+  body #site-sidebar .main-nav a[data-nav][aria-current],
+  body #site-sidebar .main-nav a[data-nav].active,
+  body #site-sidebar .main-nav a[data-nav][data-active="true"]{
+    outline:none!important;
+    outline-offset:0!important;
+    box-shadow:0 3px 0 var(--nav-edge),0 6px 12px rgba(72,47,65,.10)!important;
+  }
+  body #site-sidebar .main-nav a[data-nav]:focus-visible{
+    outline:2px solid var(--nav-ink)!important;
+    outline-offset:2px!important;
+  }
+  /* Account is rose-pink, never purple or plain white. */
+  body.customer-body:has(#account-auth){
+    --utility-bg:#fff3f8!important;
+    --utility-panel:#efb3cc!important;
+    --utility-border:#d998b5!important;
+    background:#fff3f8!important;
+  }
+  body.customer-body:has(#account-auth) .customer-intro{
+    background:#efb3cc!important;
+    border-color:#d998b5!important;
+    color:#7a3456!important;
+  }
+  body.customer-body:has(#account-auth) .customer-intro h1,
+  body.customer-body:has(#account-auth) .customer-intro p{color:#7a3456!important}
+  body.customer-body:has(#account-auth) #site-sidebar .main-nav a[data-nav]{
+    background:var(--nav-fill)!important;
+    border-color:var(--nav-edge)!important;
+    color:var(--nav-ink)!important;
+  }
+}

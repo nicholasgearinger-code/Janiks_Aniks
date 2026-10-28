@@ -6,7 +6,7 @@ var esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 var money=v=>'₱'+Number(v||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2});
 var date=v=>v?new Date(v).toLocaleString('en-PH'):'—';
 var msg=(s,error)=>{$('orders-message').textContent=s;$('orders-message').className='admin-message'+(error?' error':'');};
-function tabs(which){['products','orders','analytics'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
+function tabs(which){['products','orders','analytics','inventory'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='inventory'&&window.JaniksInventory)window.JaniksInventory.load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
 function render(){
  var q=$('order-search').value.trim().toLowerCase(),st=$('order-status-filter').value,pay=$('order-payment-filter').value;
  var filtered=orders.filter(o=>(!q||[o.order_number,o.customer_name,o.customer_email].join(' ').toLowerCase().includes(q))&&(!st||o.fulfillment_status===st)&&(!pay||o.payment_status===pay));
@@ -44,11 +44,11 @@ async function save(){
 document.addEventListener('DOMContentLoaded',function(){
  var cfg=window.JANIKS_SUPABASE_CONFIG||{};if(!/^https:\/\//.test(cfg.projectUrl||'')||!cfg.publishableKey||!window.supabase)return;
  client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
- $('tab-products').addEventListener('click',()=>tabs('products'));$('tab-analytics').addEventListener('click',()=>tabs('analytics'));$('tab-orders').addEventListener('click',()=>tabs('orders'));
+ $('tab-products').addEventListener('click',()=>tabs('products'));$('tab-inventory').addEventListener('click',()=>tabs('inventory'));$('tab-analytics').addEventListener('click',()=>tabs('analytics'));$('tab-orders').addEventListener('click',()=>tabs('orders'));
  $('refresh-orders').addEventListener('click',load);['order-search','order-status-filter','order-payment-filter'].forEach(id=>$(id).addEventListener('input',render));
  $('close-order-dialog').addEventListener('click',()=>$('order-dialog').close());$('save-order-fulfillment').addEventListener('click',save);
  // Share the owner session via the main admin controller, not a separate login.
- window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);},clear:function(){orders=[];render();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
+ window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksInventory)window.JaniksInventory.init(client);if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);},clear:function(){orders=[];render();if(window.JaniksInventory)window.JaniksInventory.clear();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
  client.auth.getSession().then(async function(r){if(!r.data.session)return;var user=r.data.session.user;var check=await client.from('store_admins').select('user_id').eq('user_id',user.id).maybeSingle();if(!check.error&&check.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);});
  client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}if(event==='SIGNED_IN'){setTimeout(async function(){var r=await client.auth.getUser();if(!r.data.user)return;var a=await client.from('store_admins').select('user_id').eq('user_id',r.data.user.id).maybeSingle();if(!a.error&&a.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);},0);}});
 });

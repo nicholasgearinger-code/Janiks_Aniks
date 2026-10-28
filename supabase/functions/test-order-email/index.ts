@@ -1,8 +1,12 @@
 // Test-only Resend email endpoint. Deploy with Supabase JWT verification ENABLED.
 // Requires an authenticated, allowlisted store admin; recipient is always their own email.
 import { createClient } from 'npm:@supabase/supabase-js@2';
-const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
+const allowedOrigin='https://nicholasgearinger-code.github.io';
+const corsHeaders={'Access-Control-Allow-Origin':allowedOrigin,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'};
+const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...corsHeaders,'Content-Type':'application/json','Cache-Control':'no-store'}});
 Deno.serve(async(req)=>{
+ if(req.method==='OPTIONS')return new Response(null,{status:204,headers:corsHeaders});
+ if(req.headers.get('Origin')&&req.headers.get('Origin')!==allowedOrigin)return json({error:'Origin not allowed'},403);
  if(req.method!=='POST')return json({error:'Method not allowed'},405);
  const token=req.headers.get('Authorization')?.match(/^Bearer (.+)$/)?.[1];
  if(!token)return json({error:'Authentication required'},401);
@@ -22,5 +26,5 @@ Deno.serve(async(req)=>{
  })});
  const payload=await result.json().catch(()=>({}));
  if(!result.ok){console.error('Resend test failed',result.status,payload);return json({error:'Resend could not send the test email. Check your verified Resend email and API key.'},502);}
- return json({sent:true,message:'Test email requested. Check the email address associated with your admin login.'});
+ return json({sent:true,id:typeof payload.id==='string'?payload.id:null,message:'Resend accepted the test email request. Delivery to the inbox is not yet confirmed.'});
 });

@@ -41,7 +41,7 @@
       <button id="denied-sign-out" class="admin-button secondary" type="button">Sign out</button>
     </section>
     <section id="dashboard" hidden>
-      <div class="admin-heading-row">
+      <div class="manager-tabs" role="tablist" aria-label="Store Manager sections"><button type="button" class="manager-tab active" id="tab-products" role="tab" aria-selected="true" aria-controls="products-panel">Products</button><button type="button" class="manager-tab" id="tab-orders" role="tab" aria-selected="false" aria-controls="orders-panel">Orders</button></div><div id="products-panel" role="tabpanel" aria-labelledby="tab-products"><div class="admin-heading-row">
         <div><div class="admin-kicker">YOUR LITTLE SHOP, IN YOUR HANDS</div><h1>Product studio</h1><p>Update products, photos, prices, and collections without editing code.</p></div>
         <button id="new-product" class="admin-button primary" type="button">＋ Add product</button>
       </div>
@@ -64,7 +64,7 @@
           <div id="empty-products" class="admin-empty" hidden><span aria-hidden="true">🎀</span><h3>No products here yet</h3><p>Add your first product or adjust your filters.</p><button class="admin-button primary" id="empty-add" type="button">Add a product</button></div>
         </div>
       </div>
-    </section>
+    </div><section id="orders-panel" class="manager-orders" role="tabpanel" aria-labelledby="tab-orders" hidden><div class="admin-heading-row"><div><div class="admin-kicker">ORDERS & FULFILLMENT</div><h1>Order studio</h1><p>Track customer orders, payment verification and shipping progress.</p></div><button type="button" id="refresh-orders" class="admin-button secondary">Refresh orders</button></div><div class="admin-stats order-stats"><article><span>Total orders</span><strong id="order-stat-total">—</strong></article><article><span>Awaiting payment</span><strong id="order-stat-unpaid">—</strong></article><article><span>Ready to fulfill</span><strong id="order-stat-ready">—</strong></article><article><span>Paid order value</span><strong id="order-stat-revenue">—</strong></article></div><div class="order-controls"><label>Find order<input id="order-search" type="search" placeholder="Order number, customer name or email"></label><label>Order status<select id="order-status-filter"><option value="">All statuses</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="processing">Processing</option><option value="shipped">Shipped</option><option value="delivered">Delivered</option><option value="cancelled">Cancelled</option></select></label><label>Payment<select id="order-payment-filter"><option value="">All payments</option><option value="unpaid">Unpaid</option><option value="pending">Pending verification</option><option value="paid">Paid</option><option value="refunded">Refunded</option><option value="failed">Failed</option></select></label></div><p id="orders-message" class="admin-message" role="status"></p><div id="orders-list" class="orders-list"></div><div id="orders-empty" class="admin-empty" hidden><h3>No matching orders</h3><p>Orders will appear here after a secure checkout is connected and the order database is configured.</p></div></section></section>
   </main>
 
   <dialog id="product-dialog" class="product-dialog">
@@ -89,8 +89,9 @@
     </form>
   </dialog>
 
+  <dialog id="order-dialog" class="product-dialog order-dialog"><div class="product-form"><div class="dialog-heading"><div><div class="admin-kicker">ORDER DETAILS</div><h2 id="order-dialog-title">Order</h2></div><button type="button" id="close-order-dialog" class="icon-button" aria-label="Close order details">×</button></div><div id="order-detail-content"></div><p id="order-detail-message" class="admin-message" role="status"></p><div class="dialog-actions"><button type="button" id="save-order-fulfillment" class="admin-button primary">Save fulfillment updates</button></div></div></dialog>
   <script src="supabase-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="admin.js?v=2"></script>
+  <script src="admin.js?v=orders-1"></script>
 </body>
 </html>

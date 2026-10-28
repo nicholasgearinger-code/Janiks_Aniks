@@ -2948,3 +2948,22 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     body #site-sidebar>a.brand:hover{background:#ffe8f0!important}
   }
 }
+
+
+/* Checkout and payment-status pages use a simplified header, but share
+   the same cherry Home button on mobile without changing their navigation. */
+@media(max-width:850px){
+  body.customer-body .customer-header>a.checkout-home,
+  body.customer-body .checkout-result-home>a.checkout-home{
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    width:clamp(58px,17vw,76px)!important;height:clamp(54px,16vw,68px)!important;
+    min-width:58px!important;flex:0 0 auto!important;padding:6px!important;
+    border:2px solid #d7a0b3!important;border-radius:16px!important;
+    background:linear-gradient(180deg,#fff9fb,#f9e6ed)!important;
+    box-shadow:0 3px 0 #d9a9b9,0 5px 11px rgba(94,29,52,.13)!important;
+    text-decoration:none!important;
+  }
+  body.customer-body .checkout-home>img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+  body.customer-body .checkout-home:active{transform:translateY(2px)!important;box-shadow:0 1px 0 #d9a9b9!important}
+  body.customer-body .checkout-result-home{display:flex;justify-content:flex-start;padding:12px 18px 0}
+}

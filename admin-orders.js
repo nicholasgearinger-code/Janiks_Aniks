@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded',function(){
  $('refresh-orders').addEventListener('click',load);['order-search','order-status-filter','order-payment-filter'].forEach(id=>$(id).addEventListener('input',render));
  $('close-order-dialog').addEventListener('click',()=>$('order-dialog').close());$('save-order-fulfillment').addEventListener('click',save);
  // Share the owner session via the main admin controller, not a separate login.
- window.JaniksOrders={init:function(mainClient){client=mainClient;if(!initialized){initialized=true;}},clear:function(){orders=[];render();}};
+ window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);},clear:function(){orders=[];render();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
+ client.auth.getSession().then(async function(r){if(!r.data.session)return;var user=r.data.session.user;var check=await client.from('store_admins').select('user_id').eq('user_id',user.id).maybeSingle();if(!check.error&&check.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);});
+ client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}});
 });
 })();

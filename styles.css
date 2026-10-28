@@ -2308,3 +2308,129 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   #site-sidebar>.brand{padding:5px 9px!important;min-height:44px!important}
   #site-sidebar>.brand::before{width:105px!important;flex-basis:105px!important;height:32px!important}
 }
+
+
+/* Unified desktop page layouts: Visit Us, Bag, and Account.
+   Only desktop widths; existing mobile layouts stay as designed. */
+@media(min-width:851px){
+  body.customer-body #site-sidebar.top,
+  body:has(.visit-page) #site-sidebar.top,
+  body:has(.cart-page) #site-sidebar.top{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+  }
+  body.customer-body #site-sidebar>.main-nav,
+  body:has(.visit-page) #site-sidebar>.main-nav,
+  body:has(.cart-page) #site-sidebar>.main-nav{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+  }
+  body.customer-body #site-sidebar .main-nav a,
+  body:has(.visit-page) #site-sidebar .main-nav a,
+  body:has(.cart-page) #site-sidebar .main-nav a{
+    font-family:'Quicksand',system-ui,sans-serif!important;
+    text-decoration:none!important;
+  }
+  /* Visit page: remove stacked nested section spacing and give the booth a balanced two-column feature. */
+  .page-main:has(.visit-page){
+    width:100%!important;
+    margin-left:0!important;
+  }
+  .page-main:has(.visit-page)>.collection-page-header{
+    padding:20px 24px 4px!important;
+    min-height:0!important;
+  }
+  .page-main:has(.visit-page)>.collection-page-header .page-sticker{
+    width:90px!important;height:90px!important;
+  }
+  .page-main .standalone-section.visit-page{
+    max-width:1120px!important;
+    margin:0 auto!important;
+    padding:12px clamp(24px,4vw,58px) 56px!important;
+  }
+  .page-main .visit-page>.visit{
+    display:grid!important;
+    grid-template-columns:minmax(280px,.9fr) minmax(0,1fr)!important;
+    gap:clamp(26px,4vw,62px)!important;
+    align-items:center!important;
+    justify-items:stretch!important;
+    text-align:left!important;
+    padding:24px!important;
+    border:1px solid #efcfda!important;
+    border-radius:25px!important;
+    background:#fff9f9!important;
+    box-shadow:0 12px 30px rgba(92,30,51,.07)!important;
+  }
+  .page-main .visit-page .frame{
+    width:100%!important;max-width:410px!important;
+    margin:0 auto!important;
+  }
+  .page-main .visit-page .visit-text{
+    align-items:flex-start!important;
+    text-align:left!important;
+    gap:16px!important;
+  }
+  .page-main .visit-page .visit-text h2{
+    font-size:clamp(32px,3.2vw,50px)!important;
+    line-height:1.12!important;
+  }
+  .page-main .visit-page .visit-details{
+    max-width:none!important;
+    margin-top:22px!important;
+    padding:22px 30px!important;
+  }
+  /* Cart: remove oversized top spacing and keep items + summary in a clean desktop grid. */
+  main.inner-page.cart-page{
+    width:100%!important;max-width:none!important;
+    margin:0!important;
+    padding:26px clamp(24px,5vw,72px) 72px!important;
+  }
+  .cart-page>.breadcrumb,
+  .cart-page>.page-heading,
+  .cart-page>#cart-sync-status,
+  .cart-page>.collection-page-header{
+    max-width:1160px!important;
+    margin-left:auto!important;margin-right:auto!important;
+  }
+  .cart-page>.collection-page-header{
+    padding:0!important;min-height:0!important;
+  }
+  .cart-page>.collection-page-header .page-sticker{
+    width:90px!important;height:90px!important;
+  }
+  .cart-page>.page-heading{
+    padding:4px 0 18px!important;
+    text-align:center!important;
+  }
+  .cart-page>.page-heading h1{
+    font-size:clamp(40px,4vw,60px)!important;
+  }
+  .cart-page .cart-shell{
+    max-width:1160px!important;
+    grid-template-columns:minmax(0,1.7fr) minmax(300px,.85fr)!important;
+    align-items:start!important;
+    gap:clamp(18px,2.5vw,34px)!important;
+  }
+  .cart-page .cart-summary{
+    position:sticky!important;top:18px!important;
+    padding:24px!important;
+    border:1px solid #eccbd5!important;
+    border-radius:22px!important;
+    background:#fffafc!important;
+    box-shadow:0 9px 22px rgba(92,30,51,.07)!important;
+  }
+  .cart-page .cart-items,.cart-page .empty-state{min-width:0!important}
+  /* Account content: aligned below the same top navigation as the store. */
+  body.customer-body .customer-main{
+    width:min(100% - 48px,1160px)!important;
+    max-width:1160px!important;
+    margin:0 auto!important;
+    padding:34px 0 70px!important;
+  }
+}
+@media(min-width:851px) and (max-width:1040px){
+  .cart-page .cart-shell{grid-template-columns:minmax(0,1.35fr) minmax(270px,.85fr)!important}
+  .page-main .visit-page>.visit{gap:24px!important;padding:18px!important}
+}

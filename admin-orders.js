@@ -15,7 +15,7 @@ function render(){
  $('order-stat-ready').textContent=orders.filter(o=>o.payment_status==='paid'&&['pending','confirmed','processing'].includes(o.fulfillment_status)).length;
  $('order-stat-revenue').textContent=money(orders.filter(o=>o.payment_status==='paid').reduce((a,o)=>a+Number(o.total||0),0));
  $('orders-list').replaceChildren();$('orders-empty').hidden=filtered.length!==0;
- filtered.forEach(o=>{var card=document.createElement('article');card.className='manager-order-card';card.innerHTML='<div><strong>'+esc(o.order_number)+'</strong><small>'+esc(date(o.created_at))+'</small></div><div><strong>'+esc(o.customer_name)+'</strong><small>'+esc(o.customer_email)+'</small></div><div><strong>'+money(o.total)+'</strong><small>Payment: '+esc(o.payment_status)+'</small></div><div><span class="product-pill">'+esc(o.fulfillment_status)+'</span></div><button type="button" class="admin-button secondary">View order</button>';card.querySelector('button').addEventListener('click',()=>open(o));$('orders-list').appendChild(card);});
+ filtered.forEach(o=>{var card=document.createElement('article');card.className='manager-order-card';card.dataset.fulfillment=o.fulfillment_status;card.innerHTML='<div><strong>'+esc(o.order_number)+'</strong><small>'+esc(date(o.created_at))+'</small></div><div><strong>'+esc(o.customer_name)+'</strong><small>'+esc(o.customer_email)+'</small></div><div><strong>'+money(o.total)+'</strong><small>Payment: '+esc(o.payment_status)+'</small></div><div><span class="product-pill">'+esc(o.fulfillment_status)+'</span></div><button type="button" class="admin-button secondary">View order</button>';card.querySelector('button').addEventListener('click',()=>open(o));$('orders-list').appendChild(card);});
 }
 async function load(){
  msg('Loading orders…');var r=await client.from('orders').select('id,order_number,created_at,customer_name,customer_email,customer_phone,shipping_address,shipping_method,shipping_fee,subtotal,total,currency,payment_status,fulfillment_status,tracking_number,courier,fulfillment_notes,customer_notes').order('created_at',{ascending:false}).limit(200);
@@ -34,8 +34,8 @@ async function open(o){
 }
 async function save(){
  if(!active)return;
- var status=$('detail-fulfillment').value;
- if(['shipped','delivered'].includes(status)&&active.payment_status!=='paid'){ $('order-detail-message').textContent='Cannot mark an order shipped or delivered before verified payment.';return;}
+ var status=$('detail-fulfillment').value;if(active.fulfillment_status==='cancelled'&&status!=='cancelled'){$('order-detail-message').textContent='Cancelled orders cannot be reopened in this editor.';return;}
+ if(['confirmed','processing','shipped','delivered'].includes(status)&&active.payment_status!=='paid'){ $('order-detail-message').textContent='Cannot mark an order shipped or delivered before verified payment.';return;}
  var btn=$('save-order-fulfillment');btn.disabled=true;$('order-detail-message').textContent='Saving…';
  var r=await client.from('orders').update({fulfillment_status:status,courier:$('detail-courier').value.trim(),tracking_number:$('detail-tracking').value.trim(),fulfillment_notes:$('detail-notes').value.trim()}).eq('id',active.id);
  btn.disabled=false;if(r.error){$('order-detail-message').textContent='Save failed: '+r.error.message;return;}

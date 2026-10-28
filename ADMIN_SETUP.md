@@ -54,3 +54,10 @@ The Store Manager now has **Products** and **Orders** tabs. To enable Orders, ru
 **Important:** This migration does not create customer orders or enable checkout, payment processing, email notifications, or automatic shipping updates. Orders and items must be created by a trusted server-side checkout function using validated product prices, shipping fees and totals. Only a verified payment-provider webhook may update payment status; do not expose service-role keys in GitHub Pages or let browser requests mark payments paid. Never insert real customer data just to test the dashboard. Test with fictional data in a separate development project.
 
 The browser owner account must already be configured and present in `store_admins`. Customer personal details are protected by RLS. Order status here refers to fulfillment only, not payment verification.
+
+## Analytics and business expenses
+Run [supabase/analytics.sql](supabase/analytics.sql) in the **same** Supabase SQL Editor after the products and orders migrations. Refresh `admin.html` and select **Analytics**.
+
+The Analytics workspace includes 7/30/90/365-day reporting, a verified-paid-order sales chart, order-status counts, average order value, top-selling products, and owner-only business expense entry/deletion. Reports use PHP. The chart groups revenue by **order creation date**, not actual payment date, until payment timestamps are available. Metrics query up to 5,000 orders and 5,000 expenses from the past year; results are flagged if capped. The Orders tab remains limited to its latest 200 records.
+
+**Profit is intentionally unavailable** until every item in the selected paid orders has a recorded `unit_cost` snapshot. Future trusted checkout code should populate that snapshot from owner-maintained product costs, not a customer-supplied value. Even with costs recorded, profit is an estimate: record operating expenses, processing fees, shipping costs, refunds and taxes appropriately to avoid misleading results. Paid status must only be written by verified payment-provider webhooks. No demo sales, payment gateway, or real checkout are activated by these changes.

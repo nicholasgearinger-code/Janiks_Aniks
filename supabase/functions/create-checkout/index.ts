@@ -15,11 +15,12 @@ Deno.serve(async req=>{
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||name.length<2||name.length>120||phone.length>40)return reply({error:'Enter valid contact details'},400);
   const unique=new Set();for(const item of items){if(!item||typeof item.slug!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug)||!Number.isInteger(item.quantity)||item.quantity<1||item.quantity>99||unique.has(item.slug))return reply({error:'Invalid bag items'},400);unique.add(item.slug);}
   const admin=createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false}});
-  const {data:products,error:dbError}=await admin.from('products').select('id,slug,name,price,available,published').in('slug',[...unique]);
+  const {data:products,error:dbError}=await admin.from('products').select('id,slug,name,price,available,published,stock_quantity').in('slug',[...unique]);
   if(dbError)throw dbError;
   const bySlug=new Map((products||[]).map(p=>[p.slug,p]));
   let subtotal=0;const lines=[];
   for(const item of items){const p=bySlug.get(item.slug);if(!p||!p.published||!p.available||Number(p.price)<=0)return reply({error:'A product is no longer available'},409);
+   if(p.stock_quantity!==null&&item.quantity>Number(p.stock_quantity))return reply({error:'Requested quantity exceeds available stock for '+p.name},409);
    const cents=Math.round(Number(p.price)*100);if(!Number.isSafeInteger(cents)||cents<100)return reply({error:'Invalid catalog price'},409);
    subtotal+=cents*item.quantity;lines.push({product_id:p.id,product_name:p.name,quantity:item.quantity,unit_price:cents/100,line_total:cents*item.quantity/100,paymongo:{name:p.name,amount:cents,currency:'PHP',quantity:item.quantity}});}
   if(!Number.isSafeInteger(subtotal)||subtotal>100000000)return reply({error:'Order total exceeds limit'},400);

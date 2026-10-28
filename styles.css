@@ -2086,3 +2086,53 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   #site-sidebar .main-nav a img.nav-sticker,
   #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{display:none!important}
 }
+
+
+/* Desktop pastel sticker-inspired navigation.
+   Desktop only: mobile keeps its illustrated sticker menu. */
+@media(min-width:851px){
+  #site-sidebar>.main-nav{gap:clamp(3px,.45vw,8px)!important}
+  #site-sidebar .main-nav a{
+    min-height:44px!important;
+    justify-content:center!important;
+    padding:7px clamp(7px,.75vw,13px)!important;
+    border:1.5px solid var(--nav-edge,#dfafc0)!important;
+    border-radius:13px!important;
+    background:var(--nav-bg,#fff0f5)!important;
+    color:var(--nav-ink,#693048)!important;
+    box-shadow:0 3px 0 var(--nav-shadow,#dfbdc9)!important;
+    font-size:clamp(11px,.88vw,13px)!important;
+    font-weight:700!important;
+    text-align:center!important;
+    text-shadow:none!important;
+    transition:background .18s ease,transform .18s ease,box-shadow .18s ease!important;
+  }
+  #site-sidebar .main-nav a img.nav-sticker,
+  #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+    display:none!important;
+  }
+  #site-sidebar .main-nav a:hover,
+  #site-sidebar .main-nav a:focus-visible{
+    background:var(--nav-hover,#ffe0ea)!important;
+    border-color:var(--nav-edge,#dfafc0)!important;
+    color:var(--nav-ink,#693048)!important;
+    box-shadow:0 4px 0 var(--nav-shadow,#dfbdc9),0 7px 13px rgba(84,31,53,.1)!important;
+    transform:translateY(-2px)!important;
+  }
+  #site-sidebar .main-nav a[aria-current="page"]{
+    background:var(--nav-hover,#ffe0ea)!important;
+    border-color:var(--nav-edge,#dfafc0)!important;
+    box-shadow:inset 0 0 0 1px var(--nav-edge,#dfafc0),0 3px 0 var(--nav-shadow,#dfbdc9)!important;
+  }
+  #site-sidebar .main-nav a[data-nav="shop"]{--nav-bg:#ffe6ed;--nav-hover:#ffd4e1;--nav-edge:#df9bb0;--nav-shadow:#e7b7c6;--nav-ink:#853b56}
+  #site-sidebar .main-nav a[data-nav="fall"]{--nav-bg:#ffead7;--nav-hover:#ffdbbc;--nav-edge:#e2ad80;--nav-shadow:#ecc8a9;--nav-ink:#94532e}
+  #site-sidebar .main-nav a[data-nav="seasonal"]{--nav-bg:#e4f2e5;--nav-hover:#d0e8d3;--nav-edge:#a0c8a6;--nav-shadow:#c0d9c2;--nav-ink:#42694b}
+  #site-sidebar .main-nav a[data-nav="colors"]{--nav-bg:#fce5f5;--nav-hover:#f8d3ed;--nav-edge:#d8a5ce;--nav-shadow:#e8c2dd;--nav-ink:#804c77}
+  #site-sidebar .main-nav a[data-nav="plushies"]{--nav-bg:#ffe4ef;--nav-hover:#ffd0e4;--nav-edge:#e2a6c2;--nav-shadow:#ecc0d3;--nav-ink:#894764}
+  #site-sidebar .main-nav a[data-nav="figurines"]{--nav-bg:#eee5ff;--nav-hover:#e2d4fa;--nav-edge:#b9a5df;--nav-shadow:#d1c2e8;--nav-ink:#654b92}
+  #site-sidebar .main-nav a[data-nav="accessories"]{--nav-bg:#ffe4e4;--nav-hover:#ffd2d3;--nav-edge:#dfaaaa;--nav-shadow:#edc4c5;--nav-ink:#93484f}
+  #site-sidebar .main-nav a[data-nav="payments"]{--nav-bg:#ffe9f4;--nav-hover:#ffd9ed;--nav-edge:#e1b0c8;--nav-shadow:#eec8da;--nav-ink:#854f69}
+  #site-sidebar .main-nav a[data-nav="visit"]{--nav-bg:#fff0df;--nav-hover:#ffe5c7;--nav-edge:#dec19d;--nav-shadow:#eed8bd;--nav-ink:#8c633d}
+  #site-sidebar .main-nav a[data-nav="cart"]{--nav-bg:#e2f4f4;--nav-hover:#cdeaea;--nav-edge:#a1cccc;--nav-shadow:#bedddd;--nav-ink:#386d70}
+  #site-sidebar .main-nav a[data-nav="account"]{--nav-bg:#f3eaff;--nav-hover:#e8dbfa;--nav-edge:#c8b2e4;--nav-shadow:#ddcdef;--nav-ink:#6a508d}
+}

@@ -2669,3 +2669,64 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     margin:0 auto!important;
   }
 }
+
+
+/* Distinct color stories + consistent Cart panels, desktop only. */
+@media(min-width:851px){
+  /* Shop by Color: fresh aqua/teal, deliberately distinct from lavender figurines. */
+  .page-main:has(>.color-page),.page-main:has(.color-page){
+    --theme-bg:#edf9f8!important;
+    --theme-strong:#b9e4e1!important;
+    --theme-text:#285c61!important;
+    --theme-border:#8ccac6!important;
+    background:#edf9f8!important;
+  }
+  .page-main:has(.color-page)>.collection-page-header,
+  .page-main .standalone-section.color-page{background:#edf9f8!important}
+  .page-main .color-page>.color-browser{
+    background:#b9e4e1!important;
+    border-color:#8ccac6!important;
+    color:#285c61!important;
+  }
+  .page-main .color-page>.color-browser>h2,
+  .page-main .color-page>.color-browser>.shop-intro{color:#285c61!important}
+  /* Figurines: clearly lavender with a violet feature panel. */
+  .page-main:has(.figurines-theme){--theme-bg:#f5f0ff!important;--theme-strong:#d5c1f2!important;--theme-text:#503775!important;--theme-border:#bba1df!important;background:#f5f0ff!important}
+  .page-main:has(.figurines-theme)>.collection-page-header,
+  .page-main .standalone-section.feature-page.figurines-theme{background:#f5f0ff!important}
+  .page-main .feature-page.figurines-theme>.category-feature.figurines-theme{
+    background:#d5c1f2!important;border-color:#bba1df!important;color:#503775!important;
+  }
+  .page-main .feature-page.figurines-theme>.category-feature h2,
+  .page-main .feature-page.figurines-theme>.category-feature p{color:#503775!important}
+  /* Cart: pastel canvas, themed heading, light raised cards, shared rounded edges. */
+  body main.inner-page.cart-page{
+    background:#fff1f6!important;
+    border:0!important;
+    min-height:calc(100vh - 160px)!important;
+  }
+  body .cart-page>.collection-page-header{background:transparent!important}
+  body .cart-page>.page-heading{
+    background:#f3bfd3!important;
+    border:1px solid #e5a5be!important;
+    color:#71384f!important;
+    border-radius:26px!important;
+    box-shadow:0 12px 28px rgba(81,35,51,.10)!important;
+    max-width:900px!important;
+    margin:0 auto 20px!important;
+    padding:24px 32px!important;
+  }
+  body .cart-page>.page-heading h1,
+  body .cart-page>.page-heading p{color:#71384f!important}
+  body .cart-page .cart-summary,
+  body .cart-page #cart-empty{
+    background:#fff9fb!important;
+    border:1px solid #edbfd0!important;
+    border-radius:24px!important;
+    box-shadow:0 10px 24px rgba(81,35,51,.08)!important;
+  }
+  body .cart-page .cart-summary h2,
+  body .cart-page #cart-empty h2{color:#823f5a!important}
+  body .cart-page>.breadcrumb,
+  body .cart-page>#cart-sync-status{color:#85566a!important}
+}

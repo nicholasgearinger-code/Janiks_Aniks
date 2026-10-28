@@ -35,7 +35,7 @@ async function flush(){
 async function refresh(){
  if(!ready||!user||busy)return;busy=true;const ticket=epoch;
  try{const r=await fetchRemote();if(ticket!==epoch)return;
-  capture();if(r.version!==version){version=r.version;base=r.items;localStorage.setItem(OWNER,u.id);write(overlay(base,pending));note(pending.size?'Merging your changes…':'♡ Your bag updated from another device');}
+  capture();if(r.version!==version){version=r.version;base=r.items;write(overlay(base,pending));note(pending.size?'Merging your changes…':'♡ Your bag updated from another device');}
   if(pending.size)schedule();
  }catch{note('Offline or sync unavailable. Your bag is saved on this device.');}
  finally{busy=false;}
@@ -44,7 +44,7 @@ async function begin(u){
  const ticket=++epoch;user=u;ready=false;pending.clear();busy=true;note('Syncing your bag…');
  try{
   const previous=localStorage.getItem(OWNER),local=previous&&previous!==u.id?new Map():map(read()),r=await fetchRemote();if(ticket!==epoch)return;
-  version=r.version;base=r.items;
+  version=r.version;base=r.items;localStorage.setItem(OWNER,u.id);
   // On sign-in, only bring local items missing from cloud; never overwrite cloud quantities.
   if(!previous)for(const [k,v] of local)if(!base.has(k))pending.set(k,v);
   ready=true;write(overlay(base,pending));note(pending.size?'Saving your bag…':'♡ Your bag is up to date');

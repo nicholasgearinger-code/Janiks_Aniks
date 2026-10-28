@@ -2730,3 +2730,29 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   body .cart-page>.breadcrumb,
   body .cart-page>#cart-sync-status{color:#85566a!important}
 }
+
+
+/* Cart-only blue pastel color story; keep the shared layout and mobile unchanged. */
+@media(min-width:851px){
+  body:has(.cart-page){--utility-bg:#edf7ff;--utility-panel:#c3e0f5;--utility-border:#9fc9e7}
+  body main.inner-page.cart-page{
+    background:#edf7ff!important;
+  }
+  body .cart-page>.page-heading{
+    background:#c3e0f5!important;
+    border-color:#9fc9e7!important;
+    color:#315b7c!important;
+  }
+  body .cart-page>.page-heading h1,
+  body .cart-page>.page-heading p{color:#315b7c!important}
+  body .cart-page .cart-summary,
+  body .cart-page #cart-empty{
+    background:#f8fcff!important;
+    border-color:#b7d9ee!important;
+    box-shadow:0 10px 24px rgba(42,91,130,.08)!important;
+  }
+  body .cart-page .cart-summary h2,
+  body .cart-page #cart-empty h2{color:#34688e!important}
+  body .cart-page>.breadcrumb,
+  body .cart-page>#cart-sync-status{color:#547c9a!important}
+}

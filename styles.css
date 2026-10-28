@@ -1947,3 +1947,54 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 @media(prefers-reduced-motion:reduce){
   #site-sidebar>.brand{transition:none!important}
 }
+
+
+/* Desktop fit pass: one compact navigation row on wide screens,
+   tighter wrapping and less empty hero space on laptop widths.
+   No changes at or below the 850px mobile breakpoint. */
+@media(min-width:851px){
+  #site-sidebar.top{
+    justify-content:space-between!important;
+    flex-wrap:nowrap!important;
+    gap:8px!important;
+    padding:8px clamp(10px,1.4vw,22px)!important;
+  }
+  #site-sidebar>.brand{
+    min-height:42px!important;
+    padding:3px 10px!important;
+    gap:5px!important;
+    border-radius:12px!important;
+    font-size:13px!important;
+  }
+  #site-sidebar>.brand img{width:30px!important;height:30px!important;max-height:30px!important}
+  #site-sidebar>.main-nav{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    justify-content:flex-end!important;
+    gap:4px!important;
+  }
+  #site-sidebar .main-nav a{
+    min-height:40px!important;
+    padding:3px 7px!important;
+    gap:4px!important;
+    border-radius:11px!important;
+    font-size:clamp(10px,.87vw,12px)!important;
+  }
+  #site-sidebar .main-nav a img.nav-sticker,
+  #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+    width:27px!important;height:27px!important;
+    min-width:27px!important;max-width:27px!important;flex-basis:27px!important;
+  }
+  #site-sidebar .main-nav .cart-count{min-width:20px!important;padding:2px 4px!important;font-size:11px!important}
+  .page-main>.hero{padding-top:clamp(24px,3vw,46px)!important;padding-bottom:clamp(26px,3vw,48px)!important}
+  .page-main>.hero .hero-text{gap:clamp(8px,1.2vw,16px)!important}
+}
+@media(min-width:851px) and (max-width:1250px){
+  #site-sidebar.top{flex-wrap:wrap!important;justify-content:center!important;gap:5px!important}
+  #site-sidebar>.main-nav{flex:1 1 100%!important;justify-content:center!important}
+  #site-sidebar .main-nav a{min-height:36px!important;padding:2px 7px!important}
+  #site-sidebar .main-nav a img.nav-sticker,
+  #site-sidebar .main-nav a[data-nav="figurines"] img.figurines-nav-sticker{
+    width:24px!important;height:24px!important;min-width:24px!important;max-width:24px!important;flex-basis:24px!important;
+  }
+}

@@ -6,7 +6,7 @@ var esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 var money=v=>'₱'+Number(v||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2});
 var date=v=>v?new Date(v).toLocaleString('en-PH'):'—';
 var msg=(s,error)=>{$('orders-message').textContent=s;$('orders-message').className='admin-message'+(error?' error':'');};
-function tabs(which){['products','orders'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();}
+function tabs(which){['products','orders','analytics'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
 function render(){
  var q=$('order-search').value.trim().toLowerCase(),st=$('order-status-filter').value,pay=$('order-payment-filter').value;
  var filtered=orders.filter(o=>(!q||[o.order_number,o.customer_name,o.customer_email].join(' ').toLowerCase().includes(q))&&(!st||o.fulfillment_status===st)&&(!pay||o.payment_status===pay));
@@ -44,7 +44,7 @@ async function save(){
 document.addEventListener('DOMContentLoaded',function(){
  var cfg=window.JANIKS_SUPABASE_CONFIG||{};if(!/^https:\/\//.test(cfg.projectUrl||'')||!cfg.publishableKey||!window.supabase)return;
  client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
- $('tab-products').addEventListener('click',()=>tabs('products'));$('tab-orders').addEventListener('click',()=>tabs('orders'));
+ $('tab-products').addEventListener('click',()=>tabs('products'));$('tab-analytics').addEventListener('click',()=>tabs('analytics'));$('tab-orders').addEventListener('click',()=>tabs('orders'));
  $('refresh-orders').addEventListener('click',load);['order-search','order-status-filter','order-payment-filter'].forEach(id=>$(id).addEventListener('input',render));
  $('close-order-dialog').addEventListener('click',()=>$('order-dialog').close());$('save-order-fulfillment').addEventListener('click',save);
  // Share the owner session via the main admin controller, not a separate login.

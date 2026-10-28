@@ -2275,3 +2275,36 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   #site-sidebar>.brand::before{width:72px!important;flex-basis:72px!important;height:29px!important}
   #site-sidebar>.brand::after{font-size:11px!important}
 }
+
+
+/* Desktop logo-only Home button, matching the account-page wordmark. */
+@media(min-width:851px){
+  #site-sidebar>.brand{
+    padding:7px 15px!important;
+    min-height:52px!important;
+    border:2px solid #d7a0b3!important;
+    border-radius:15px!important;
+    background:linear-gradient(180deg,#fffdfd,#fff0f5)!important;
+    box-shadow:0 4px 0 #d9a9b9,0 7px 13px rgba(94,29,52,.13)!important;
+  }
+  #site-sidebar>.brand::before{
+    width:clamp(140px,13vw,190px)!important;
+    flex:0 0 clamp(140px,13vw,190px)!important;
+    height:40px!important;
+    background-image:url("images/janiks-aniks-logo-horizontal-notag.png")!important;
+    background-position:center!important;
+    background-size:contain!important;
+    background-repeat:no-repeat!important;
+  }
+  #site-sidebar>.brand::after{content:none!important;display:none!important}
+  #site-sidebar>.brand:hover,#site-sidebar>.brand:focus-visible{
+    background:#ffe8f0!important;
+    border-color:#c67c96!important;
+    box-shadow:0 2px 0 #d9a9b9,0 4px 10px rgba(94,29,52,.15)!important;
+    transform:translateY(2px)!important;
+  }
+}
+@media(min-width:851px) and (max-width:1120px){
+  #site-sidebar>.brand{padding:5px 9px!important;min-height:44px!important}
+  #site-sidebar>.brand::before{width:105px!important;flex-basis:105px!important;height:32px!important}
+}

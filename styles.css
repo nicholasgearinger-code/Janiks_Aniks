@@ -2481,3 +2481,15 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
     font-size:clamp(30px,3vw,42px)!important;
   }
 }
+
+
+/* Match the Cart page sticker to the larger Visit Us collection sticker on desktop. */
+@media(min-width:851px){
+  .cart-page>.collection-page-header .page-sticker{
+    display:block!important;
+    width:clamp(155px,15vw,205px)!important;
+    height:auto!important;
+    max-width:205px!important;
+    object-fit:contain!important;
+  }
+}

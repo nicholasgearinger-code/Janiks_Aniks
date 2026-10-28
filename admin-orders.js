@@ -43,7 +43,7 @@ async function save(){
 }
 document.addEventListener('DOMContentLoaded',function(){
  var cfg=window.JANIKS_SUPABASE_CONFIG||{};if(!/^https:\/\//.test(cfg.projectUrl||'')||!cfg.publishableKey||!window.supabase)return;
- client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey,{auth:{storageKey:'janiks-orders-auth',persistSession:true}});
+ client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
  $('tab-products').addEventListener('click',()=>tabs('products'));$('tab-orders').addEventListener('click',()=>tabs('orders'));
  $('refresh-orders').addEventListener('click',load);['order-search','order-status-filter','order-payment-filter'].forEach(id=>$(id).addEventListener('input',render));
  $('close-order-dialog').addEventListener('click',()=>$('order-dialog').close());$('save-order-fulfillment').addEventListener('click',save);

@@ -2243,3 +2243,35 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   #site-sidebar .main-nav a{padding-inline:4px!important}
   #site-sidebar>.brand{padding-inline:9px!important;gap:4px!important}
 }
+
+
+/* Desktop Home uses the official horizontal logo featured on the account page.
+   The existing cherry icon remains on mobile. */
+@media(min-width:851px){
+  #site-sidebar>.brand{
+    gap:7px!important;
+    padding:5px 12px!important;
+    background:linear-gradient(180deg,#fff9fb,#f9e6ed)!important;
+    border-color:#c67c96!important;
+    box-shadow:0 3px 0 #d6a0b2,0 5px 11px rgba(94,29,52,.12)!important;
+  }
+  #site-sidebar>.brand img{display:none!important}
+  #site-sidebar>.brand::before{
+    content:""!important;
+    display:block!important;
+    flex:0 0 105px!important;
+    width:105px!important;
+    height:34px!important;
+    background:url("images/janiks-aniks-logo-horizontal-notag.png") center/contain no-repeat!important;
+  }
+  #site-sidebar>.brand::after{color:#842b49!important;font-size:13px!important}
+  #site-sidebar>.brand:hover,#site-sidebar>.brand:focus-visible{
+    background:#ffe5ef!important;
+    box-shadow:0 2px 0 #d6a0b2,0 4px 8px rgba(94,29,52,.16)!important;
+  }
+}
+@media(min-width:851px) and (max-width:1120px){
+  #site-sidebar>.brand{padding-inline:6px!important;gap:4px!important}
+  #site-sidebar>.brand::before{width:72px!important;flex-basis:72px!important;height:29px!important}
+  #site-sidebar>.brand::after{font-size:11px!important}
+}

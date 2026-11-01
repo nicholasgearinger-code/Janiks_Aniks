@@ -3037,16 +3037,18 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 }
 
 
-/* Let the floating home sparkle overlap the mobile header, above its background. */
+/* Keep the mobile header above scrolling content. The decorative sparkle can
+   overlap the boundary, but the hero card must not cover the fixed header. */
 @media(max-width:850px){
+ #site-sidebar.top{z-index:1100!important}
  .page-main>.hero{
-  padding-top:24px!important;
-  overflow:visible!important;
+  padding-top:52px!important;
+  overflow:hidden!important;
   position:relative;
-  z-index:1001;
+  z-index:auto!important;
  }
  .page-main>.hero::before{
-  top:-22px!important;
+  top:7px!important;
   left:clamp(22px,6vw,38px)!important;
   z-index:2;
   font-size:39px!important;

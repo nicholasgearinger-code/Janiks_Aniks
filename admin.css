@@ -39,3 +39,37 @@
 
 /* Fulfillment pipeline */
 .order-workflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0 12px}.workflow-step{padding:14px 10px;text-align:center;background:#fff;border:1px solid #efd4dc;border-radius:14px;color:#7e2940;font:700 12px Quicksand,sans-serif}.order-stage{text-transform:capitalize}.order-stage.stage-delivered{background:#dff4e6;color:#236b43}.order-stage.stage-shipped{background:#e7eafb;color:#384c91}.order-stage.stage-processing{background:#fff0d5;color:#8b5a11}.order-stage.stage-cancelled{background:#f3e7e7;color:#8b3c48}@media(max-width:650px){.order-workflow{grid-template-columns:repeat(2,minmax(0,1fr))}.manager-tabs{overflow-x:auto}}
+
+
+/* Contact Inbox refresh */
+.inquiries-badge{display:inline-flex;justify-content:center;align-items:center;background:#b51d4d;color:#fff;border:2px solid #fff;border-radius:999px;min-width:24px;height:24px;padding:0 5px;margin-left:6px;font-size:11px;vertical-align:middle}
+.inquiries-badge[hidden]{display:none}
+.manager-tab.active .inquiries-badge{background:#fff;color:#9b143d;border-color:#9b143d}
+.inquiry-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.inquiry-summary>div{background:#fff;border:1px solid #f0d6e1;border-radius:19px;padding:20px;display:flex;flex-direction:column;gap:4px;box-shadow:0 7px 18px #5a102608}
+.inquiry-summary strong{font-size:30px;line-height:1.2;color:#a51b48}
+.inquiry-summary span{font-weight:700;font-size:12px;color:#876772}
+.inquiry-controls{grid-template-columns:minmax(180px,1fr) minmax(240px,2fr)}
+#inquiries-list{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:15px}
+.inquiry-card{min-width:0;background:#fff;border:1px solid #efd4dc;border-radius:20px;padding:22px;box-shadow:0 8px 26px #5a10260c}
+.inquiry-card.inquiry-new{border-left:5px solid #b51d4d}
+.inquiry-card-top{display:flex;align-items:center;gap:11px}
+.inquiry-avatar{width:43px;height:43px;flex:0 0 43px;background:#f9dce7;color:#922248;display:grid;place-items:center;border-radius:50%;font-size:14px;font-weight:700}
+.inquiry-identity{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
+.inquiry-identity strong{font-size:15px;overflow-wrap:anywhere}
+.inquiry-identity span{font-size:12px;color:#80606c;overflow-wrap:anywhere}
+.inquiry-status-tag{padding:5px 9px;background:#fff0f5;color:#9a1d49;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap}
+.inquiry-resolved .inquiry-status-tag{background:#e8f5ed;color:#256b43}
+.inquiry-in_progress .inquiry-status-tag{background:#fff0d8;color:#855615}
+.inquiry-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:18px;font-size:12px;font-weight:700;color:#7d4e62}
+.inquiry-meta time{color:#987b84;font-weight:500}
+.inquiry-order{font-size:12px;margin:8px 0 0;color:#876772}
+.inquiry-message{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.65;color:#51233a;margin:15px 0;padding:15px;background:#fff8fa;border-radius:12px}
+.inquiry-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.inquiry-ack{font-size:11px;color:#886775}
+.inquiry-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.inquiry-reply{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;background:#ad1738;color:white;padding:10px 14px;font-size:12px;font-weight:700}
+.inquiry-status-select{width:auto!important;min-width:132px;min-height:38px!important;border-radius:999px!important}
+.inquiry-empty{grid-column:1/-1;padding:45px 24px;text-align:center;background:#fff;border-radius:20px;border:1px dashed #e5b5c7;color:#876772}
+@media(max-width:860px){#inquiries-list{grid-template-columns:1fr}}
+@media(max-width:600px){.manager-tabs{overflow-x:auto;max-width:100%;padding-bottom:12px}.manager-tab{flex:0 0 auto}.inquiry-summary{gap:7px}.inquiry-summary>div{padding:12px 9px}.inquiry-summary strong{font-size:25px}.inquiry-summary span{font-size:10px}.inquiry-controls{grid-template-columns:1fr}.inquiry-card{padding:16px}.inquiry-footer{align-items:stretch}.inquiry-actions{width:100%}.inquiry-reply{flex:1}}

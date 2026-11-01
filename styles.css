@@ -3074,3 +3074,22 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
   padding-top:52px!important;
  }
 }
+
+
+/* iOS Chrome/Safari: avoid smooth-scroll and inherited header offsets on homepage. */
+@media(max-width:850px){
+ html:has(body>.page-main>.hero){
+  scroll-behavior:auto!important;
+  scroll-padding-top:0!important;
+  overscroll-behavior-y:auto!important;
+ }
+ body:has(>.page-main>.hero){
+  overscroll-behavior-y:auto!important;
+  overflow-y:visible!important;
+ }
+ body:has(>.page-main>.hero) #site-sidebar.top{
+  transform:none!important;
+  position:relative!important;
+  top:auto!important;
+ }
+}

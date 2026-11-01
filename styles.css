@@ -2967,3 +2967,22 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   body.customer-body .checkout-home:active{transform:translateY(2px)!important;box-shadow:0 1px 0 #d9a9b9!important}
   body.customer-body .checkout-result-home{display:flex;justify-content:flex-start;padding:12px 18px 0}
 }
+
+
+/* Contact Us — pastel coquette styling */
+.contact-wrap{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(310px,1.2fr);gap:32px;max-width:1120px;margin:0 auto;padding:26px 24px 72px;align-items:start}
+.contact-info,.contact-panel{border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:0 12px 35px rgba(118,54,79,.08)}
+.contact-info{background:#f8d7e7;color:#772944}
+.contact-panel{background:#fffafb;border:2px solid #f3cfdb}
+.contact-info h2,.contact-panel h2{font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(23px,3vw,31px);line-height:1.25}
+.contact-info p{margin:20px 0;max-width:45ch}
+.contact-heart{display:block;font-size:55px;line-height:1.1;color:#bc537f}
+#contact-form{max-width:none;align-items:stretch;gap:9px;margin-top:22px}
+#contact-form label{text-align:left;margin-top:9px;color:#7c3651}
+#contact-form input,#contact-form select,#contact-form textarea{width:100%;border:1.5px solid #e9b4c7;border-radius:13px;background:#fff;font:500 16px 'Quicksand',sans-serif;color:#57213d;padding:13px 15px}
+#contact-form textarea{resize:vertical;min-height:140px}
+#contact-submit{border:0;border-radius:999px;padding:15px 25px;background:#b34675;color:#fff;font:700 16px 'Quicksand',sans-serif;cursor:pointer;margin-top:10px}
+#contact-submit:disabled{opacity:.55;cursor:not-allowed}
+#contact-status{font-size:14px;line-height:1.55;margin:6px 0;overflow-wrap:anywhere}
+#contact-turnstile{margin-top:15px}
+@media(max-width:760px){.contact-wrap{grid-template-columns:1fr;padding:18px 16px 56px}.contact-info,.contact-panel{padding:25px}.contact-info p{margin:12px 0}}

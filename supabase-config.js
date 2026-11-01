@@ -5,5 +5,7 @@ window.JANIKS_SUPABASE_CONFIG = {
   checkoutEnabled: false, // Legacy PayMongo checkout remains disabled
   gcashCheckoutEnabled: false, // Set true only after Edge Functions and GCash information are tested
   gcashQrImage: '', // Public URL to the actual official GCash QR image
-  gcashPaymentLink: '' // Exact verified official GCash payment link
+  gcashPaymentLink: '', // Exact verified official GCash payment link
+  contactFormEnabled: false, // Enable only after contact-inquiry is deployed, verified and abuse controls checked
+  turnstileSiteKey: '' // Cloudflare Turnstile PUBLIC site key for janiksaniks.com
 };

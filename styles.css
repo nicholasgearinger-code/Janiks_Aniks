@@ -2770,6 +2770,7 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
   #site-sidebar .main-nav a[data-nav="accessories"]{--nav-fill:#cce6c4;--nav-edge:#a7cea0;--nav-ink:#42674a}
   #site-sidebar .main-nav a[data-nav="payments"]{--nav-fill:#f0c4da;--nav-edge:#dca5c2;--nav-ink:#783d5e}
   #site-sidebar .main-nav a[data-nav="visit"]{--nav-fill:#f0d1be;--nav-edge:#ddb49d;--nav-ink:#755145}
+  #site-sidebar .main-nav a[data-nav="contact"]{--nav-fill:#f6e7a8;--nav-edge:#d9c36a;--nav-ink:#695526}
   #site-sidebar .main-nav a[data-nav="cart"]{--nav-fill:#c3e0f5;--nav-edge:#9fc9e7;--nav-ink:#315b7c}
   #site-sidebar .main-nav a[data-nav]{
     background:var(--nav-fill)!important;

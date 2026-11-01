@@ -2988,30 +2988,24 @@ body .page-heading h1,body .product-copy h1{font-size:clamp(32px,6vw,54px)!impor
 @media(max-width:760px){.contact-wrap{grid-template-columns:1fr;padding:18px 16px 56px}.contact-info,.contact-panel{padding:25px}.contact-info p{margin:12px 0}}
 
 
-/* Contact page identity: periwinkle, soft lilac and warm coral. Scoped to Contact only. */
-body.contact-theme{--contact-bg:#f4f1ff;--contact-primary:#514e91;--contact-panel:#dcd8fa;--contact-deep:#373569;background:var(--contact-bg);color:var(--contact-deep)}
-body.contact-theme .gingham-strip{background-color:#8983c7;background-image:linear-gradient(90deg,rgba(251,245,255,.55) 50%,transparent 50%),linear-gradient(rgba(251,245,255,.55) 50%,transparent 50%)}
-body.contact-theme #site-sidebar{background:#e8e3fc}
-body.contact-theme #site-sidebar .sidebar-note{color:#514e91}
-body.contact-theme .page-main{background:linear-gradient(145deg,#f4f1ff,#f9f6ff 64%,#fff5f0)}
-body.contact-theme .collection-page-header{background:#e1dcf9;color:#4a477c;border-color:#c5bced}
-body.contact-theme .collection-page-header :is(h1,p){color:#4a477c}
-body.contact-theme .contact-info{background:#d7d4f5;color:#39366f;border:1px solid #bcb6e8;box-shadow:0 12px 30px rgba(65,59,112,.11)}
-body.contact-theme .contact-panel{background:#fffdfd;border:2px solid #c9c2eb;box-shadow:0 12px 30px rgba(65,59,112,.09)}
-body.contact-theme .contact-heart{color:#dc7e91}
-body.contact-theme .contact-panel h2{color:#514e91}
-body.contact-theme #contact-form label{color:#4c4782}
-body.contact-theme #contact-form :is(input,select,textarea){border-color:#b5afdf;color:#373569;background:#fff}
-body.contact-theme #contact-form :is(input,select,textarea):focus-visible{outline:3px solid #d0a1cb;outline-offset:1px}
-body.contact-theme #contact-submit{background:#615ca6;color:white}
-body.contact-theme #contact-submit:not(:disabled):hover{background:#45417e}
-body.contact-theme footer{background:#e2dcf5;color:#494475}
-body.contact-theme .main-nav a[data-nav="contact"]{background:#c7bff2;color:#403b74}
+/* Contact Us shares the storefront's familiar layout, with its own warm coral accent. */
+body.contact-theme{--contact-bg:#fff8f2;--contact-panel:#f6c9ae;--contact-edge:#e9ad92;--contact-ink:#774b40;background:var(--contact-bg);color:var(--contact-ink)}
+body.contact-theme .page-main{background:var(--contact-bg)}
+body.contact-theme .collection-page-header{background:var(--contact-bg);color:var(--contact-ink)}
+body.contact-theme .collection-page-header :is(h1,p){color:var(--contact-ink)}
+body.contact-theme .contact-wrap{background:var(--contact-bg)}
+body.contact-theme .contact-info{background:var(--contact-panel);color:var(--contact-ink);border:1px solid var(--contact-edge);box-shadow:0 7px 18px rgba(103,64,45,.08)}
+body.contact-theme .contact-panel{background:#fffcf9;border:1px solid #edc6b4;box-shadow:0 7px 18px rgba(103,64,45,.07)}
+body.contact-theme .contact-heart{color:#b85f52}
+body.contact-theme .contact-panel h2{color:#864e45}
+body.contact-theme #contact-form label{color:#794d43}
+body.contact-theme #contact-form :is(input,select,textarea){border-color:#dba994;color:#663b34;background:#fff}
+body.contact-theme #contact-submit{background:#b75f52;color:#fff}
+body.contact-theme #contact-submit:not(:disabled):hover{background:#93483e}
+body.contact-theme .main-nav a[data-nav="contact"][aria-current="page"]{background:#f1bba2;color:#74443b}
 @media(max-width:850px){
- body.contact-theme #site-sidebar{background:#e8e3fc!important}
- body.contact-theme .page-main>.collection-page-header{background:#e1dcf9!important;border:1px solid #c5bced!important;border-radius:22px!important;margin:12px!important;padding:22px!important}
- body.contact-theme .contact-wrap{background:transparent!important}
- body.contact-theme .contact-info{background:#d7d4f5!important}
- body.contact-theme .contact-panel{background:#fffdfd!important}
- body.contact-theme #site-sidebar>a.brand{background:linear-gradient(180deg,#faf8ff,#ddd7f7)!important;border-color:#aaa1d9!important;box-shadow:0 3px 0 #bab0e4,0 5px 11px rgba(53,48,101,.13)!important}
+ body.contact-theme .page-main{--m-bg:#fff8f2;--m-panel:#f6c9ae;--m-edge:#e9ad92;--m-ink:#774b40;background:var(--m-bg)!important}
+ body.contact-theme .page-main>.collection-page-header{background:var(--m-bg)!important;color:var(--m-ink)!important}
+ body.contact-theme .contact-info{background:var(--m-panel)!important;color:var(--m-ink)!important}
+ body.contact-theme .contact-panel{background:#fffcf9!important}
 }

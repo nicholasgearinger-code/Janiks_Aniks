@@ -22,6 +22,13 @@ function render(){
  var days=Number($('analytics-period').value),now=new Date(),start=new Date(now.getTime()-days*86400000);
  var period=orders.filter(o=>new Date(o.created_at)>=start&&new Date(o.created_at)<=now);
  var paid=period.filter(o=>o.payment_status==='paid'),sales=paid.reduce((s,o)=>s+Number(o.total||0),0);
+ var previousStart=new Date(start.getTime()-days*86400000);
+ var previousPaid=orders.filter(o=>new Date(o.created_at)>=previousStart&&new Date(o.created_at)<start&&o.payment_status==='paid');
+ var previousSales=previousPaid.reduce((sum,o)=>sum+Number(o.total||0),0);
+ var difference=previousSales?((sales-previousSales)/previousSales*100):null;
+ $('a-sales-change').textContent=difference===null?'No prior-period paid sales to compare':(difference>=0?'+':'')+difference.toFixed(1)+'% vs previous '+days+' days';
+ $('a-sales-change').className='analytics-compare '+(difference===null?'':difference>=0?'positive':'negative');
+ $('a-order-change').textContent='Previous period: '+previousPaid.length+' paid orders';
  var exp=expenses.filter(e=>new Date(e.expense_date+'T12:00:00')>=start&&new Date(e.expense_date+'T12:00:00')<=now);
  var operating=exp.reduce((s,e)=>s+Number(e.amount||0),0);
  var paidIds=new Set(paid.map(o=>o.id)),paidItems=items.filter(i=>paidIds.has(i.order_id));
@@ -44,7 +51,7 @@ function render(){
 }
 async function load(){
  if(!ready)return;status('Loading your business data…');
- var since=new Date(Date.now()-366*86400000).toISOString();
+ var since=new Date(Date.now()-730*86400000).toISOString();
  var results=await Promise.all([client.from('orders').select('id,created_at,total,payment_status').gte('created_at',since).order('created_at',{ascending:false}).limit(5000),client.from('business_expenses').select('id,expense_date,category,description,amount').gte('expense_date',since.slice(0,10)).order('expense_date',{ascending:false}).limit(5000)]);
  if(results[0].error){status('Orders unavailable: '+results[0].error.message+' — run supabase/orders.sql first.');return;}
  if(results[1].error){status('Expenses unavailable: '+results[1].error.message+' — run supabase/analytics.sql first.');return;}

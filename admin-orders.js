@@ -18,7 +18,7 @@ function render(){
  filtered.forEach(o=>{var card=document.createElement('article');card.className='manager-order-card';card.dataset.fulfillment=o.fulfillment_status;card.innerHTML='<div><strong>'+esc(o.order_number)+'</strong><small>'+esc(date(o.created_at))+'</small></div><div><strong>'+esc(o.customer_name)+'</strong><small>'+esc(o.customer_email)+'</small></div><div><strong>'+money(o.total)+'</strong><small>Payment: '+esc(o.payment_status)+'</small></div><div><span class="product-pill">'+esc(o.fulfillment_status)+'</span></div><button type="button" class="admin-button secondary">View order</button>';card.querySelector('button').addEventListener('click',()=>open(o));$('orders-list').appendChild(card);});
 }
 async function load(){
- msg('Loading orders…');var r=await client.from('orders').select('id,order_number,created_at,customer_name,customer_email,customer_phone,shipping_address,shipping_method,shipping_fee,subtotal,total,currency,payment_status,fulfillment_status,tracking_number,courier,fulfillment_notes,customer_notes').order('created_at',{ascending:false}).limit(200);
+ msg('Loading orders…');var r=await client.from('orders').select('id,order_number,created_at,customer_name,customer_email,customer_phone,shipping_address,shipping_method,shipping_fee,subtotal,total,currency,payment_status,payment_provider,fulfillment_status,tracking_number,courier,fulfillment_notes,customer_notes').order('created_at',{ascending:false}).limit(200);
  if(r.error){orders=[];render();msg('Orders are not available yet. Run supabase/orders.sql in the Supabase SQL Editor, then refresh. Details: '+r.error.message,true);return;}
  orders=r.data||[];render();msg(orders.length?'Showing the 200 most recent orders.':'No orders recorded yet. Checkout integration is still required.');
 }
@@ -30,6 +30,30 @@ async function open(o){
  var addressText=typeof address==='object'?Object.values(address).filter(v=>typeof v==='string'&&v.trim()).join(', '):String(address);
  $('order-detail-content').innerHTML='<div class="order-detail-grid"><div><h3>Customer</h3><p>'+esc(o.customer_name)+'<br>'+esc(o.customer_email)+'<br>'+esc(o.customer_phone)+'</p><h3>Shipping</h3><p>'+esc(addressText||'No address')+'<br>'+esc(o.shipping_method||'No method')+'</p></div><div><h3>Payment</h3><p><strong>'+esc(o.payment_status)+'</strong> — payment verification is handled outside this editor.</p><h3>Totals</h3><p>Subtotal '+money(o.subtotal)+'<br>Shipping '+money(o.shipping_fee)+'<br><strong>Total '+money(o.total)+'</strong></p></div></div><h3>Items</h3>'+items+'<p><strong>Customer note:</strong> '+esc(o.customer_notes||'None')+'</p><div class="order-fields"><label>Fulfillment status<select id="detail-fulfillment"><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="processing">Processing</option><option value="shipped">Shipped</option><option value="delivered">Delivered</option><option value="cancelled">Cancelled</option></select></label><label>Courier<input id="detail-courier" maxlength="100"></label><label>Tracking number<input id="detail-tracking" maxlength="160"></label><label>Internal fulfillment notes<textarea id="detail-notes" rows="3" maxlength="2000"></textarea></label></div>';
  $('detail-fulfillment').value=o.fulfillment_status;$('detail-courier').value=o.courier||'';$('detail-tracking').value=o.tracking_number||'';$('detail-notes').value=o.fulfillment_notes||'';
+ if(o.payment_provider==='gcash_manual' && o.payment_status!=='paid' && o.fulfillment_status!=='cancelled'){
+  const button=document.createElement('button');
+  button.type='button';button.className='admin-button primary';
+  button.textContent='I verified payment in GCash — confirm & email';
+  button.addEventListener('click',async()=>{
+   if(!confirm('Have you independently verified the GCash transaction amount and reference in your GCash account? This action marks payment paid and emails the customer.'))return;
+   button.disabled=true;$('order-detail-message').textContent='Confirming payment…';
+   try{
+    const session=await client.auth.getSession();
+    const cfg=window.JANIKS_SUPABASE_CONFIG||{};
+    const headers={'Content-Type':'application/json','apikey':cfg.publishableKey,'Authorization':'Bearer '+session.data.session.access_token};
+    const result=await fetch(cfg.projectUrl+'/functions/v1/confirm-gcash-payment',{method:'POST',headers,body:JSON.stringify({order_id:o.id})});
+    const payload=await result.json().catch(()=>({}));
+    if(!result.ok)throw Error(payload.error||'Could not confirm payment');
+    $('order-detail-message').textContent='Payment confirmed. Requesting customer email…';
+    const email=await fetch(cfg.projectUrl+'/functions/v1/send-order-confirmation',{method:'POST',headers,body:JSON.stringify({order_id:o.id})});
+    const sent=await email.json().catch(()=>({}));
+    if(!email.ok)throw Error('Payment confirmed, but email failed: '+(sent.error||'unknown'));
+    $('order-dialog').close();await load();
+    msg(sent.status==='sent'?'GCash payment confirmed. Resend accepted the confirmation email.':'GCash payment confirmed. Email already processed or in progress.');
+   }catch(error){$('order-detail-message').textContent=error.message||String(error);button.disabled=false;}
+  });
+  $('order-detail-content').append(button);
+ }
  $('order-detail-message').textContent='';$('order-dialog').showModal();
 }
 async function save(){

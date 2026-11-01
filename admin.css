@@ -92,7 +92,7 @@
   display:flex;gap:4px;justify-content:center;align-items:center;
   font-size:12px;line-height:1.2;white-space:nowrap;
  }
- #tab-inquiries{order:-1;background:#fff0f5;border-color:#eab5c7;color:#8f1742;font-weight:700}
+ #tab-inquiries{order:-1}
  #tab-inquiries.active{background:var(--admin-red);color:#fff}
  #tab-inquiries .inquiries-badge{margin:0 0 0 2px;flex-shrink:0}
 }

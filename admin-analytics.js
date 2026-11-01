@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-var client=null,orders=[],items=[],expenses=[],ready=false;
+var client=null,orders=[],items=[],expenses=[],products=[],ready=false;
 var $=id=>document.getElementById(id);
 var fmt=n=>'₱'+Number(n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2});
 var esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -43,6 +43,36 @@ function render(){
  var totals=new Map();paidItems.forEach(i=>{var k=i.product_name||'Unnamed product',v=totals.get(k)||{qty:0,revenue:0};v.qty+=Number(i.quantity||0);v.revenue+=Number(i.line_total||0);totals.set(k,v);});
  var top=[...totals.entries()].sort((a,b)=>b[1].qty-a[1].qty).slice(0,8);
  $('top-products').innerHTML=top.length?top.map(([k,v])=>'<div class="metric-row"><span>'+esc(k)+' <small>('+v.qty+' sold)</small></span><strong>'+fmt(v.revenue)+'</strong></div>').join(''):'<p class="admin-hint">No item-level sales recorded yet.</p>';
+ var categoryNames={mugs:'Mugs',plushies:'Plushies',accessories:'Stickers',stickers:'Stickers',figurines:'Figurines',seasonal:'Seasonal'};
+ var productById=new Map(products.map(p=>[p.id,p.category]));
+ var categoryTotals=new Map(),uncategorized=0,knownRevenue=0;
+ paidItems.forEach(i=>{
+  var raw=productById.get(i.product_id);
+  var category=raw?(categoryNames[raw.toLowerCase()]||raw):'Uncategorized';
+  var revenue=Number(i.line_total||0);
+  var record=categoryTotals.get(category)||{revenue:0,units:0};
+  record.revenue+=revenue;record.units+=Number(i.quantity||0);categoryTotals.set(category,record);
+  if(category==='Uncategorized')uncategorized+=revenue;else knownRevenue+=revenue;
+ });
+ var sortedCategories=[...categoryTotals].sort((a,b)=>b[1].revenue-a[1].revenue);
+ var categoryHost=$('category-revenue');categoryHost.replaceChildren();
+ if(!sortedCategories.length)empty('category-revenue','No paid product sales recorded for this period.');
+ else{
+  var denominator=sortedCategories.reduce((sum,entry)=>sum+entry[1].revenue,0);
+  sortedCategories.forEach(([name,entry])=>{
+   var row=document.createElement('div');row.className='category-revenue-row';
+   var headline=document.createElement('div');headline.className='category-revenue-head';
+   var left=document.createElement('span');left.textContent=name+' · '+entry.units+' sold';
+   var amount=document.createElement('strong');amount.textContent=fmt(entry.revenue);
+   headline.append(left,amount);
+   var rail=document.createElement('div');rail.className='category-revenue-rail';
+   var fill=document.createElement('div');fill.className='category-revenue-fill';
+   var share=denominator?entry.revenue/denominator*100:0;fill.style.width=share.toFixed(2)+'%';
+   rail.append(fill);var percent=document.createElement('small');percent.textContent=share.toFixed(1)+'% of item revenue';
+   row.append(headline,rail,percent);categoryHost.append(row);
+  });
+ }
+ $('category-revenue-note').textContent=uncategorized?'Uncategorized includes ₱'+uncategorized.toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2})+' in paid line items with missing or unmatched product categories.':'Breakdown includes product line totals only, excluding shipping fees. Older categories may reflect the current product catalog.';
  var bins=new Map(),monthly=days===365;for(var i=days-1;i>=0;i--){var d=new Date(now.getTime()-i*86400000),key=monthly?day(d).slice(0,7):day(d);if(!bins.has(key))bins.set(key,0);}
  paid.forEach(o=>{var k=monthly?day(o.created_at).slice(0,7):day(o.created_at);if(bins.has(k))bins.set(k,bins.get(k)+Number(o.total||0));});
  chart([...bins].map(([k,v])=>({label:k.slice(5),value:v})),days);
@@ -57,7 +87,7 @@ async function load(){
  if(results[1].error){status('Expenses unavailable: '+results[1].error.message+' — run supabase/analytics.sql first.');return;}
  orders=results[0].data||[];expenses=results[1].data||[];
  var ids=orders.map(o=>o.id);items=[];
- for(var n=0;n<ids.length;n+=100){var r=await client.from('order_items').select('order_id,product_name,quantity,line_total,unit_cost').in('order_id',ids.slice(n,n+100));if(r.error){status('Order item data unavailable: '+r.error.message);return;}items.push(...(r.data||[]));}
+ for(var n=0;n<ids.length;n+=100){var r=await client.from('order_items').select('order_id,product_id,product_name,quantity,line_total,unit_cost').in('order_id',ids.slice(n,n+100));if(r.error){status('Order item data unavailable: '+r.error.message);return;}items.push(...(r.data||[]));}
  render();status((orders.length===5000||expenses.length===5000?'Results may be incomplete (5,000-record limit). ':'')+'Showing recorded data. Payment verification and checkout integration are required for reliable sales.');
 }
 document.addEventListener('DOMContentLoaded',function(){
@@ -66,6 +96,6 @@ document.addEventListener('DOMContentLoaded',function(){
  $('expense-form').addEventListener('submit',async e=>{e.preventDefault();if(!ready)return;var btn=e.target.querySelector('button');btn.disabled=true;
  var r=await client.from('business_expenses').insert({expense_date:$('expense-date').value,category:$('expense-category').value,amount:Number($('expense-amount').value),description:$('expense-description').value.trim()});
  btn.disabled=false;if(r.error){$('expense-message').textContent='Could not save: '+r.error.message;return;}e.target.reset();$('expense-date').value=day(new Date());$('expense-message').textContent='Expense recorded.';await load();});
- window.JaniksAnalytics={init:function(c){client=c;ready=true;},load:load,clear:function(){ready=false;orders=[];items=[];expenses=[];}};
+ window.JaniksAnalytics={init:function(c){client=c;ready=true;},load:load,clear:function(){ready=false;orders=[];items=[];expenses=[];products=[];}};
 });
 })();

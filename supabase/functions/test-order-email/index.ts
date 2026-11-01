@@ -1,7 +1,7 @@
 // Test-only Resend email endpoint. Deploy with Supabase JWT verification ENABLED.
 // Requires an authenticated, allowlisted store admin; recipient is always their own email.
 import { createClient } from 'npm:@supabase/supabase-js@2';
-const allowedOrigin='https://nicholasgearinger-code.github.io';
+const allowedOrigin='https://janiksaniks.com';
 const corsHeaders={'Access-Control-Allow-Origin':allowedOrigin,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'};
 const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...corsHeaders,'Content-Type':'application/json','Cache-Control':'no-store'}});
 Deno.serve(async(req)=>{
@@ -21,8 +21,8 @@ Deno.serve(async(req)=>{
  const email=user.email;
 
  // All product names, prices, and order IDs below are fictional preview data.
- const logo='https://nicholasgearinger-code.github.io/Janiks_Aniks/images/janiks-aniks-logo-horizontal-notag.png';
- const shop='https://nicholasgearinger-code.github.io/Janiks_Aniks/';
+ const logo='https://janiksaniks.com/images/janiks-aniks-logo-horizontal-notag.png';
+ const shop='https://janiksaniks.com/';
  const html=`<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Janiks Aniks sample order</title></head>
  <body style="margin:0;padding:0;background:#f9edf0;font-family:Georgia,serif;color:#612b39">
  <div style="display:none;font-size:1px;color:#f9edf0;line-height:1px;max-height:0;opacity:0;overflow:hidden">TEST ONLY — A preview of your Janiks Aniks order confirmation. No purchase or payment is due.</div>
@@ -40,7 +40,7 @@ Deno.serve(async(req)=>{
  <tr><td align="center" style="background:#f9e6eb;padding:23px 18px;color:#955567"><div style="font-size:20px">🍒 ♡ 🎀</div><div style="font-size:13px;margin-top:8px">Made with love, Janiks Aniks</div><div style="font:11px Arial,sans-serif;margin-top:9px">TEST EMAIL ONLY · Not an invoice or payment receipt</div></td></tr>
  </table></td></tr></table></body></html>`;
  const result=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:JSON.stringify({
- from:'Janiks Aniks Test <onboarding@resend.dev>',to:[email],
+ from:'Janiks Aniks Test <orders@janiksaniks.com>',to:[email],
  subject:'Janiks Aniks ♡ Sample order confirmation (TEST ONLY)',
  html,
  text:'JANIKS ANIKS — TEST ONLY\\n\\nYour order is in!\\nSample order JA-EXAMPLE-001\\nCherry Bow Mug ×1 — ₱350\\nSweetheart Plushie ×1 — ₱450\\nSample subtotal ₱800\\n\\nThis is a preview. No real purchase or payment is due.\\n\\n'+shop

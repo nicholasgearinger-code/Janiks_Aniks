@@ -3056,12 +3056,13 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 }
 
 
-/* Homepage only: put mobile header in normal document flow.
-   Sticky keeps it visible during scrolling without hiding the top of the hero. */
+/* Mobile homepage: avoid sticky header being clipped by browser chrome
+   and obscuring the hero while scrolling. Header occupies its own flow row. */
 @media(max-width:850px){
  body:has(>.page-main>.hero) #site-sidebar.top{
-  position:sticky!important;
-  top:0!important;
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
   left:auto!important;
   right:auto!important;
   z-index:1100!important;

@@ -73,3 +73,26 @@
 .inquiry-empty{grid-column:1/-1;padding:45px 24px;text-align:center;background:#fff;border-radius:20px;border:1px dashed #e5b5c7;color:#876772}
 @media(max-width:860px){#inquiries-list{grid-template-columns:1fr}}
 @media(max-width:600px){.manager-tabs{overflow-x:auto;max-width:100%;padding-bottom:12px}.manager-tab{flex:0 0 auto}.inquiry-summary{gap:7px}.inquiry-summary>div{padding:12px 9px}.inquiry-summary strong{font-size:25px}.inquiry-summary span{font-size:10px}.inquiry-controls{grid-template-columns:1fr}.inquiry-card{padding:16px}.inquiry-footer{align-items:stretch}.inquiry-actions{width:100%}.inquiry-reply{flex:1}}
+
+
+/* Mobile Store Manager navigation: all five sections visible without sideways scrolling. */
+@media (max-width:680px){
+ .manager-tabs{
+  position:sticky;top:0;z-index:30;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  overflow:visible;max-width:100%;gap:7px;
+  padding:10px 3px 12px;margin:0 0 18px;
+  background:var(--admin-bg);
+  border-bottom:1px solid var(--admin-line);
+  box-shadow:0 8px 15px #5a10260b;
+ }
+ .manager-tab{
+  min-width:0;width:100%;min-height:48px;
+  padding:9px 5px;flex:none;
+  display:flex;gap:4px;justify-content:center;align-items:center;
+  font-size:12px;line-height:1.2;white-space:nowrap;
+ }
+ #tab-inquiries{order:-1;background:#fff0f5;border-color:#eab5c7;color:#8f1742;font-weight:700}
+ #tab-inquiries.active{background:var(--admin-red);color:#fff}
+ #tab-inquiries .inquiries-badge{margin:0 0 0 2px;flex-shrink:0}
+}

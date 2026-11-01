@@ -39,6 +39,24 @@ async function save(){
  var btn=$('save-order-fulfillment');btn.disabled=true;$('order-detail-message').textContent='Saving…';
  var r=await client.from('orders').update({fulfillment_status:status,courier:$('detail-courier').value.trim(),tracking_number:$('detail-tracking').value.trim(),fulfillment_notes:$('detail-notes').value.trim()}).eq('id',active.id);
  btn.disabled=false;if(r.error){$('order-detail-message').textContent='Save failed: '+r.error.message;return;}
+ if(status==='confirmed' && active.fulfillment_status!=='confirmed'){
+  $('order-detail-message').textContent='Order saved. Sending confirmation email…';
+  try{
+    const session=await client.auth.getSession();
+    if(!session.data?.session?.access_token)throw Error('Owner session expired');
+    const cfg=window.JANIKS_SUPABASE_CONFIG||{};
+    const response=await fetch(cfg.projectUrl+'/functions/v1/send-order-confirmation',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':cfg.publishableKey,'Authorization':'Bearer '+session.data.session.access_token},
+      body:JSON.stringify({order_id:active.id})
+    });
+    const payload=await response.json().catch(()=>({}));
+    if(!response.ok)throw Error(payload.error||'Email request failed');
+    msg(payload.status==='sent'?'Order saved. Resend accepted the confirmation email.':'Order saved. Confirmation already processed or in progress.');
+  }catch(error){
+    msg('Order was saved, but confirmation email was not verified: '+(error.message||String(error)),true);
+  }
+ }
  $('order-dialog').close();await load();
 }
 document.addEventListener('DOMContentLoaded',function(){

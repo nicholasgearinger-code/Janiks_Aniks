@@ -3054,3 +3054,22 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
   font-size:39px!important;
  }
 }
+
+
+/* Homepage only: put mobile header in normal document flow.
+   Sticky keeps it visible during scrolling without hiding the top of the hero. */
+@media(max-width:850px){
+ body:has(>.page-main>.hero) #site-sidebar.top{
+  position:sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  z-index:1100!important;
+ }
+ body:has(>.page-main>.hero) .page-main{
+  padding-top:0!important;
+ }
+ body:has(>.page-main>.hero) .page-main>.hero{
+  padding-top:52px!important;
+ }
+}

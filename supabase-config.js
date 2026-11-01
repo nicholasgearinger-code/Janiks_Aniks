@@ -6,6 +6,6 @@ window.JANIKS_SUPABASE_CONFIG = {
   gcashCheckoutEnabled: false, // Set true only after Edge Functions and GCash information are tested
   gcashQrImage: '', // Public URL to the actual official GCash QR image
   gcashPaymentLink: '', // Exact verified official GCash payment link
-  contactFormEnabled: false, // Enable only after contact-inquiry is deployed, verified and abuse controls checked
-  turnstileSiteKey: '' // Cloudflare Turnstile PUBLIC site key for janiksaniks.com
+  contactFormEnabled: true, // Enable only after contact-inquiry is deployed, verified and abuse controls checked
+  turnstileSiteKey: '0x4AAAAAAFvvB9vMyxUOCRMM' // Cloudflare Turnstile PUBLIC site key for janiksaniks.com
 };

@@ -142,7 +142,7 @@
   async function togglePublish(p) {
     var result=await client.from('products').update({published:!p.published}).eq('id',p.id);
     if(result.error) status($('admin-message'),'Could not update product: '+result.error.message,'error');
-    else await loadProducts();
+    else await loadProducts();if(window.JaniksOverview)window.JaniksOverview.init(client);
   }
   async function start() {
     if(!configured || !window.supabase || !window.supabase.createClient) { showOnly('setup-warning'); return; }
@@ -190,6 +190,6 @@
     if(result.error || !result.data){showOnly('access-denied');$('sign-out').hidden=false;return;}
     $('sign-out').hidden=false;showOnly('dashboard');if(window.JaniksInventory)window.JaniksInventory.init(client);await loadProducts();
   }
-  async function signOut() { await client.auth.signOut(); showOnly('login-panel');$('sign-out').hidden=true; }
+  async function signOut() { if(window.JaniksOverview)window.JaniksOverview.clear(); await client.auth.signOut(); showOnly('login-panel');$('sign-out').hidden=true; }
   document.addEventListener('DOMContentLoaded',start);
 })();

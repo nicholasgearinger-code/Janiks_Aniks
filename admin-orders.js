@@ -7,6 +7,15 @@ var money=v=>'₱'+Number(v||0).toLocaleString('en-PH',{minimumFractionDigits:2,
 var date=v=>v?new Date(v).toLocaleString('en-PH'):'—';
 var msg=(s,error)=>{$('orders-message').textContent=s;$('orders-message').className='admin-message'+(error?' error':'');};
 function tabs(which){['products','orders','analytics','inventory','inquiries'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='inventory'&&window.JaniksInventory)window.JaniksInventory.load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
+// Attention badge counts orders awaiting payment review or fulfillment.
+function needsAttention(o){return !['cancelled','delivered'].includes(o.fulfillment_status)&&(['unpaid','pending'].includes(o.payment_status)||['pending','confirmed','processing'].includes(o.fulfillment_status));}
+function setBadge(count){const badge=$('orders-badge'),tab=$('tab-orders');if(!badge||!tab)return;badge.hidden=count===0;badge.textContent=count>99?'99+':String(count);tab.setAttribute('aria-label','Orders, '+count+' needing attention');}
+async function refreshOrderBadge(){
+ if(!client)return;
+ const auth=await client.auth.getSession();if(!auth.data.session){setBadge(0);return;}
+ const r=await client.from('orders').select('id,payment_status,fulfillment_status').limit(1000);
+ if(!r.error)setBadge((r.data||[]).filter(needsAttention).length);
+}
 function render(){
  var q=$('order-search').value.trim().toLowerCase(),st=$('order-status-filter').value,pay=$('order-payment-filter').value;
  var filtered=orders.filter(o=>(!q||[o.order_number,o.customer_name,o.customer_email].join(' ').toLowerCase().includes(q))&&(!st||o.fulfillment_status===st)&&(!pay||o.payment_status===pay));
@@ -19,8 +28,8 @@ function render(){
 }
 async function load(){
  msg('Loading orders…');var r=await client.from('orders').select('id,order_number,created_at,customer_name,customer_email,customer_phone,shipping_address,shipping_method,shipping_fee,subtotal,total,currency,payment_status,payment_provider,fulfillment_status,tracking_number,courier,fulfillment_notes,customer_notes').order('created_at',{ascending:false}).limit(200);
- if(r.error){orders=[];render();msg('Orders are not available yet. Run supabase/orders.sql in the Supabase SQL Editor, then refresh. Details: '+r.error.message,true);return;}
- orders=r.data||[];render();msg(orders.length?'Showing the 200 most recent orders.':'No orders recorded yet. Checkout integration is still required.');
+ if(r.error){orders=[];setBadge(0);render();msg('Orders are not available yet. Run supabase/orders.sql in the Supabase SQL Editor, then refresh. Details: '+r.error.message,true);return;}
+ orders=r.data||[];render();setBadge(orders.filter(needsAttention).length);msg(orders.length?'Showing the 200 most recent orders.':'No orders recorded yet. Checkout integration is still required.');
 }
 async function open(o){
  active=o;$('order-dialog-title').textContent=o.order_number;$('order-detail-message').textContent='Loading items…';
@@ -90,8 +99,9 @@ document.addEventListener('DOMContentLoaded',function(){
  $('refresh-orders').addEventListener('click',load);['order-search','order-status-filter','order-payment-filter'].forEach(id=>$(id).addEventListener('input',render));
  $('close-order-dialog').addEventListener('click',()=>$('order-dialog').close());$('save-order-fulfillment').addEventListener('click',save);
  // Share the owner session via the main admin controller, not a separate login.
- window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksInventory)window.JaniksInventory.init(client);if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);},clear:function(){orders=[];render();if(window.JaniksInventory)window.JaniksInventory.clear();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
+ window.JaniksOrders={init:function(mainClient){client=mainClient;initialized=true;if(window.JaniksInventory)window.JaniksInventory.init(client);if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);setTimeout(refreshOrderBadge,0);},clear:function(){orders=[];setBadge(0);render();if(window.JaniksInventory)window.JaniksInventory.clear();if(window.JaniksAnalytics)window.JaniksAnalytics.clear();}};
+ window.addEventListener('focus',refreshOrderBadge);
  client.auth.getSession().then(async function(r){if(!r.data.session)return;var user=r.data.session.user;var check=await client.from('store_admins').select('user_id').eq('user_id',user.id).maybeSingle();if(!check.error&&check.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);});
- client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}if(event==='SIGNED_IN'){setTimeout(async function(){var r=await client.auth.getUser();if(!r.data.user)return;var a=await client.from('store_admins').select('user_id').eq('user_id',r.data.user.id).maybeSingle();if(!a.error&&a.data&&window.JaniksAnalytics)window.JaniksAnalytics.init(client);},0);}});
+ client.auth.onAuthStateChange(function(event){if(event==='SIGNED_OUT'){setBadge(0);if(window.JaniksAnalytics)window.JaniksAnalytics.clear();orders=[];}if(event==='SIGNED_IN'){setTimeout(async function(){var r=await client.auth.getUser();if(!r.data.user)return;var a=await client.from('store_admins').select('user_id').eq('user_id',r.data.user.id).maybeSingle();if(!a.error&&a.data){if(window.JaniksAnalytics)window.JaniksAnalytics.init(client);refreshOrderBadge();}},0);}});
 });
 })();

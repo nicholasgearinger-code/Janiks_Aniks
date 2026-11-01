@@ -19,9 +19,21 @@ async function load(){
   const attention=os.filter(o=>!['cancelled','delivered'].includes(o.fulfillment_status)&&(['unpaid','pending'].includes(o.payment_status)||['pending','confirmed','processing'].includes(o.fulfillment_status)));
   const revenue=os.filter(o=>o.payment_status==='paid'&&o.created_at>=dayStart()).reduce((a,o)=>a+Number(o.total||0),0);
   value('overview-revenue',orders.error?'—':money(revenue));
+  const monthStart=new Date();monthStart.setDate(1);monthStart.setHours(0,0,0,0);
+  const monthRevenue=os.filter(o=>o.payment_status==='paid'&&new Date(o.created_at)>=monthStart).reduce((a,o)=>a+Number(o.total||0),0);
+  value('overview-month-revenue',orders.error?'—':money(monthRevenue));
+  value('overview-paid-orders',orders.error?'—':String(os.filter(o=>o.payment_status==='paid'&&new Date(o.created_at)>=monthStart).length));
   value('overview-orders',orders.error?'—':String(attention.length));
   value('overview-inquiries',inquiries.error?'—':String(qs.filter(q=>q.status==='new').length));
   value('overview-products',products.error?'—':String(ps.filter(p=>p.published===true&&p.available!==false).length));
+  const tasks=$('overview-priorities');tasks.replaceChildren();
+  const priorities=[
+   {name:'Verify pending payments',qty:os.filter(o=>!['cancelled','delivered'].includes(o.fulfillment_status)&&['pending','unpaid'].includes(o.payment_status)).length,dest:'orders'},
+   {name:'Pack and prepare paid orders',qty:os.filter(o=>o.payment_status==='paid'&&['pending','confirmed','processing'].includes(o.fulfillment_status)).length,dest:'orders'},
+   {name:'Respond to new messages',qty:qs.filter(q=>q.status==='new').length,dest:'inquiries'}
+  ];
+  for(const t of priorities){if(!t.qty)continue;const btn=document.createElement('button');btn.type='button';btn.className='overview-activity';const name=document.createElement('strong');name.textContent=t.name;const count=document.createElement('span');count.textContent=t.qty+' awaiting action';btn.append(name,count);btn.addEventListener('click',()=>navigate(t.dest));tasks.append(btn);}
+  if(!tasks.children.length){const done=document.createElement('p');done.className='admin-hint';done.textContent='All caught up! No pending payments, fulfillment tasks, or new inquiries in the loaded records.';tasks.append(done);}
   const feed=$('overview-feed');feed.replaceChildren();
   const activity=[
    ...os.slice(0,6).map(o=>({when:o.created_at,title:'Order '+o.order_number,detail:(o.payment_status||'Unknown payment')+' · '+(o.fulfillment_status||'pending'),dest:'orders'})),
@@ -36,7 +48,7 @@ function show(){for(const name of ['overview','products','analytics','inventory'
 document.addEventListener('DOMContentLoaded',()=>{
  $('tab-overview').addEventListener('click',show);$('overview-refresh').addEventListener('click',load);
  document.querySelectorAll('[data-overview-link]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.overviewLink)));
- window.JaniksOverview={init(c){client=c;show();},clear(){client=null;['overview-revenue','overview-orders','overview-inquiries','overview-products'].forEach(k=>value(k,'—'));value('overview-status','');}};
+ window.JaniksOverview={init(c){client=c;show();},clear(){client=null;['overview-revenue','overview-month-revenue','overview-paid-orders','overview-orders','overview-inquiries','overview-products'].forEach(k=>value(k,'—'));value('overview-status','');}};
  window.addEventListener('focus',()=>{if(client&&!$('overview-panel').hidden)load();});
 });
 })();

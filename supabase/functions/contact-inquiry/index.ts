@@ -21,7 +21,13 @@ Deno.serve(async req=>{
   const check=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:form});
   const passed=await check.json();
   if(!passed.success||passed.hostname!=='janiksaniks.com')return respond({error:'Security verification unsuccessful; please try again'},403);
-  const result=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+apiKey,'Content-Type':'application/json'},body:JSON.stringify({
+  // Store only validated inquiries. The service role bypasses public RLS.
+  const supabaseUrl=Deno.env.get('SUPABASE_URL'),serviceKey=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if(!supabaseUrl||!serviceKey)return respond({error:'Contact inbox is not configured'},503);
+  const db=createClient(supabaseUrl,serviceKey,{auth:{persistSession:false}});
+  const {data:inquiry,error:saveError}=await db.from('contact_inquiries').insert({name,email,topic,order_number:order,message,status:'new'}).select('id').single();
+  if(saveError||!inquiry){console.error('Contact inbox insert failed',saveError);return respond({error:'Could not record inquiry'},503);}
+    const result=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+apiKey,'Content-Type':'application/json'},body:JSON.stringify({
     from:'Janiks Aniks Contact <orders@janiksaniks.com>',
     to:[inbox],
     reply_to:email,
@@ -31,6 +37,16 @@ Deno.serve(async req=>{
   })});
   const output=await result.json().catch(()=>({}));
   if(!result.ok||!output.id){console.error('Resend contact failed',result.status);return respond({error:'We could not send your message; please try again later'},502);}
-  return respond({ok:true});
+  await db.from('contact_inquiries').update({owner_notified_at:new Date().toISOString()}).eq('id',inquiry.id);
+  // Acknowledgment is sent only after the owner's message is accepted.
+  const acknowledgment=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+apiKey,'Content-Type':'application/json','Idempotency-Key':'janiks-contact-ack-'+inquiry.id},body:JSON.stringify({
+    from:'Janiks Aniks <orders@janiksaniks.com>',to:[email],
+    subject:'We received your message ♡ | Janiks Aniks',
+    html:'<div style="background:#fff5f8;font:16px Arial,sans-serif;color:#6b2944;padding:32px"><div style="max-width:550px;margin:auto;background:white;border-radius:18px;padding:28px"><h1 style="color:#b34374">Janiks Aniks ♡</h1><h2>Thank you for reaching out!</h2><p>Hi '+safe(name)+',</p><p>We received your '+safe(topic.toLowerCase())+' and will review it as soon as possible.</p><p>For reference, your inquiry number is <strong>'+safe(inquiry.id.slice(0,8).toUpperCase())+'</strong>.</p><p>If you need to add details, you can submit another message through <a href="https://janiksaniks.com/contact.html">our contact page</a>.</p><p>Made with love, Janiks Aniks ♡</p></div></div>',
+    text:'Hi '+name+', we received your '+topic.toLowerCase()+'. Reference: '+inquiry.id.slice(0,8).toUpperCase()+'. Thank you for contacting Janiks Aniks.'
+  })});
+  if(acknowledgment.ok)await db.from('contact_inquiries').update({acknowledgment_sent_at:new Date().toISOString()}).eq('id',inquiry.id);
+  else console.error('Contact acknowledgment failed',acknowledgment.status);
+  return respond({ok:true,acknowledgmentAccepted:acknowledgment.ok});
  }catch(err){console.error('Contact request failed',err);return respond({error:'Unable to submit your message at this time'},500);}
 });

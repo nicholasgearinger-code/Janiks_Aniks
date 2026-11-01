@@ -6,7 +6,7 @@ var esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 var money=v=>'₱'+Number(v||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2});
 var date=v=>v?new Date(v).toLocaleString('en-PH'):'—';
 var msg=(s,error)=>{$('orders-message').textContent=s;$('orders-message').className='admin-message'+(error?' error':'');};
-function tabs(which){['products','orders','analytics','inventory'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='inventory'&&window.JaniksInventory)window.JaniksInventory.load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
+function tabs(which){['products','orders','analytics','inventory','inquiries'].forEach(n=>{$('tab-'+n).classList.toggle('active',n===which);$('tab-'+n).setAttribute('aria-selected',String(n===which));$(n+'-panel').hidden=n!==which;});if(which==='orders')load();if(which==='inventory'&&window.JaniksInventory)window.JaniksInventory.load();if(which==='analytics'&&window.JaniksAnalytics)window.JaniksAnalytics.load();}
 function render(){
  var q=$('order-search').value.trim().toLowerCase(),st=$('order-status-filter').value,pay=$('order-payment-filter').value;
  var filtered=orders.filter(o=>(!q||[o.order_number,o.customer_name,o.customer_email].join(' ').toLowerCase().includes(q))&&(!st||o.fulfillment_status===st)&&(!pay||o.payment_status===pay));

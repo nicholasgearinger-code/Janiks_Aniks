@@ -3009,3 +3009,28 @@ body.contact-theme .main-nav a[data-nav="contact"][aria-current="page"]{backgrou
  body.contact-theme .contact-info{background:var(--m-panel)!important;color:var(--m-ink)!important}
  body.contact-theme .contact-panel{background:#fffcf9!important}
 }
+
+
+/* Contact Us: butter-yellow identity, matching its scalloped sticker.
+   Keep the shared nav shapes and page structure unchanged. */
+body.contact-theme{--contact-bg:#fffbee;--contact-panel:#f6e7a8;--contact-edge:#ddc66d;--contact-ink:#695526;background:var(--contact-bg);color:var(--contact-ink)}
+body.contact-theme .page-main{background:#fffbee}
+body.contact-theme .collection-page-header{background:#fffbee;color:#695526}
+body.contact-theme .collection-page-header :is(h1,p){color:#695526}
+body.contact-theme .contact-wrap{background:#fffbee}
+body.contact-theme .contact-info{background:#f6e7a8;color:#695526;border:1px solid #ddc66d;box-shadow:0 7px 18px rgba(106,83,35,.08)}
+body.contact-theme .contact-panel{background:#fffefa;border:1px solid #ebdca4;box-shadow:0 7px 18px rgba(106,83,35,.06)}
+body.contact-theme .contact-heart{color:#d49d38}
+body.contact-theme .contact-panel h2,body.contact-theme #contact-form label{color:#695526}
+body.contact-theme #contact-form :is(input,select,textarea){border-color:#dfc977;color:#58471e;background:#fff}
+body.contact-theme #contact-submit{background:#b58c30;color:#fff}
+body.contact-theme #contact-submit:not(:disabled):hover{background:#906d20}
+body .main-nav a[data-nav="contact"],body.contact-theme .main-nav a[data-nav="contact"],body.contact-theme .main-nav a[data-nav="contact"][aria-current="page"]{background:#f6e7a8!important;border-color:#d9c36a!important;color:#695526!important}
+body .main-nav a[data-nav="contact"]:hover,body.contact-theme .main-nav a[data-nav="contact"]:hover{background:#f1dc7a!important}
+body .main-nav a[data-nav="contact"] span{color:#695526!important}
+@media(max-width:850px){
+ body.contact-theme .page-main{--m-bg:#fffbee;--m-panel:#f6e7a8;--m-edge:#ddc66d;--m-ink:#695526;background:#fffbee!important}
+ body.contact-theme .page-main>.collection-page-header{background:#fffbee!important;color:#695526!important}
+ body.contact-theme .contact-info{background:#f6e7a8!important;color:#695526!important}
+ body.contact-theme .contact-panel{background:#fffefa!important}
+}

@@ -116,3 +116,15 @@
 .overview-activity small,.overview-activity time{font-size:11px;color:var(--admin-muted)}
 @media(max-width:1000px){.overview-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.overview-columns{grid-template-columns:1fr}.overview-metrics{gap:9px}.overview-metrics article{padding:14px}.overview-metrics article strong{font-size:25px}.overview-block{padding:16px}.overview-block h2{font-size:22px}.manager-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}#tab-overview{order:-2}}
+
+
+/* Paid product revenue by category */
+.category-revenue-card{margin:18px 0}
+.category-revenue-list{display:grid;gap:17px;margin-top:19px}
+.category-revenue-row{display:grid;gap:7px}
+.category-revenue-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--admin-ink)}
+.category-revenue-head span{overflow-wrap:anywhere}
+.category-revenue-head strong{color:var(--admin-red);white-space:nowrap}
+.category-revenue-rail{background:#fae7ed;height:12px;border-radius:999px;overflow:hidden}
+.category-revenue-fill{background:#c24b78;height:100%;border-radius:999px;min-width:0}
+.category-revenue-row small{font-size:11px;color:var(--admin-muted)}

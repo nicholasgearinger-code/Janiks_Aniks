@@ -2,5 +2,8 @@
 window.JANIKS_SUPABASE_CONFIG = {
   projectUrl: "https://cjexvxqpmsumgizulpym.supabase.co",
   publishableKey: "sb_publishable_qAJrNpvkgLmtZMDwMzvQVQ_XEEsUlFO",
-  checkoutEnabled: false // Enable only after verified payment webhook, merchant setup, and live testing
+  checkoutEnabled: false, // Legacy PayMongo checkout remains disabled
+  gcashCheckoutEnabled: false, // Set true only after Edge Functions and GCash information are tested
+  gcashQrImage: '', // Public URL to the actual official GCash QR image
+  gcashPaymentLink: '' // Exact verified official GCash payment link
 };

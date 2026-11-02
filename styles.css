@@ -3157,3 +3157,25 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(prefers-reduced-motion:reduce){
  body:has(>.page-main>.hero) #site-sidebar.top::after{animation:none!important}
 }
+
+
+/* Storefront-wide iOS navigation: sticky header stays accessible without
+   fixed-position scroll offset or browser toolbar clipping. */
+@media (max-width:850px){
+ body:not(.admin-body) #site-sidebar.top{
+   position:sticky!important;
+   top:0!important;
+   inset:auto!important;
+   width:100%!important;
+   z-index:1100!important;
+   transform:none!important;
+ }
+ body:not(.admin-body) .page-main{padding-top:0!important}
+ html{scroll-behavior:auto!important;scroll-padding-top:0!important}
+}
+/* Keep the open navigation drawer viewport-bound even while its header sticks. */
+@media (max-width:850px){
+ body:not(.admin-body) #site-sidebar > .main-nav.is-open{
+   position:fixed!important;
+ }
+}

@@ -3254,3 +3254,18 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(min-width:851px) and (max-width:1120px){
  #site-sidebar>.brand::before{width:105px!important;flex-basis:105px!important;height:34px!important}
 }
+
+
+/* Desktop Home: white silhouette stroke follows lettering and cherries,
+   rather than a rectangular ivory inset. The original artwork remains full color. */
+@media(min-width:851px){
+ #site-sidebar>.brand::before{
+  background-color:transparent!important;
+  background-size:contain!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(1.5px 0 #fff) drop-shadow(-1.5px 0 #fff)
+         drop-shadow(0 1.5px #fff) drop-shadow(0 -1.5px #fff)
+         drop-shadow(0 0 2px #fff)!important;
+ }
+}

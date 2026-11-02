@@ -3179,3 +3179,21 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
    position:fixed!important;
  }
 }
+
+
+/* Inverted desktop Home wordmark: rose button with ivory logo artwork. */
+@media(min-width:851px){
+ #site-sidebar>.brand{
+  background:linear-gradient(180deg,#c85a80,#a92b56)!important;
+  border-color:#922145!important;
+  box-shadow:0 4px 0 #761b39,0 7px 13px rgba(94,29,52,.2)!important;
+ }
+ #site-sidebar>.brand::before{
+  filter:brightness(0) invert(1)!important;
+ }
+ #site-sidebar>.brand:hover,#site-sidebar>.brand:focus-visible{
+  background:linear-gradient(180deg,#b94470,#932145)!important;
+  border-color:#7f1d3c!important;
+  box-shadow:0 2px 0 #691831,0 4px 10px rgba(94,29,52,.2)!important;
+ }
+}

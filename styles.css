@@ -3306,3 +3306,20 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
  }
  #site-sidebar>.brand::after{display:none!important;content:none!important}
 }
+
+
+/* Refined desktop Home logo: a crisp, less crowded white silhouette. */
+@media(min-width:851px){
+ #site-sidebar>.brand{padding:7px 11px!important}
+ #site-sidebar>.brand::before{
+  filter:drop-shadow(2px 0 0 #fff)
+         drop-shadow(-2px 0 0 #fff)
+         drop-shadow(0 2px 0 #fff)
+         drop-shadow(0 -2px 0 #fff)
+         drop-shadow(1px 1px 0 #fff)
+         drop-shadow(-1px -1px 0 #fff)!important;
+ }
+}
+@media(min-width:851px) and (max-width:1120px){
+ #site-sidebar>.brand{padding:6px 10px!important}
+}

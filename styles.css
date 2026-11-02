@@ -3269,3 +3269,28 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
          drop-shadow(0 0 2px #fff)!important;
  }
 }
+
+
+/* True alpha-aware white outline: masked logo silhouette behind full-color logo. */
+@media(min-width:851px){
+ #site-sidebar>.brand::before{position:relative!important;z-index:2!important;filter:none!important}
+ #site-sidebar>.brand::after{
+  content:""!important;display:block!important;
+  position:absolute!important;top:50%!important;left:8px!important;
+  transform:translateY(-50%)!important;
+  width:clamp(140px,13vw,190px)!important;height:43px!important;
+  background-color:white!important;
+  background-image:none!important;
+  -webkit-mask-image:url("images/janiks-aniks-logo-horizontal-notag.png")!important;
+  mask-image:url("images/janiks-aniks-logo-horizontal-notag.png")!important;
+  -webkit-mask-position:center!important;mask-position:center!important;
+  -webkit-mask-size:contain!important;mask-size:contain!important;
+  -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
+  clip-path:none!important;z-index:1!important;
+  filter:drop-shadow(1.8px 0 white) drop-shadow(-1.8px 0 white) drop-shadow(0 1.8px white) drop-shadow(0 -1.8px white)!important;
+  pointer-events:none!important;
+ }
+}
+@media(min-width:851px) and (max-width:1120px){
+ #site-sidebar>.brand::after{width:105px!important;height:34px!important}
+}

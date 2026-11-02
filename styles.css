@@ -3348,3 +3348,19 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(min-width:851px) and (max-width:1120px){
  #site-sidebar>.brand::after{left:10px!important;width:105px!important;height:34px!important}
 }
+
+
+/* Desktop: exclude left sparkles from the white halo; draw original stars separately. */
+@media (min-width:851px){
+ #site-sidebar>.brand::before{
+  clip-path:inset(-12px -12px -12px 17%)!important;
+ }
+ #site-sidebar>.brand::after{
+  left:13px!important;
+  clip-path:inset(0 80% 0 0)!important;
+  filter:none!important;
+ }
+}
+@media (min-width:851px) and (max-width:1120px){
+ #site-sidebar>.brand::after{left:12px!important}
+}

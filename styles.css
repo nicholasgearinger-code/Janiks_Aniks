@@ -3294,3 +3294,15 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(min-width:851px) and (max-width:1120px){
  #site-sidebar>.brand::after{width:105px!important;height:34px!important}
 }
+
+
+/* Bolder white silhouette halo for the desktop Home wordmark and cherries. */
+@media(min-width:851px){
+ #site-sidebar>.brand::before{
+  filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+         drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+         drop-shadow(3px 3px 0 #fff) drop-shadow(-3px -3px 0 #fff)
+         drop-shadow(3px -3px 0 #fff) drop-shadow(-3px 3px 0 #fff)!important;
+ }
+ #site-sidebar>.brand::after{display:none!important;content:none!important}
+}

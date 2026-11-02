@@ -3220,3 +3220,37 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(min-width:851px) and (max-width:1120px){
  #site-sidebar>.brand::after{left:9px!important;width:105px!important;height:32px!important}
 }
+
+
+/* Desktop Home: full-color original logo on an ivory inset plaque,
+   framed by the bold rose-red button. No cherry masking or inversion. */
+@media(min-width:851px){
+ #site-sidebar>.brand{
+  background:linear-gradient(180deg,#c85a80,#a92b56)!important;
+  border:2px solid #922145!important;
+  border-radius:16px!important;
+  padding:5px 8px!important;
+  box-shadow:0 4px 0 #761b39,0 7px 13px rgba(94,29,52,.20)!important;
+ }
+ #site-sidebar>.brand::before{
+  background-image:url("images/janiks-aniks-logo-horizontal-notag.png")!important;
+  background-color:#fffaf9!important;
+  background-position:center!important;
+  background-size:93% auto!important;
+  background-repeat:no-repeat!important;
+  filter:none!important;
+  border-radius:10px!important;
+  box-shadow:inset 0 0 0 1px rgba(214,145,169,.65)!important;
+  width:clamp(140px,13vw,190px)!important;
+  flex:0 0 clamp(140px,13vw,190px)!important;
+  height:43px!important;
+ }
+ #site-sidebar>.brand::after{content:none!important;display:none!important}
+ #site-sidebar>.brand:hover,#site-sidebar>.brand:focus-visible{
+  background:linear-gradient(180deg,#b94470,#932145)!important;
+  border-color:#7f1d3c!important;
+ }
+}
+@media(min-width:851px) and (max-width:1120px){
+ #site-sidebar>.brand::before{width:105px!important;flex-basis:105px!important;height:34px!important}
+}

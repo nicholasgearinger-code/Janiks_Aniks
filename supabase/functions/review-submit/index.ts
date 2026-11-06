@@ -3,7 +3,7 @@ const permitted=['https://janiksaniks.com','https://www.janiksaniks.com'];
 const response=(data:unknown,status=200,origin='https://janiksaniks.com')=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':permitted.includes(origin)?origin:permitted[0],'Access-Control-Allow-Headers':'content-type,apikey','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin','Cache-Control':'no-store'}});
 Deno.serve(async req=>{
  const origin=req.headers.get('origin')||'';
- if(req.method==='OPTIONS')return response({},204,origin);
+ if(req.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':permitted.includes(origin)?origin:permitted[0],'Access-Control-Allow-Headers':'content-type,apikey','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin'}});
  if(req.method!=='POST')return response({error:'Method not allowed'},405,origin);
  if(!permitted.includes(origin))return response({error:'Origin not allowed'},403,origin);
  try{

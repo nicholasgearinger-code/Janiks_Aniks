@@ -7,6 +7,15 @@ function dayStart(){const d=new Date();d.setHours(0,0,0,0);return d.toISOString(
 async function load(){
  if(!client||busy)return;busy=true;value('overview-status','Refreshing store activity…');
  try{
+  const visitResult=await client.rpc('admin_visit_summary');
+  if(visitResult.error){
+   value('overview-visitors-today','—');value('overview-visitors-month','—');value('overview-visitors-all','—');
+  }else{
+   const v=Array.isArray(visitResult.data)?visitResult.data[0]:visitResult.data;
+   value('overview-visitors-today',Number(v?.visitors_today||0).toLocaleString());
+   value('overview-visitors-month',Number(v?.visitors_30d||0).toLocaleString());
+   value('overview-visitors-all',Number(v?.visitors_all_time||0).toLocaleString());
+  }
   const [orders,inquiries,products]=await Promise.all([
    client.from('orders').select('id,order_number,created_at,total,payment_status,fulfillment_status').order('created_at',{ascending:false}).limit(500),
    client.from('contact_inquiries').select('id,created_at,status,topic').order('created_at',{ascending:false}).limit(500),
@@ -44,11 +53,11 @@ async function load(){
  }catch(e){value('overview-status','Could not refresh overview: '+e.message);}finally{busy=false;}
 }
 function navigate(name){const tab=$('tab-'+name);if(tab)tab.click();}
-function show(){for(const name of ['overview','products','analytics','inventory','inquiries','orders']){const tab=$('tab-'+name),panel=$(name+'-panel');if(tab){tab.classList.toggle('active',name==='overview');tab.setAttribute('aria-selected',String(name==='overview'));}if(panel)panel.hidden=name!=='overview';}load();}
+function show(){for(const name of ['overview','products','analytics','inventory','inquiries','orders','reviews']){const tab=$('tab-'+name),panel=$(name+'-panel');if(tab){tab.classList.toggle('active',name==='overview');tab.setAttribute('aria-selected',String(name==='overview'));}if(panel)panel.hidden=name!=='overview';}load();}
 document.addEventListener('DOMContentLoaded',()=>{
  $('tab-overview').addEventListener('click',show);$('overview-refresh').addEventListener('click',load);
  document.querySelectorAll('[data-overview-link]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.overviewLink)));
- window.JaniksOverview={init(c){client=c;show();},clear(){client=null;['overview-revenue','overview-month-revenue','overview-paid-orders','overview-orders','overview-inquiries','overview-products'].forEach(k=>value(k,'—'));value('overview-status','');}};
+ window.JaniksOverview={init(c){client=c;show();},clear(){client=null;['overview-visitors-today','overview-visitors-month','overview-visitors-all','overview-revenue','overview-month-revenue','overview-paid-orders','overview-orders','overview-inquiries','overview-products'].forEach(k=>value(k,'—'));value('overview-status','');}};
  window.addEventListener('focus',()=>{if(client&&!$('overview-panel').hidden)load();});
 });
 })();

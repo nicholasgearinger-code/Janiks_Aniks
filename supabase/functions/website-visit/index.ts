@@ -16,7 +16,9 @@ Deno.serve(async req=>{
   const bytes=new TextEncoder().encode(salt+':'+id);
   const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',bytes));
   const hash=Array.from(digest).map(x=>x.toString(16).padStart(2,'0')).join('');
-  const day=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Manila',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Manila',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const field=(name:string)=>parts.find(p=>p.type===name)?.value||'';
+  const day=field('year')+'-'+field('month')+'-'+field('day');
   const db=createClient(url,key,{auth:{persistSession:false}});
   const saved=await db.from('site_visit_days').upsert({visit_day:day,visitor_hash:hash},{onConflict:'visit_day,visitor_hash',ignoreDuplicates:true});
   if(saved.error){console.error('Visitor insert error',saved.error.message);return reply(503,origin);}

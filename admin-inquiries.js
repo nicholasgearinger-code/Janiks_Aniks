@@ -31,7 +31,7 @@ async function badgeRefresh(){if(!client)return;const session=await client.auth.
 document.addEventListener('DOMContentLoaded',()=>{
  const cfg=window.JANIKS_SUPABASE_CONFIG||{};if(!window.supabase||!cfg.projectUrl||!cfg.publishableKey)return;
  client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey);
- $('tab-inquiries').addEventListener('click',()=>{for(const name of ['overview','products','orders','inventory','analytics','inquiries']){const tab=$('tab-'+name),panel=$(name+'-panel');if(tab){tab.classList.toggle('active',name==='inquiries');tab.setAttribute('aria-selected',String(name==='inquiries'));}if(panel)panel.hidden=name!=='inquiries';}load();});
+ $('tab-inquiries').addEventListener('click',()=>{for(const name of ['overview','products','orders','inventory','analytics','inquiries','reviews']){const tab=$('tab-'+name),panel=$(name+'-panel');if(tab){tab.classList.toggle('active',name==='inquiries');tab.setAttribute('aria-selected',String(name==='inquiries'));}if(panel)panel.hidden=name!=='inquiries';}load();});
  $('refresh-inquiries').addEventListener('click',load);$('inquiry-search').addEventListener('input',render);$('inquiry-status-filter').addEventListener('change',render);
  client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT'){$('inquiries-badge').hidden=true;items=[];}else if(event==='SIGNED_IN')setTimeout(badgeRefresh,0);});
  badgeRefresh();window.addEventListener('focus',badgeRefresh);

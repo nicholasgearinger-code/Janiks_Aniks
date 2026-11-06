@@ -128,3 +128,16 @@
 .category-revenue-rail{background:#fae7ed;height:12px;border-radius:999px;overflow:hidden}
 .category-revenue-fill{background:#c24b78;height:100%;border-radius:999px;min-width:0}
 .category-revenue-row small{font-size:11px;color:var(--admin-muted)}
+
+
+/* Store Manager reviews and private visit totals. */
+.overview-visitor-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+#reviews-panel .review-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#reviews-panel .review-card{background:#fff;border:1px solid #f0d2df;border-radius:18px;padding:19px;display:flex;flex-direction:column;gap:9px}
+#reviews-panel .review-card strong{font-size:14px;color:var(--admin-ink)}
+#reviews-panel .review-card p{line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap;font-size:13px;margin:0}
+#reviews-panel .review-stars{color:#ae386b;font-size:22px}
+.review-moderation-actions{display:flex;flex-wrap:wrap;gap:7px}
+.review-moderation-actions button{font-size:12px;padding:8px 11px;min-height:38px}
+@media(max-width:850px){#reviews-panel .review-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.overview-visitor-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.overview-visitor-metrics article{padding:10px 8px}.overview-visitor-metrics article strong{font-size:22px}.overview-visitor-metrics article span{font-size:10px}}

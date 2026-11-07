@@ -11,8 +11,11 @@ function fulfillment(order){
  switch(order.fulfillment_status){
   case 'confirmed': return 'Payment confirmed • awaiting store transfer';
   case 'processing': return 'Preparing for store pickup';
-  case 'shipped': return 'Being transferred to pickup store';
-  case 'delivered': return 'Fulfillment completed — confirm pickup with store';
+  case 'in_transit_to_store': return 'On the way to the pickup store';
+  case 'ready_for_pickup': return 'Ready for pickup ♡';
+  case 'collected': return 'Collected — thank you ♡';
+  case 'shipped': return 'Transfer in progress (legacy status)';
+  case 'delivered': return 'Delivery complete (legacy status)';
   default:return 'Payment verified • fulfillment pending';
  }
 }
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const list=node('ul','customer-order-items');
   items.forEach(i=>list.append(node('li','',i.product_name+' × '+i.quantity+' — '+money(i.line_total))));
   if(!items.length)list.append(node('li','','Item details unavailable'));
-  const note=node('p','customer-order-note','Store pickup only. Please wait for confirmation that the order is ready before visiting.');
+  const note=node('p','customer-order-note',order.fulfillment_status==='ready_for_pickup'&&order.payment_status==='paid'?'Your order has been marked ready for pickup. Bring your order number to the store.':order.fulfillment_status==='collected'?'Your order was marked collected. Thank you for shopping with us!':'Store pickup only. Please wait until your order is marked ready for pickup before visiting.');
   article.append(header,badges,list,note);
   return article;
  }

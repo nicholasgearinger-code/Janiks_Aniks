@@ -142,7 +142,7 @@
   async function togglePublish(p) {
     var result=await client.from('products').update({published:!p.published}).eq('id',p.id);
     if(result.error) status($('admin-message'),'Could not update product: '+result.error.message,'error');
-    else await loadProducts();if(window.JaniksOverview)window.JaniksOverview.init(client);if(window.JaniksReviews)window.JaniksReviews.init(client);
+    else await loadProducts();
   }
   async function start() {
     if(!configured || !window.supabase || !window.supabase.createClient) { showOnly('setup-warning'); return; }
@@ -188,7 +188,7 @@
     if(!session){showOnly('login-panel');$('sign-out').hidden=true;return;}
     var result=await client.from('store_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
     if(result.error || !result.data){showOnly('access-denied');$('sign-out').hidden=false;return;}
-    $('sign-out').hidden=false;showOnly('dashboard');if(window.JaniksInventory)window.JaniksInventory.init(client);await loadProducts();
+    $('sign-out').hidden=false;showOnly('dashboard');if(window.JaniksInventory)window.JaniksInventory.init(client);await loadProducts();if(window.JaniksOverview)window.JaniksOverview.init(client);if(window.JaniksReviews)window.JaniksReviews.init(client);
   }
   async function signOut() { if(window.JaniksOverview)window.JaniksOverview.clear();if(window.JaniksReviews)window.JaniksReviews.clear(); await client.auth.signOut(); showOnly('login-panel');$('sign-out').hidden=true; }
   document.addEventListener('DOMContentLoaded',start);

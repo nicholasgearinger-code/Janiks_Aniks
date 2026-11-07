@@ -3437,3 +3437,23 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 @media(min-width:851px){
  .page-main .home-shortcuts a:focus-visible{outline:2px solid #a44772;outline-offset:3px}
 }
+
+
+/* Overall customer rating summary: all approved ratings, independent of 5-star highlights. */
+.home-review-summary{
+ display:flex;flex-direction:column;align-items:center;gap:8px;
+ max-width:610px;margin:0 auto 30px;padding:22px 24px;
+ border:1px solid #efc8d8;border-radius:23px;
+ background:linear-gradient(135deg,#fffefc,#ffeef5);
+ box-shadow:0 5px 0 #f3d8e3,0 12px 26px rgba(102,32,65,.07);
+}
+.home-review-summary-rating{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.home-review-summary-rating strong{font:700 clamp(29px,4vw,40px)/1.25 'Quicksand',sans-serif;color:#92365f}
+.home-review-summary-stars{font-size:clamp(24px,3vw,32px);letter-spacing:3px;color:#da5d94}
+.home-review-summary>p{margin:0!important;font-size:14px;color:#81546a}
+.home-review-summary-link{color:#9f3869;font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:4px}
+.home-review-summary-link:hover,.home-review-summary-link:focus-visible{color:#7f204f}
+.home-featured-intro{margin:20px auto 18px}
+.home-featured-intro h3{font-size:clamp(23px,3vw,31px);color:#91385d;margin:0 0 6px}
+.home-featured-intro p{margin:0;color:#805a70}
+@media(max-width:520px){.home-review-summary{padding:20px 14px}.home-review-summary-rating{gap:5px}.home-review-summary-rating strong{width:100%}}

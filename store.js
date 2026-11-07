@@ -25,16 +25,18 @@
         return;
       }
       // Match server-side reporting: the day's boundary is in the Philippines.
-      var today=new Intl.DateTimeFormat('en-CA',{
+      var parts=new Intl.DateTimeFormat('en-US',{
         timeZone:'Asia/Manila',year:'numeric',month:'2-digit',day:'2-digit'
-      }).format(new Date());
+      }).formatToParts(new Date());
+      var part=function(type){return parts.find(function(p){return p.type===type;})?.value||'';};
+      var today=part('year')+'-'+part('month')+'-'+part('day');
       if(localStorage.getItem('ja-visit-last-success')===today)return;
       var id=localStorage.getItem('ja-anonymous-browser-id');
       if(!id){id=cryptoAPI.randomUUID();localStorage.setItem('ja-anonymous-browser-id',id);}
       var url=cfg.projectUrl.replace(/\/$/,'')+'/functions/v1/website-visit';
       fetch(url,{
         method:'POST',mode:'cors',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','apikey':cfg.publishableKey},
         body:JSON.stringify({visitorId:id}),keepalive:true
       }).then(function(res){
         if(!res.ok){

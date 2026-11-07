@@ -34,6 +34,29 @@ async function showAll(){
 function form(){
  const form=$('customer-review-form');if(!form)return;
  const status=$('review-form-status'),button=$('review-submit-button');
+ const ratingInputs=[...form.querySelectorAll('input[name="rating"]')];
+ const ratingHint=$('review-rating-hint');
+ function updateRating(preview=null){
+  const selected=ratingInputs.find(input=>input.checked);
+  const value=preview ?? (selected?Number(selected.value):0);
+  ratingInputs.forEach(input=>{
+   const label=input.closest('.review-star-choice');
+   if(label)label.classList.toggle('is-filled',Number(input.value)<=value);
+  });
+  if(ratingHint)ratingHint.textContent=selected?selected.value+' out of 5 stars selected':'Select your rating';
+ }
+ ratingInputs.forEach(input=>{
+  input.addEventListener('change',()=>updateRating());
+  const label=input.closest('.review-star-choice');
+  if(label){
+   label.addEventListener('mouseenter',()=>updateRating(Number(input.value)));
+   label.addEventListener('mouseleave',()=>updateRating());
+   input.addEventListener('focus',()=>updateRating(Number(input.value)));
+   input.addEventListener('blur',()=>updateRating());
+  }
+ });
+ updateRating();
+
  if(!connected||!conf.turnstileSiteKey){status.textContent='Reviews are not yet configured.';return;}
  let widget=null,token='';
  const init=()=>{
@@ -48,7 +71,7 @@ function form(){
   try{
    const result=await fetch(conf.projectUrl+'/functions/v1/review-submit',{method:'POST',headers:{'Content-Type':'application/json','apikey':conf.publishableKey},body:JSON.stringify({name:$('review-name').value,rating:Number(form.elements.rating.value),body:$('review-body').value,turnstileToken:token})});
    const data=await result.json().catch(()=>({}));if(!result.ok)throw Error(data.error||'Could not submit review.');
-   form.reset();status.textContent=data.message||'Thank you! Review submitted for moderation.';
+   form.reset();updateRating();status.textContent=data.message||'Thank you! Review submitted for moderation.';
   }catch(error){status.textContent=error.message||'Unable to send review';}
   finally{token='';if(widget!==null&&window.turnstile)window.turnstile.reset(widget);}
  });

@@ -12,7 +12,7 @@ Deno.serve(async req=>{
   const id=String(JSON.parse(body).visitorId||'');
   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id))return reply(400,origin);
   const salt=Deno.env.get('VISITOR_HASH_SECRET'),url=Deno.env.get('SUPABASE_URL'),key=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if(!salt||salt.length<32||!url||!key)return reply(503,origin);
+  if(!salt||salt.length<32||!url||!key){console.error('[website-visit] Missing or short VISITOR_HASH_SECRET, SUPABASE_URL, or SUPABASE_SERVICE_ROLE_KEY; check Edge Function secrets.');return reply(503,origin);}
   const bytes=new TextEncoder().encode(salt+':'+id);
   const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',bytes));
   const hash=Array.from(digest).map(x=>x.toString(16).padStart(2,'0')).join('');

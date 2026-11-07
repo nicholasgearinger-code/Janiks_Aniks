@@ -39,7 +39,7 @@ Deno.serve(async req=>{
   if(!Number.isSafeInteger(totalCents)||totalCents>100000000)return json({error:'Order total exceeds limit'},400);
   const orderNumber='JA-'+crypto.randomUUID();
   const {data:order,error:orderError}=await admin.from('orders').insert({
-   order_number:orderNumber,customer_name:name,customer_email:u.data.user.email,
+   order_number:orderNumber,customer_user_id:u.data.user.id,customer_name:name,customer_email:u.data.user.email,
    customer_phone:phone,shipping_method:'pickup',shipping_fee:0,subtotal:totalCents/100,total:totalCents/100,
    payment_status:'pending',payment_provider:'gcash_manual',fulfillment_status:'pending'
   }).select('id').single();

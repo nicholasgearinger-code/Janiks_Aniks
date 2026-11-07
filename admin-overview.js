@@ -38,6 +38,36 @@ async function load(){
     value('overview-visit-health','Anonymous browser visits are recorded. Counts may exclude browsers with tracking blocked.');
    }
   }catch(_e){}
+  // Optional private referral summary. Failure never affects visitor totals.
+  const referralsHost=$('overview-referrals');
+  if(referralsHost){
+   const enabled=window.JANIKS_SUPABASE_CONFIG?.referralTrackingEnabled===true;
+   if(!enabled){
+    referralsHost.replaceChildren();
+    const note=document.createElement('p');note.className='admin-hint';
+    note.textContent='Referral tracking is not active yet. Deploy referral-visit and run the referral analytics SQL before enabling.';
+    referralsHost.append(note);
+   }else{
+    const refs=await client.rpc('admin_referral_summary');
+    referralsHost.replaceChildren();
+    if(refs.error){
+     const note=document.createElement('p');note.className='admin-hint';
+     note.textContent='Referral summary unavailable. Check the referral analytics SQL and function deployment.';
+     referralsHost.append(note);
+    }else if(!(refs.data||[]).length){
+     const note=document.createElement('p');note.className='admin-hint';
+     note.textContent='No referral records collected yet.';
+     referralsHost.append(note);
+    }else{
+     for(const item of refs.data){
+      const row=document.createElement('div');row.className='overview-referral-row';
+      const label=document.createElement('span');label.textContent=item.source||'Other';
+      const number=document.createElement('strong');number.textContent=Number(item.visitors_30d||0).toLocaleString();
+      row.append(label,number);referralsHost.append(row);
+     }
+    }
+   }
+  }
   const [orders,inquiries,products]=await Promise.all([
    client.from('orders').select('id,order_number,created_at,total,payment_status,fulfillment_status').order('created_at',{ascending:false}).limit(500),
    client.from('contact_inquiries').select('id,created_at,status,topic').order('created_at',{ascending:false}).limit(500),

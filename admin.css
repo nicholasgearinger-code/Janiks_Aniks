@@ -141,3 +141,12 @@
 .review-moderation-actions button{font-size:12px;padding:8px 11px;min-height:38px}
 @media(max-width:850px){#reviews-panel .review-grid{grid-template-columns:1fr}}
 @media(max-width:680px){.overview-visitor-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.overview-visitor-metrics article{padding:10px 8px}.overview-visitor-metrics article strong{font-size:22px}.overview-visitor-metrics article span{font-size:10px}}
+
+
+/* Optional 30-day referral source report, Store Manager only. */
+.overview-referral-card{background:#fffafc;border:1px solid #f0d1de;border-radius:18px;padding:20px;margin:18px 0}
+.overview-referral-card h2{margin:0 0 6px;color:#97375d;font-size:20px}
+.overview-referral-list{display:grid;gap:8px;margin-top:12px}
+.overview-referral-row{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #f3dfeb;border-radius:11px;padding:10px 13px}
+.overview-referral-row span{font-size:13px;color:#624654}
+.overview-referral-row strong{font-size:15px;color:#963b67;font-variant-numeric:tabular-nums}

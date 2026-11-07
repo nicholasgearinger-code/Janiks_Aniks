@@ -3525,3 +3525,40 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
   mask-image:none!important;
  }
 }
+
+
+/* Mobile drawer: rich solid pastel cards matching homepage collection tiles.
+   Keep existing sticker illustrations, typography, layout and decorative icons. */
+@media(max-width:850px){
+ #site-sidebar .main-nav a[data-nav="shop"]{--mobile-nav-fill:#f6c3d5;--mobile-nav-edge:#dca4b8;--mobile-nav-ink:#74354d}
+ #site-sidebar .main-nav a[data-nav="fall"]{--mobile-nav-fill:#f7d3b3;--mobile-nav-edge:#e1b594;--mobile-nav-ink:#744b32}
+ #site-sidebar .main-nav a[data-nav="seasonal"]{--mobile-nav-fill:#c9e6d0;--mobile-nav-edge:#a5cbb0;--mobile-nav-ink:#365d45}
+ #site-sidebar .main-nav a[data-nav="colors"]{--mobile-nav-fill:#bee7e3;--mobile-nav-edge:#9bcfcb;--mobile-nav-ink:#285c61}
+ #site-sidebar .main-nav a[data-nav="plushies"]{--mobile-nav-fill:#f2c3d9;--mobile-nav-edge:#dfadc3;--mobile-nav-ink:#793c59}
+ #site-sidebar .main-nav a[data-nav="figurines"]{--mobile-nav-fill:#deccf3;--mobile-nav-edge:#c5ade4;--mobile-nav-ink:#503775}
+ #site-sidebar .main-nav a[data-nav="accessories"]{--mobile-nav-fill:#cce7c3;--mobile-nav-edge:#afd3a5;--mobile-nav-ink:#42674a}
+ #site-sidebar .main-nav a[data-nav="payments"]{--mobile-nav-fill:#efd0e0;--mobile-nav-edge:#dca5c2;--mobile-nav-ink:#783d5e}
+ #site-sidebar .main-nav a[data-nav="visit"]{--mobile-nav-fill:#f5d5c1;--mobile-nav-edge:#ddb49d;--mobile-nav-ink:#755145}
+ #site-sidebar .main-nav a[data-nav="contact"]{--mobile-nav-fill:#f6e7a8;--mobile-nav-edge:#d9c36a;--mobile-nav-ink:#695526}
+ #site-sidebar .main-nav a[data-nav="cart"]{--mobile-nav-fill:#c9e5f8;--mobile-nav-edge:#9fc9e7;--mobile-nav-ink:#315b7c}
+ #site-sidebar .main-nav a[data-nav],
+ #site-sidebar .main-nav a[data-nav][aria-current="page"],
+ #site-sidebar .main-nav a[data-nav].active,
+ #site-sidebar .main-nav a[data-nav][data-active="true"]{
+  background:var(--mobile-nav-fill)!important;
+  background-image:none!important;
+  border-color:var(--mobile-nav-edge)!important;
+  color:var(--mobile-nav-ink)!important;
+  box-shadow:0 5px 0 color-mix(in srgb,var(--mobile-nav-edge) 70%,white)!important;
+  transition:background-color .18s ease,transform .18s ease,box-shadow .18s ease!important;
+ }
+ #site-sidebar .main-nav a[data-nav] span:not(.cart-count){color:var(--mobile-nav-ink)!important}
+ #site-sidebar .main-nav a[data-nav]:active{
+  filter:brightness(.96)!important;
+  transform:translateY(2px)!important;
+ }
+ #site-sidebar .main-nav a[data-nav]:focus-visible{
+  outline:2px solid var(--mobile-nav-ink)!important;
+  outline-offset:2px!important;
+ }
+}

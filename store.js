@@ -55,6 +55,6 @@
       console.warn('[Janiks visits] Cannot record visit:',error&&error.message||error);
     }
   }
-  document.addEventListener('DOMContentLoaded',function(){initNav();countVisit();updateBadges();Promise.resolve(window.JANIKS_PRODUCTS_READY).catch(function(){return [];}).then(function(){initProduct();initCart();});});
+  document.addEventListener('DOMContentLoaded',function(){countVisit();try{initNav();}catch(e){console.warn('[Janiks] Navigation initialization failed',e);}updateBadges();Promise.resolve(window.JANIKS_PRODUCTS_READY).catch(function(){return [];}).then(function(){initProduct();initCart();});});
   window.JANIKS_CART={add:add,read:readCart};
 })();

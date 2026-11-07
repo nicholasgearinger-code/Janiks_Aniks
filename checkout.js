@@ -18,7 +18,7 @@ try{
  });
  const data=await response.json();
  if(!response.ok)throw Error(data.error||'Unable to create GCash order');
- $('checkout-message').textContent='Order '+data.order_number+' recorded. Payment is pending until the store verifies your GCash transaction. Use the QR code or payment link below, paying exactly '+money(data.total)+'.';
+ $('checkout-message').textContent='Order '+data.order_number+' recorded. Payment is pending until the store receives and verifies your GCash transaction. Only after verification will your items be arranged for transfer to the pickup store. Please wait for a ready-for-pickup notification. Use the QR code or payment link below, paying exactly '+money(data.total)+'.';
  const area=$('gcash-payments');area.hidden=false;
  const img=$('gcash-qr');img.src=config.gcashQrImage;
  $('gcash-link').href=config.gcashPaymentLink;

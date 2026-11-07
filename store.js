@@ -88,16 +88,16 @@
       else if(document.referrer){
         var host=new URL(document.referrer).hostname.toLowerCase();
         if(host!==location.hostname&&host!=='www.'+location.hostname){
-          if(/(^|\\.)google\\./.test(host))source='Google';
-          else if(/(^|\\.)facebook\\.com$|(^|\\.)fb\\.com$|(^|\\.)l\\.facebook\\.com$/.test(host))source='Facebook';
-          else if(/(^|\\.)instagram\\.com$/.test(host))source='Instagram';
-          else if(/(^|\\.)tiktok\\.com$/.test(host))source='TikTok';
-          else if(/(^|\\.)(bing\\.com|yahoo\\.com|duckduckgo\\.com)$/.test(host))source='Other search';
-          else if(/(^|\\.)(pinterest\\.com|youtube\\.com|twitter\\.com|x\\.com)$/.test(host))source='Other social';
+          if(/(^|\.)google\./.test(host))source='Google';
+          else if(/(^|\.)facebook\.com$|(^|\.)fb\.com$|(^|\.)l\.facebook\.com$/.test(host))source='Facebook';
+          else if(/(^|\.)instagram\.com$/.test(host))source='Instagram';
+          else if(/(^|\.)tiktok\.com$/.test(host))source='TikTok';
+          else if(/(^|\.)(bing\.com|yahoo\.com|duckduckgo\.com)$/.test(host))source='Other search';
+          else if(/(^|\.)(pinterest\.com|youtube\.com|twitter\.com|x\.com)$/.test(host))source='Other social';
           else source='Other website';
         }
       }
-      fetch(cfg.projectUrl.replace(/\\/$/,'')+'/functions/v1/referral-visit',{
+      fetch(cfg.projectUrl.replace(/\/$/,'')+'/functions/v1/referral-visit',{
         method:'POST',mode:'cors',
         headers:{'Content-Type':'application/json','apikey':cfg.publishableKey},
         body:JSON.stringify({visitorId:id,source:source}),keepalive:true

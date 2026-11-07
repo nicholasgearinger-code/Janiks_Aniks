@@ -9,3 +9,25 @@
 .checkout-review-invite p{margin:0 auto 15px;max-width:430px;font-size:13px;line-height:1.65;color:#765164}
 .checkout-review-link{display:inline-flex;justify-content:center;align-items:center;background:#b13e76;color:white!important;text-decoration:none;border-radius:999px;padding:11px 23px;font:700 13px 'Quicksand',sans-serif;box-shadow:0 3px 0 #862850}
 .checkout-review-link:hover,.checkout-review-link:focus-visible{background:#922955}
+
+
+/* Customer-only order history: no shipping promises or assumed pickup readiness. */
+.account-orders-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.account-orders-heading h2{margin:0 0 7px}
+.account-orders-heading p{margin:0;max-width:55ch}
+.customer-orders-refresh{flex:0 0 auto;background:#fff0f6!important;color:#8b315c!important;border:1px solid #dfabc0!important;border-radius:999px!important;padding:10px 16px!important;font:700 13px 'Quicksand',sans-serif!important;cursor:pointer}
+.customer-orders-refresh:disabled{opacity:.55;cursor:wait}
+.customer-order-list{display:grid;gap:15px;margin-top:14px}
+.customer-order-card{border:1px solid #ebc8d7;border-radius:17px;background:#fffafa;padding:18px;box-shadow:0 5px 13px rgba(103,36,65,.05)}
+.customer-order-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.customer-order-header>div{display:flex;flex-direction:column;gap:5px}
+.customer-order-header strong{font-size:15px;overflow-wrap:anywhere;color:#763451}
+.customer-order-header small{color:#936f7f;font-size:12px}
+.customer-order-total{white-space:nowrap;font-weight:700}
+.customer-order-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.customer-order-pill{display:inline-block;border-radius:999px;background:#f9e6ef;color:#823b5a;border:1px solid #e6bbce;padding:6px 10px;font-size:12px;font-weight:700}
+.customer-order-pill.pickup-pill{background:#e8f3eb;color:#466751;border-color:#bddbc5}
+.customer-order-items{padding-left:20px;margin:14px 0;color:#684756;font-size:13px;line-height:1.65}
+.customer-order-items li{overflow-wrap:anywhere}
+.customer-order-note{margin:8px 0 0;color:#795b69;font-size:12px;line-height:1.55}
+@media(max-width:530px){.customer-order-header{flex-direction:column;gap:5px}.customer-order-card{padding:14px}}

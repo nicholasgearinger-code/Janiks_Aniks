@@ -3457,3 +3457,32 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 .home-featured-intro h3{font-size:clamp(23px,3vw,31px);color:#91385d;margin:0 0 6px}
 .home-featured-intro p{margin:0;color:#805a70}
 @media(max-width:520px){.home-review-summary{padding:20px 14px}.home-review-summary-rating{gap:5px}.home-review-summary-rating strong{width:100%}}
+
+
+/* Homepage collection cards: individually colored pastel resting surfaces and
+   gentler pastel hover states, paired with the existing desktop nav palette. */
+.page-main .home-shortcuts a[href="shop.html"]{--home-card-base:#ffe4ed;--home-card-hover:#fbd1e0;--home-card-edge:#dca4b8;--home-card-ink:#74354d}
+.page-main .home-shortcuts a[href="seasonal.html"]{--home-card-base:#e4f2e5;--home-card-hover:#d6ebd8;--home-card-edge:#a5cbb0;--home-card-ink:#365d45}
+.page-main .home-shortcuts a[href="colors.html"]{--home-card-base:#dff3f1;--home-card-hover:#ceeae7;--home-card-edge:#9bcfcb;--home-card-ink:#285c61}
+.page-main .home-shortcuts a[href="plushies.html"]{--home-card-base:#fbe0eb;--home-card-hover:#f6d0e1;--home-card-edge:#dfadc3;--home-card-ink:#793c59}
+.page-main .home-shortcuts a[href="fall.html"]{--home-card-base:#ffead9;--home-card-hover:#f9dcc5;--home-card-edge:#e1b594;--home-card-ink:#744b32}
+.page-main .home-shortcuts a[href="accessories.html"]{--home-card-base:#e4f3de;--home-card-hover:#d6eacb;--home-card-edge:#afd3a5;--home-card-ink:#42674a}
+.page-main .home-shortcuts a[href="figurines.html"]{--home-card-base:#eee2fb;--home-card-hover:#e2d3f5;--home-card-edge:#c5ade4;--home-card-ink:#503775}
+.page-main .home-shortcuts a[href]{
+ background:var(--home-card-base)!important;
+ border-color:var(--home-card-edge)!important;
+ box-shadow:0 5px 0 color-mix(in srgb,var(--home-card-edge) 45%,white),0 10px 20px rgba(79,38,59,.065)!important;
+ transition:background-color .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s ease!important;
+}
+@media(hover:hover){
+ .page-main .home-shortcuts a[href]:hover{
+  background:var(--home-card-hover)!important;
+  border-color:var(--home-card-edge)!important;
+  box-shadow:0 5px 0 var(--home-card-edge),0 12px 22px rgba(79,38,59,.12)!important;
+ }
+}
+.page-main .home-shortcuts a[href]:focus-visible{
+ background:var(--home-card-hover)!important;
+ border-color:var(--home-card-edge)!important;
+}
+.page-main .home-shortcuts a[href]:is(:hover,:focus-visible) :is(strong,small,span){color:var(--home-card-ink)!important}

@@ -6,7 +6,7 @@ window.JANIKS_SUPABASE_CONFIG = {
   gcashCheckoutEnabled: false, // Set true only after Edge Functions and GCash information are tested
   gcashQrImage: '', // Public URL to the actual official GCash QR image
   gcashPaymentLink: '', // Exact verified official GCash payment link
-  referralTrackingEnabled: false, // Enable only AFTER referral-analytics.sql and referral-visit are deployed and tested
+  referralTrackingEnabled: true, // Separate anonymized broad-source attribution; requires deployed referral-visit and SQL
   contactFormEnabled: true, // Enable only after contact-inquiry is deployed, verified and abuse controls checked
   turnstileSiteKey: '0x4AAAAAAFvvB9vMyxUOCRMM' // Cloudflare Turnstile PUBLIC site key for janiksaniks.com
 };

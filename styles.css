@@ -3489,3 +3489,39 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
  border-color:var(--home-card-edge)!important;
 }
 .page-main .home-shortcuts a[href]:is(:hover,:focus-visible) :is(strong,small,span){color:var(--home-card-ink)!important}
+
+
+/* Desktop Home button: original full-color horizontal wordmark on solid white.
+   Overrides previous red, outlined, layered experiments; mobile unchanged. */
+@media(min-width:851px){
+ #site-sidebar>.brand,
+ #site-sidebar>.brand:hover,
+ #site-sidebar>.brand:focus-visible{
+  background:#ffffff!important;
+  background-image:none!important;
+  border:2px solid #e2b7c7!important;
+  border-radius:16px!important;
+  box-shadow:0 4px 0 #dfb9c8,0 7px 14px rgba(94,29,52,.12)!important;
+ }
+ #site-sidebar>.brand::before{
+  content:""!important;
+  display:block!important;
+  background:url("images/janiks-aniks-logo-horizontal-notag.png") center/contain no-repeat!important;
+  background-color:transparent!important;
+  filter:none!important;
+  box-shadow:none!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  opacity:1!important;
+ }
+ #site-sidebar>.brand::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+ }
+}

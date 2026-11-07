@@ -11,6 +11,44 @@ function reviewCard(x){
  const by=document.createElement('small');by.textContent='— '+x.display_name+' · '+new Date(x.created_at).toLocaleDateString();
  card.append(top,quote,by);return card;
 }
+async function showSummary(){
+ const host=$('home-review-summary');if(!host)return;
+ const avg=$('home-review-average'),total=$('home-review-total'),starsHost=$('home-review-stars');
+ if(!client){avg.textContent='—';total.textContent='Ratings are currently unavailable';return;}
+ try{
+  // Page through approved ratings so the average covers all reviews, not merely
+  // a featured 5-star subset or Supabase's first 1,000 rows.
+  let count=0,sum=0,start=0;
+  const pageSize=500;
+  while(true){
+   const response=await client.from('customer_reviews')
+    .select('rating').eq('status','approved')
+    .order('created_at',{ascending:false}).order('id',{ascending:false})
+    .range(start,start+pageSize-1);
+   if(response.error)throw response.error;
+   const rows=response.data||[];
+   for(const review of rows){const rating=Number(review.rating);if(Number.isInteger(rating)&&rating>=1&&rating<=5){sum+=rating;count++;}}
+   if(rows.length<pageSize)break;
+   start+=pageSize;
+  }
+  if(!count){
+   avg.textContent='—';
+   total.textContent='No published reviews yet';
+   starsHost.textContent='☆☆☆☆☆';
+   host.setAttribute('aria-label','No published customer ratings yet');
+   return;
+  }
+  const mean=sum/count;
+  avg.textContent=mean.toFixed(1)+' / 5';
+  total.textContent=count.toLocaleString()+' approved '+(count===1?'review':'reviews');
+  const rounded=Math.round(mean);
+  starsHost.textContent='★'.repeat(rounded)+'☆'.repeat(5-rounded);
+  host.setAttribute('aria-label','Average '+mean.toFixed(1)+' out of 5 stars from '+count+' approved customer '+(count===1?'review':'reviews'));
+ }catch(error){
+  avg.textContent='—';total.textContent='Ratings temporarily unavailable';starsHost.textContent='☆☆☆☆☆';
+  console.warn('Review summary failed to load',error);
+ }
+}
 async function showHome(){
  const host=$('home-five-star-reviews');if(!host)return;
  if(!client){host.textContent='Reviews will appear here when available.';return;}
@@ -76,5 +114,5 @@ function form(){
   finally{token='';if(widget!==null&&window.turnstile)window.turnstile.reset(widget);}
  });
 }
-document.addEventListener('DOMContentLoaded',()=>{showHome();showAll();form();});
+document.addEventListener('DOMContentLoaded',()=>{showSummary();showHome();showAll();form();});
 })();

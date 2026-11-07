@@ -16,6 +16,28 @@ async function load(){
    value('overview-visitors-month',Number(v?.visitors_30d||0).toLocaleString());
    value('overview-visitors-all',Number(v?.visitors_all_time||0).toLocaleString());
   }
+  // Keep a zero count distinct from an offline/misconfigured collector.
+  // The status is stored only in this browser session; no visitor identifiers
+  // or private measurement rows are exposed to this dashboard.
+  try{
+   const lastResult=sessionStorage.getItem('ja-visit-last-result');
+   const current=document.getElementById('overview-visitors-all');
+   const allNumber=Number((current?.textContent||'').replace(/,/g,''));
+   if(visitResult.error){
+    value('overview-visit-health','Visitor analytics unavailable: '+visitResult.error.message);
+   }else if(allNumber===0){
+    const details=lastResult==='ok'
+      ?'This browser reported a successful visit; refresh and confirm the dashboard query.'
+      :lastResult?.startsWith('http-')
+        ?'This browser saw collector HTTP '+lastResult.slice(5)+'. Check website-visit Edge Function logs and settings.'
+        :lastResult==='network-or-cors-error'
+          ?'A visit request was blocked or failed. Inspect the browser console and function CORS settings.'
+          :'No visits recorded. Open the public homepage once, then refresh this dashboard; check function logs if still zero.';
+    value('overview-visit-health',details);
+   }else{
+    value('overview-visit-health','Anonymous browser visits are recorded. Counts may exclude browsers with tracking blocked.');
+   }
+  }catch(_e){}
   const [orders,inquiries,products]=await Promise.all([
    client.from('orders').select('id,order_number,created_at,total,payment_status,fulfillment_status').order('created_at',{ascending:false}).limit(500),
    client.from('contact_inquiries').select('id,created_at,status,topic').order('created_at',{ascending:false}).limit(500),

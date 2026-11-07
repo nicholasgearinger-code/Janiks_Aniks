@@ -3391,3 +3391,26 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 #review-submit-button:disabled{opacity:.48;cursor:wait}
 #review-form-status{font-size:13px;color:#74536b}
 @media(max-width:850px){.review-grid{grid-template-columns:1fr}.home-reviews{padding:36px 17px}.review-form-shell,.review-public-list{margin:15px;padding:18px}.reviews-page>.review-intro{padding-top:30px}}
+
+
+/* Star-only customer rating selector; preserve native keyboard-friendly radio values. */
+.review-rating-options{display:flex;gap:5px;align-items:center;flex-wrap:nowrap!important}
+.review-rating-options .review-star-choice{
+ display:inline-flex!important;position:relative;align-items:center;justify-content:center;
+ background:transparent!important;border:0!important;border-radius:12px!important;
+ padding:4px!important;min-width:48px;min-height:52px;cursor:pointer;
+}
+.review-rating-options .review-star-choice input[type=radio]{
+ position:absolute!important;width:100%!important;height:100%!important;inset:0!important;
+ margin:0!important;opacity:0!important;cursor:pointer!important;z-index:2;
+}
+.review-rating-options .rating-star{
+ color:#dbc0cc;font-size:clamp(34px,5vw,46px);line-height:1;
+ text-shadow:0 1px 0 #fff;transition:color .16s ease,transform .16s ease;
+ pointer-events:none;
+}
+.review-rating-options .review-star-choice.is-filled .rating-star{color:#dc5b91;transform:scale(1.08)}
+.review-rating-options .review-star-choice:focus-within{outline:2px solid #b6316c;outline-offset:1px}
+.review-rating-options .review-star-choice:hover .rating-star{transform:scale(1.12)}
+.review-rating-hint{margin:0;color:#8b5d74;font-size:13px}
+@media(max-width:420px){.review-rating-options .review-star-choice{min-width:40px;padding:2px!important}}

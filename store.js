@@ -55,6 +55,58 @@
       console.warn('[Janiks visits] Cannot record visit:',error&&error.message||error);
     }
   }
-  document.addEventListener('DOMContentLoaded',function(){countVisit();try{initNav();}catch(e){console.warn('[Janiks] Navigation initialization failed',e);}updateBadges();Promise.resolve(window.JANIKS_PRODUCTS_READY).catch(function(){return [];}).then(function(){initProduct();initCart();});});
+  /* Optional referral attribution; isolated from the primary visitor collector.
+     Never send raw referring URLs, campaign tags, user data or URL parameters.
+     Disabled until referral-analytics.sql and referral-visit are deployed. */
+  function countReferral(){
+    var cfg=window.JANIKS_SUPABASE_CONFIG||{};
+    if(cfg.referralTrackingEnabled!==true||!cfg.projectUrl||!cfg.publishableKey)return;
+    try{
+      if(!window.crypto||typeof crypto.randomUUID!=='function')return;
+      var parts=new Intl.DateTimeFormat('en-US',{
+        timeZone:'Asia/Manila',year:'numeric',month:'2-digit',day:'2-digit'
+      }).formatToParts(new Date());
+      var part=function(type){return parts.find(function(p){return p.type===type;})?.value||'';};
+      var day=part('year')+'-'+part('month')+'-'+part('day');
+      if(localStorage.getItem('ja-referral-last-success')===day)return;
+      var id=localStorage.getItem('ja-anonymous-browser-id');
+      if(!id){id=crypto.randomUUID();localStorage.setItem('ja-anonymous-browser-id',id);}
+      var source='Direct';
+      var known=function(tag){
+        var t=String(tag||'').toLowerCase().trim();
+        if(/^(?:google|googleads|google-ads)$/.test(t))return 'Google';
+        if(/^(?:facebook|fb|facebookads|fbads)$/.test(t))return 'Facebook';
+        if(/^(?:instagram|ig)$/.test(t))return 'Instagram';
+        if(/^(?:tiktok|tik-tok)$/.test(t))return 'TikTok';
+        if(/^(?:bing|yahoo|duckduckgo|search)$/.test(t))return 'Other search';
+        if(/^(?:pinterest|twitter|x|youtube|social)$/.test(t))return 'Other social';
+        return '';
+      };
+      var tags=new URLSearchParams(location.search);
+      var explicit=known(tags.get('utm_source'));
+      if(explicit)source=explicit;
+      else if(document.referrer){
+        var host=new URL(document.referrer).hostname.toLowerCase();
+        if(host!==location.hostname&&host!=='www.'+location.hostname){
+          if(/(^|\\.)google\\./.test(host))source='Google';
+          else if(/(^|\\.)facebook\\.com$|(^|\\.)fb\\.com$|(^|\\.)l\\.facebook\\.com$/.test(host))source='Facebook';
+          else if(/(^|\\.)instagram\\.com$/.test(host))source='Instagram';
+          else if(/(^|\\.)tiktok\\.com$/.test(host))source='TikTok';
+          else if(/(^|\\.)(bing\\.com|yahoo\\.com|duckduckgo\\.com)$/.test(host))source='Other search';
+          else if(/(^|\\.)(pinterest\\.com|youtube\\.com|twitter\\.com|x\\.com)$/.test(host))source='Other social';
+          else source='Other website';
+        }
+      }
+      fetch(cfg.projectUrl.replace(/\\/$/,'')+'/functions/v1/referral-visit',{
+        method:'POST',mode:'cors',
+        headers:{'Content-Type':'application/json','apikey':cfg.publishableKey},
+        body:JSON.stringify({visitorId:id,source:source}),keepalive:true
+      }).then(function(response){
+        if(response.ok)localStorage.setItem('ja-referral-last-success',day);
+        else console.warn('[Janiks referrals] Collector returned HTTP '+response.status);
+      }).catch(function(e){console.warn('[Janiks referrals] Collector unavailable:',e&&e.message||e);});
+    }catch(e){console.warn('[Janiks referrals] Could not classify referral:',e&&e.message||e);}
+  }
+  document.addEventListener('DOMContentLoaded',function(){countVisit();countReferral();try{initNav();}catch(e){console.warn('[Janiks] Navigation initialization failed',e);}updateBadges();Promise.resolve(window.JANIKS_PRODUCTS_READY).catch(function(){return [];}).then(function(){initProduct();initCart();});});
   window.JANIKS_CART={add:add,read:readCart};
 })();

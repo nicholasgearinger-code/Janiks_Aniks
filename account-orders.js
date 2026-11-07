@@ -42,15 +42,15 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  async function load(force=false){
   if(home.hidden)return;
+  if(busy)return;
   const current=++generation;
-  if(busy&&!force)return;
   busy=true;button.disabled=true;message.textContent='Loading your orders…';
   try{
    const auth=await db.auth.getUser();
    if(current!==generation)return;
    const user=auth.data?.user;
    if(!user){clear();return;}
-   if(!force&&lastUserId===user.id&&Date.now()-lastLoaded<30000)return;
+   if(!force&&lastUserId===user.id&&Date.now()-lastLoaded<30000){message.textContent='Your order history is up to date.';return;}
    // Limited read-only fields: never expose address, email or other customer details.
    const orders=await db.from('orders')
     .select('id,order_number,created_at,total,payment_status,fulfillment_status')
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(current!==generation)return;
    root.replaceChildren();
    message.textContent='Could not load orders. If this is a new setup, run supabase/customer-order-history.sql. '+(e?.message||'Please try again.');
-  }finally{if(current===generation){busy=false;button.disabled=false;}}
+  }finally{busy=false;button.disabled=false;}
  }
  button.addEventListener('click',()=>load(true));
  const watcher=new MutationObserver(()=>{if(home.hidden)clear();else load(true);});

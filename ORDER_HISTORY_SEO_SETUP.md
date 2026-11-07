@@ -37,3 +37,18 @@ Previous orders do not contain `customer_user_id`; **they are deliberately not e
 - No real order was placed, no private customer data was inspected, and no production database/schema or Edge Function has been modified from this GitHub code commit alone.
 - Order checkout remains disabled by configuration.
 - Existing order confirmation emails are unchanged.
+
+
+## Pickup-only workflow (new)
+Run **`supabase/store-pickup-workflow.sql`** in Supabase SQL Editor after the prior order schema and ownership migration. It adds the explicit statuses `in_transit_to_store`, `ready_for_pickup`, and `collected`. A database trigger prevents fulfilling unpaid orders and requires actual transfer before readiness and actual readiness before collection.
+
+Store Manager now displays pickup-specific status controls. Workflow:
+1. New order remains payment pending; **do not** transfer products yet.
+2. Owner independently checks transaction in the real GCash account and invokes the **`confirm-gcash-payment`** Edge Function (must be deployed separately from `create-gcash-order`); that secure function changes payment to paid and fulfillment to confirmed.
+3. Owner sets **Processing** when preparing transfer, then **In transit to pickup store** once dispatched.
+4. Staff physically verifies arrival before the owner sets **Ready for pickup**. Customer can see readiness inside My Account.
+5. Once the customer has collected the goods and order number is verified, mark **Collected**.
+
+**Important:** this flow updates the database and My Account status; it does not yet send a dedicated automatic pickup-ready email or SMS. Staff should notify customers manually until a properly authorized notification function exists. The payment-confirmation email Edge Function is distinct from a pickup notice. No checkout flags were enabled by these commits.
+
+Test both positive and negative paths: unpaid order must reject ready/transfer changes; paid transfer must succeed; ready must fail until in-transit; collected must fail until ready. Cross-account isolation still requires verification with two distinct customer accounts.

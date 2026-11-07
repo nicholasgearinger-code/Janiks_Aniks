@@ -3414,3 +3414,26 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
 .review-rating-options .review-star-choice:hover .rating-star{transform:scale(1.12)}
 .review-rating-hint{margin:0;color:#8b5d74;font-size:13px}
 @media(max-width:420px){.review-rating-options .review-star-choice{min-width:40px;padding:2px!important}}
+
+
+/* Homepage shortcut hover colors match their corresponding desktop navigation buttons.
+   Keep each card's existing pale background until hovered or keyboard-focused. */
+@media(hover:hover) and (min-width:851px){
+ .page-main .home-shortcuts a[href="shop.html"]{--shortcut-hover:#f3b9ce;--shortcut-edge:#d894ae;--shortcut-ink:#73344d}
+ .page-main .home-shortcuts a[href="seasonal.html"]{--shortcut-hover:#bfdfc7;--shortcut-edge:#96c3a5;--shortcut-ink:#365d45}
+ .page-main .home-shortcuts a[href="colors.html"]{--shortcut-hover:#b9e4e1;--shortcut-edge:#8ccac6;--shortcut-ink:#285c61}
+ .page-main .home-shortcuts a[href="plushies.html"]{--shortcut-hover:#efb3cc;--shortcut-edge:#d998b5;--shortcut-ink:#7a3456}
+ .page-main .home-shortcuts a[href="fall.html"]{--shortcut-hover:#f1c7a2;--shortcut-edge:#dca97f;--shortcut-ink:#744b32}
+ .page-main .home-shortcuts a[href="accessories.html"]{--shortcut-hover:#cce6c4;--shortcut-edge:#a7cea0;--shortcut-ink:#42674a}
+ .page-main .home-shortcuts a[href="figurines.html"]{--shortcut-hover:#d5c1f2;--shortcut-edge:#bba1df;--shortcut-ink:#503775}
+ .page-main .home-shortcuts a:is(:hover,:focus-visible){
+  background:var(--shortcut-hover)!important;
+  border-color:var(--shortcut-edge)!important;
+  box-shadow:0 5px 0 var(--shortcut-edge),0 12px 24px rgba(72,47,65,.14)!important;
+  transition:background-color .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s ease!important;
+ }
+ .page-main .home-shortcuts a:is(:hover,:focus-visible) :is(strong,small,span){color:var(--shortcut-ink)!important}
+}
+@media(min-width:851px){
+ .page-main .home-shortcuts a:focus-visible{outline:2px solid #a44772;outline-offset:3px}
+}

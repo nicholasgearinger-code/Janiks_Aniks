@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+<title id="title">Cherry bow mug sample illustration</title><desc id="desc">Illustrative sample mug with pink gingham bow, cherry motif and red handle. Not a product photograph.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#fff8f6"/><stop offset="1" stop-color="#f9dfe8"/></linearGradient><linearGradient id="cup" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#fffefa"/><stop offset=".48" stop-color="#fff7f3"/><stop offset="1" stop-color="#f5d6d3"/></linearGradient><linearGradient id="handle"><stop stop-color="#b8445c"/><stop offset="1" stop-color="#922f4f"/></linearGradient><pattern id="gingham" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="22" height="22" fill="#ffe1e7"/><path d="M0 0h11v22H0z" fill="#f4a7ba" opacity=".65"/><path d="M0 0h22v11H0z" fill="#f4a7ba" opacity=".65"/></pattern><filter id="shadow"><feGaussianBlur stdDeviation="22"/></filter></defs>
+<rect width="900" height="900" fill="url(#bg)"/><circle cx="720" cy="155" r="170" fill="#fff" opacity=".36"/><circle cx="158" cy="732" r="240" fill="#fff" opacity=".3"/>
+<ellipse cx="442" cy="750" rx="295" ry="49" fill="#b8718c" opacity=".17" filter="url(#shadow)"/>
+<path d="M616 377C788 311 804 613 612 632" fill="none" stroke="url(#handle)" stroke-width="66" stroke-linecap="round"/><path d="M626 407C745 377 746 565 621 580" fill="none" stroke="#ffe6e3" stroke-width="18" stroke-linecap="round"/>
+<path d="M212 303Q212 278 240 279H619Q648 283 648 309L620 687Q617 739 560 746H286Q245 739 240 682Z" fill="url(#cup)" stroke="#d9999d" stroke-width="6"/>
+<ellipse cx="430" cy="307" rx="219" ry="42" fill="#bf3854"/><ellipse cx="430" cy="303" rx="198" ry="24" fill="#fff6f1" stroke="#ffdfd8" stroke-width="5"/>
+<path d="M212 311Q241 327 269 313T328 313T385 313T442 313T499 313T558 313T619 313T648 311" fill="none" stroke="#b53c55" stroke-width="12"/>
+<g fill="#e99db3" opacity=".9"><path d="M286 456c-19-23-36 10-7 25l7 5 7-5c29-15 11-48-7-25z"/><path d="M573 457c-17-22-34 8-6 24l6 5 6-5c28-16 11-46-6-24z"/><path d="M308 624c-13-17-27 7-5 19l5 3 5-3c22-12 8-36-5-19z"/><path d="M565 619c-12-17-27 6-5 19l5 3 5-3c22-13 7-36-5-19z"/></g>
+<path d="M435 476Q407 551 402 585M435 476Q482 530 492 575" fill="none" stroke="#788d55" stroke-width="8" stroke-linecap="round"/>
+<path d="M388 548Q362 539 354 552M477 540Q510 536 516 549" fill="none" stroke="#7fa15d" stroke-width="6"/>
+<g fill="#b72e4f" stroke="#a02343" stroke-width="4"><circle cx="397" cy="604" r="42"/><circle cx="495" cy="592" r="42"/></g><g fill="#fff" opacity=".65"><ellipse cx="383" cy="586" rx="10" ry="7"/><ellipse cx="481" cy="572" rx="10" ry="7"/></g>
+<path d="M429 474Q371 401 321 418Q316 465 379 498L425 482Q437 521 450 483L491 500Q559 467 537 417Q485 401 435 472Z" fill="url(#gingham)" stroke="#dc708c" stroke-width="7" stroke-linejoin="round"/><path d="M409 468Q427 451 446 465L450 490Q433 500 416 489Z" fill="#e47b96" stroke="#be5679" stroke-width="5"/>
+<text x="450" y="826" text-anchor="middle" fill="#a65a74" font-family="sans-serif" font-weight="700" font-size="23" letter-spacing="3">SAMPLE ILLUSTRATION · NOT FOR SALE</text>
+</svg>

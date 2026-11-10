@@ -17,7 +17,7 @@ window.JANIKS_PRODUCTS_BY_SLUG = window.JANIKS_PRODUCTS_BY_SLUG || {};
     window.JANIKS_PRODUCTS = (rows || []).map(function (row) {
       return {
         id: row.id, slug: row.slug, name: row.name, description: row.description || '',
-        price: Number(row.price) || 0, image: row.image_url || '', category: row.category,
+        price: Number(row.price) || 0, image: row.image_url || '', images: Array.isArray(row.image_urls) ? row.image_urls : [], category: row.category,
         color: row.color || '', tags: Array.isArray(row.tags) ? row.tags : [],
         available: row.available === true && (row.stock_quantity == null || Number(row.stock_quantity) > 0), stockQuantity: row.stock_quantity == null ? null : Number(row.stock_quantity), published: row.published === true,
         paymentUrl: row.payment_url || '', sortOrder: Number(row.sort_order) || 0
@@ -38,7 +38,15 @@ window.JANIKS_PRODUCTS_BY_SLUG = window.JANIKS_PRODUCTS_BY_SLUG || {};
       if (!window.supabase || !window.supabase.createClient) await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
       if (!window.supabase || !window.supabase.createClient) return useStaticCatalog();
       var client = window.supabase.createClient(config.projectUrl, config.publishableKey, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
-      var result = await client.from('products').select('id,slug,name,description,price,image_url,category,color,tags,available,published,payment_url,sort_order,stock_quantity').eq('published', true).order('sort_order', { ascending: true }).order('name', { ascending: true });
+      var fields='id,slug,name,description,price,image_url,image_urls,category,color,tags,available,published,payment_url,sort_order,stock_quantity';
+      var result = await client.from('products').select(fields).eq('published', true).order('sort_order', { ascending: true }).order('name', { ascending: true });
+      // Keep the public shop working even if the optional SQL migration
+      // hasn't been applied yet. A missing column is not a catalog failure.
+      if(result.error && /image_urls/i.test(result.error.message||'')){
+        result=await client.from('products')
+          .select(fields.replace('image_urls,','')).eq('published',true)
+          .order('sort_order',{ascending:true}).order('name',{ascending:true});
+      }
       if (result.error) {
         console.warn('Janiks Aniks catalog could not load from Supabase; using the static fallback.', result.error.message);
         return useStaticCatalog();

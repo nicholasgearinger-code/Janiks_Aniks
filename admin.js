@@ -3,12 +3,12 @@
   var config = window.JANIKS_SUPABASE_CONFIG || {};
   var configured = /^https:\/\//.test(config.projectUrl || '') && !!config.publishableKey && !/YOUR_|PLACEHOLDER/i.test(config.publishableKey);
   var el = function (id) { return document.getElementById(id); };
-  var client = null, products = [], draggedId = null;
+  var client = null, products = [], draggedId = null, extraPhotos = [];
   var $ = function (id) { return el(id); };
   var status = function (node, message, kind) { node.textContent = message || ''; node.className = 'admin-message' + (kind ? ' ' + kind : ''); };
   var escapeHTML = function (value) { return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); };
   var slugify = function (value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); };
-  var toProduct = function (row) { return {id:row.id,slug:row.slug,name:row.name,description:row.description||'',price:Number(row.price)||0,image_url:row.image_url||'',category:row.category,color:row.color||'',tags:Array.isArray(row.tags)?row.tags:[],available:row.available!==false,published:row.published===true,payment_url:row.payment_url||'',sort_order:Number(row.sort_order)||0}; };
+  var toProduct = function (row) { return {id:row.id,slug:row.slug,name:row.name,description:row.description||'',price:Number(row.price)||0,image_url:row.image_url||'',category:row.category,color:row.color||'',tags:Array.isArray(row.tags)?row.tags:[],available:row.available!==false,published:row.published===true,payment_url:row.payment_url||'',image_urls:Array.isArray(row.image_urls)?row.image_urls:[],sort_order:Number(row.sort_order)||0}; };
 
   function showOnly(id) {
     ['setup-warning','login-panel','access-denied','dashboard'].forEach(function (key) { $(key).hidden = key !== id; });
@@ -79,7 +79,67 @@
     products = (result.data || []).map(toProduct); updateStats(); renderProducts();
     status($('admin-message'), products.length ? 'Your product studio is ready ♡' : 'Your catalog is empty. Add your first product when you are ready.','success');
   }
+  function validExtraURL(url){
+    return typeof url==='string' && /^https:\/\//i.test(url) && url.length<=2000;
+  }
+  function discardExtraObject(url){
+    if(url&&url.startsWith('blob:'))URL.revokeObjectURL(url);
+  }
+  function resetExtraPhotos(){
+    extraPhotos.forEach(function(item){if(item.preview&&item.file)discardExtraObject(item.preview);});
+    extraPhotos=[];
+    if($('product-extra-files'))$('product-extra-files').value='';
+    if($('product-extra-url'))$('product-extra-url').value='';
+    renderExtraPhotos();
+  }
+  function renderExtraPhotos(){
+    var target=$('product-extra-preview');if(!target)return;
+    target.replaceChildren();
+    if(!extraPhotos.length){
+      var empty=document.createElement('p');empty.className='admin-hint';empty.textContent='No additional photos yet.';
+      target.append(empty);return;
+    }
+    extraPhotos.forEach(function(item,index){
+      var row=document.createElement('div');row.className='ja-admin-gallery-item';
+      var img=document.createElement('img');img.src=item.preview||item.url;img.alt='Gallery photo '+(index+1);img.loading='lazy';
+      var label=document.createElement('span');label.textContent='Photo '+(index+2)+(item.file?' (new upload)':'');
+      var buttons=document.createElement('div');buttons.className='ja-admin-gallery-actions';
+      [['↑','Move photo earlier',-1],['↓','Move photo later',1],['×','Remove photo',null]].forEach(function(entry){
+        var button=document.createElement('button');button.type='button';button.textContent=entry[0];button.setAttribute('aria-label',entry[1]+' '+(index+2));
+        if(entry[2]===-1&&index===0)button.disabled=true;
+        if(entry[2]===1&&index===extraPhotos.length-1)button.disabled=true;
+        button.addEventListener('click',function(){
+          if(entry[2]===null){if(item.file)discardExtraObject(item.preview);extraPhotos.splice(index,1);}
+          else{var moved=extraPhotos.splice(index,1)[0];extraPhotos.splice(index+entry[2],0,moved);}
+          renderExtraPhotos();
+        });
+        buttons.append(button);
+      });
+      row.append(img,label,buttons);target.append(row);
+    });
+  }
+  function addExtraURLs(){
+    var field=$('product-extra-url'),url=field.value.trim();
+    if(!validExtraURL(url)){status($('form-message'),'Enter a valid HTTPS image URL.','error');return;}
+    if(extraPhotos.length>=5){status($('form-message'),'You can add up to five additional photos.','error');return;}
+    if(extraPhotos.some(function(item){return item.url===url;})){status($('form-message'),'That photo is already in the gallery.','error');return;}
+    extraPhotos.push({url:url,preview:url});
+    field.value='';status($('form-message'),'');renderExtraPhotos();
+  }
+  function addExtraFiles(files){
+    var selected=Array.from(files||[]);if(!selected.length)return;
+    if(extraPhotos.length+selected.length>5){status($('form-message'),'Maximum five additional photos per product.','error');return;}
+    for(var i=0;i<selected.length;i++){
+      if(!/^image\/(jpeg|png|webp)$/.test(selected[i].type)||selected[i].size>8*1024*1024){
+        status($('form-message'),'All photos must be JPG, PNG or WebP and 8 MB or smaller.','error');return;
+      }
+    }
+    selected.forEach(function(file){extraPhotos.push({file:file,preview:URL.createObjectURL(file)});});
+    $('product-extra-files').value='';
+    status($('form-message'),'');renderExtraPhotos();
+  }
   function resetForm() {
+    resetExtraPhotos();
     $('product-form').reset(); $('product-id').value=''; $('product-price').value='0.00'; $('product-available').checked=true;
     $('product-published').checked=false; $('product-image-url').value=''; $('product-image-file').value='';
     $('image-preview').innerHTML='<span>♡ Product preview</span>'; status($('form-message'),'');
@@ -100,6 +160,7 @@
       $('product-tags').value=p.tags.join(', '); $('product-image-url').value=p.image_url;
       $('product-payment-url').value=p.payment_url; $('product-available').checked=p.available;
       $('product-published').checked=p.published; previewURL(p.image_url);
+      extraPhotos=(p.image_urls||[]).filter(validExtraURL).slice(0,5).map(function(url){return {url:url,preview:url};});renderExtraPhotos();
     }
     $('product-dialog').showModal();
   }
@@ -113,6 +174,14 @@
     if (result.error) throw result.error;
     return client.storage.from('product-images').getPublicUrl(result.data.path).data.publicUrl;
   }
+  async function uploadAdditionalPhoto(file,slug){
+    if(!/^image\/(jpeg|png|webp)$/.test(file.type)||file.size>8*1024*1024)throw new Error('Gallery photos must be JPG, PNG or WebP, up to 8 MB.');
+    var ext=file.type==='image/jpeg'?'jpg':file.type.split('/')[1];
+    var path=slug+'/gallery-'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+    var result=await client.storage.from('product-images').upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+    if(result.error)throw result.error;
+    return client.storage.from('product-images').getPublicUrl(result.data.path).data.publicUrl;
+  }
   async function saveProduct(event) {
     event.preventDefault(); var button=$('save-product'); button.disabled=true; status($('form-message'),'Saving product…');
     try {
@@ -122,7 +191,14 @@
       var price=Number($('product-price').value);
       if(!Number.isFinite(price)||price<0) throw new Error('Enter a valid non-negative price.');
       var image=await uploadPhoto($('product-image-file').files[0],slug);
-      var record={slug:slug,name:name,description:$('product-description-input').value.trim(),price:price,image_url:image,
+      var galleryURLs=[];
+      for(var n=0;n<extraPhotos.length;n++){
+        var item=extraPhotos[n];
+        var url=item.file?await uploadAdditionalPhoto(item.file,slug):item.url;
+        if(!validExtraURL(url))throw new Error('Gallery photos require valid HTTPS URLs.');
+        if(url!==image&&!galleryURLs.includes(url))galleryURLs.push(url);
+      }
+      var record={slug:slug,name:name,description:$('product-description-input').value.trim(),price:price,image_url:image,image_urls:galleryURLs,
         category:$('product-category').value,color:$('product-color').value,
         tags:$('product-tags').value.split(',').map(function(t){return t.trim().toLowerCase();}).filter(Boolean),
         available:$('product-available').checked,published:$('product-published').checked,
@@ -136,7 +212,7 @@
       else { record.sort_order=(products.reduce(function(max,p){return Math.max(max,p.sort_order);},0)+10); result=await client.from('products').insert(record); }
       if(result.error) throw result.error;
       $('product-dialog').close(); await loadProducts();
-    } catch(error) { status($('form-message'),error.message||'Could not save product.','error'); }
+    } catch(error) { var message=error.message||'Could not save product.';if(/image_urls/i.test(message))message='Additional photo database column is missing. Run supabase/product-multi-photos.sql in the Supabase SQL Editor first. '+message;status($('form-message'),message,'error'); }
     finally { button.disabled=false; }
   }
   async function togglePublish(p) {

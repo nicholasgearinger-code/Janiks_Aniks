@@ -13,7 +13,7 @@ function render(){
   const title=document.createElement('strong');title.textContent=x.display_name+' · '+labels[x.status];
   const text=document.createElement('p');text.textContent=x.body;
   if(x.product_slug){const product=document.createElement('small');product.textContent='Product: '+x.product_slug;card.appendChild(product);}
-  if(x.photo_path){const photo=document.createElement('small');photo.textContent='♡ Customer photo attached — displayed publicly only after approval.';card.appendChild(photo);}
+  if(x.photo_path){const photo=document.createElement('img');photo.alt='Customer-submitted product review photo (moderation preview)';photo.loading='lazy';photo.className='ja-review-customer-photo';card.appendChild(photo);client.storage.from('review-photos').createSignedUrl(x.photo_path,600).then(result=>{if(!result.error&&result.data&&result.data.signedUrl)photo.src=result.data.signedUrl;else{photo.replaceWith(document.createTextNode('Photo preview unavailable — check admin storage policy.'));}}).catch(()=>photo.replaceWith(document.createTextNode('Photo preview unavailable.')));}
   const date=document.createElement('small');date.textContent=new Date(x.created_at).toLocaleDateString();
   const actions=document.createElement('div');actions.className='review-moderation-actions';
   for(const [key,label] of [['approved','Approve'],['rejected','Reject spam'],['pending','Return to pending']]){

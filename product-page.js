@@ -64,7 +64,32 @@
       copy.append(name,price);link.appendChild(copy);root.appendChild(link);
     });
   }
+  function samplePreview(){
+    // Explicit, non-purchasable sample only. Never add this item to Supabase/catalog/cart.
+    var mock={
+      slug:'sample-cherry-bow-mug',name:'Cherry Bow Mug — Sample Preview',
+      category:'mugs',image:'images/sample-cherry-bow-mug.svg',
+      images:['images/sample-cherry-bow-mug-inside.svg']
+    };
+    document.title='Mug product template preview | Janiks Aniks';
+    $('product-category-label').textContent='Mugs · Demo';
+    $('product-collection-link').textContent='Mugs';
+    $('product-collection-link').href='shop.html';
+    $('product-crumb').textContent='Sample preview';
+    $('product-name').textContent=mock.name;
+    $('product-price').textContent='₱499.00 (sample price)';
+    $('product-description').textContent='An illustrated example showing how a real mug listing will look. Replace these sample details with verified product photos, price and description in Store Manager.';
+    $('product-feedback').textContent='Preview only — not a real listing. Adding to cart and favorites is disabled.';
+    $('product-feedback').classList.remove('is-success');
+    $('add-to-cart').disabled=true;
+    $('product-favorite').disabled=true;
+    $('product-rating').hidden=true;
+    $('product-related-section').hidden=true;
+    var pickup=$('product-feedback');pickup.setAttribute('data-preview','true');
+    gallery(mock);
+  }
   function apply(){
+    if(new URLSearchParams(location.search).get('preview')==='sample-mug'){samplePreview();return;}
     var slug=new URLSearchParams(location.search).get('slug');
     var product=(window.JANIKS_PRODUCTS_BY_SLUG||{})[slug];
     if(!verified(product))return;

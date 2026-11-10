@@ -84,6 +84,9 @@
     $('add-to-cart').disabled=true;
     $('product-favorite').disabled=true;
     $('product-rating').hidden=true;
+    $('product-availability').hidden=true;
+    $('product-detail-tags').hidden=true;
+    $('product-details-text').textContent='Sample preview only. Actual product dimensions, materials and care instructions will be included when the store owner confirms them.';
     $('product-related-section').hidden=true;
     var pickup=$('product-feedback');pickup.setAttribute('data-preview','true');
     gallery(mock);
@@ -101,10 +104,20 @@
     $('related-more-link').href=group[1];
     gallery(product);
     related(product,window.JANIKS_PRODUCTS||[]);
+    var stock=$('product-availability');
+    if(stock){
+      var n=product.stockQuantity;
+      stock.textContent=n==null?'♡ Available for order':(n<=5?'♡ Only '+n+' left in stock':'♡ In stock');
+      stock.hidden=false;
+    }
+    var details=$('product-details-text');
+    if(details)details.textContent=product.description||'Please contact us for this product’s dimensions, materials and care instructions.';
+    var tags=$('product-detail-tags');
+    if(tags){var parts=(Array.isArray(product.tags)?product.tags:[]).filter(function(t){return typeof t==='string'&&t.trim();}).slice(0,4);tags.replaceChildren();parts.forEach(function(t){var label=document.createElement('span');label.textContent=t;tags.appendChild(label);});tags.hidden=parts.length===0;}
     // Product-specific ratings are deliberately hidden unless real numbers exist.
     var rating=$('product-rating'),score=Number(product.rating),count=Number(product.reviewCount);
     if(rating&&score>0&&score<=5&&count>0){
-      rating.textContent='★ '+score.toFixed(1)+' ('+count+' '+(count===1?'review':'reviews')+')';
+      rating.textContent='★★★★★  '+score.toFixed(1)+' out of 5 · '+count+' '+(count===1?'review':'reviews');
       rating.hidden=false;
     }
   }

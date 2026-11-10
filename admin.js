@@ -251,6 +251,8 @@
     $('close-dialog').addEventListener('click',function(){$('product-dialog').close();});
     $('cancel-edit').addEventListener('click',function(){$('product-dialog').close();});
     $('product-form').addEventListener('submit',saveProduct);
+    $('product-extra-files').addEventListener('change',function(){addExtraFiles(this.files);});
+    $('product-add-extra-url').addEventListener('click',addExtraURLs);
     $('product-name-input').addEventListener('input',function(){if(!$('product-id').value||!$('product-slug').dataset.touched)$('product-slug').value=slugify(this.value);});
     $('product-slug').addEventListener('input',function(){this.dataset.touched='true';});
     $('product-image-file').addEventListener('change',function(){var file=this.files[0];if(file)previewURL(URL.createObjectURL(file));});

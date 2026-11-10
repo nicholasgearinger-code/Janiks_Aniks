@@ -27,6 +27,7 @@ async function load(slug){
   if(!rows.length){summary.textContent='No reviews for this product yet. Be the first to share your experience!';return;}
   const avg=rows.reduce((sum,r)=>sum+Number(r.rating),0)/rows.length;
   summary.textContent=stars(Math.round(avg))+'  '+avg.toFixed(1)+' / 5 · '+rows.length+' recent approved '+(rows.length===1?'review':'reviews');
+  const top=$('product-rating');if(top){top.textContent=stars(Math.round(avg))+'  '+avg.toFixed(1)+' / 5 · '+rows.length+' recent reviews';top.hidden=false;}
   rows.forEach(r=>host.appendChild(card(r)));
  }catch(e){summary.textContent='Product reviews are temporarily unavailable.';console.warn('[Janiks product reviews]',e.message);}
 }

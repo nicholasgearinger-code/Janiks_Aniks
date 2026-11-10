@@ -3685,3 +3685,12 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 .ja-product-page #ja-review-status{font-size:13px;color:#805065;line-height:1.6;margin:0}
 @media(max-width:600px){.ja-product-page .ja-product-reviews{margin-top:30px}.ja-product-page .ja-review-form-wrap{padding:16px}}
 @media(prefers-reduced-motion:reduce){.ja-product-page .ja-rating-buttons span{transition:none}}
+
+/* Safe sample product card in Cute Mugs (not a purchasable inventory item). */
+.catalog-card.ja-demo-catalog-card{border:1px solid #edb8c9;background:#fff8fb;box-shadow:0 8px 22px rgba(145,57,88,.07)}
+.catalog-card.ja-demo-catalog-card>a:first-child{display:block;text-decoration:none}
+.catalog-card.ja-demo-catalog-card>a:first-child img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff2f6;border-radius:12px}
+.catalog-card.ja-demo-catalog-card h2{font-size:clamp(17px,2.4vw,21px);color:#923b5c}
+.catalog-card.ja-demo-catalog-card .ja-demo-badge{display:inline-block;width:auto;background:#f9dce5;border-radius:99px;padding:5px 10px;color:#8d3552;font-size:11px;font-weight:700;letter-spacing:.04em}
+.catalog-card.ja-demo-catalog-card .ja-demo-copy{font-size:13px;line-height:1.5;color:#795463}
+.catalog-card.ja-demo-catalog-card .catalog-card-actions>a{width:100%;text-align:center}

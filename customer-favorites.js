@@ -12,6 +12,11 @@
   if(!window.supabase||!cfg.projectUrl||!cfg.publishableKey){
    btn.disabled=true;btn.textContent='♡ Favorites unavailable';return;
   }
+  try{
+   await Promise.resolve(window.JANIKS_PRODUCTS_READY);
+   var product=(window.JANIKS_PRODUCTS_BY_SLUG||{})[slug];
+   if(!product||!product.published||!product.available||!product.image||Number(product.price)<=0){btn.disabled=true;return;}
+  }catch(_e){btn.disabled=true;return;}
   var client=window.supabase.createClient(cfg.projectUrl,cfg.publishableKey);
   try{
    var identity=await client.auth.getUser(),user=identity.data&&identity.data.user;

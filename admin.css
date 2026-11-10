@@ -150,3 +150,17 @@
 .overview-referral-row{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #f3dfeb;border-radius:11px;padding:10px 13px}
 .overview-referral-row span{font-size:13px;color:#624654}
 .overview-referral-row strong{font-size:15px;color:#963b67;font-variant-numeric:tabular-nums}
+
+
+/* Optional multi-photo product gallery editor. */
+.ja-admin-extra-url-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ja-admin-extra-url-row input{flex:1 1 230px;min-width:0}
+.ja-admin-extra-url-row button{flex:0 0 auto;min-height:42px}
+.ja-admin-gallery-list{display:grid;gap:10px;margin:14px 0}
+.ja-admin-gallery-item{display:flex;align-items:center;gap:12px;min-width:0;padding:9px 11px;border-radius:12px;background:#fff9fb;border:1px solid #efceda}
+.ja-admin-gallery-item>img{width:65px;height:65px;object-fit:cover;border-radius:9px;background:#fff;flex:0 0 auto}
+.ja-admin-gallery-item>span{min-width:0;flex:1;font-size:13px;font-weight:700;color:#733b53;overflow-wrap:anywhere}
+.ja-admin-gallery-actions{display:flex;align-items:center;gap:5px}
+.ja-admin-gallery-actions button{min-width:34px;min-height:34px;border-radius:9px;border:1px solid #e8bdd0;background:#fff;color:#9b3a61;font-size:17px;cursor:pointer}
+.ja-admin-gallery-actions button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:450px){.ja-admin-gallery-item{gap:7px;padding:7px}.ja-admin-gallery-item>img{width:52px;height:52px}.ja-admin-gallery-actions button{min-width:29px;min-height:32px}}

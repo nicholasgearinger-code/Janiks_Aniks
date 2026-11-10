@@ -88,6 +88,17 @@
     $('product-detail-tags').hidden=true;
     $('product-details-text').textContent='Sample preview only. Actual product dimensions, materials and care instructions will be included when the store owner confirms them.';
     $('product-related-section').hidden=true;
+    // Show the customer review layout in read-only sample mode.
+    var section=$('product-reviews-section');
+    if(section){
+      section.hidden=false;
+      $('ja-review-summary').textContent='No customer reviews yet — this is a sample display.';
+      $('ja-review-cards').replaceChildren();
+      var form=$('ja-product-review-form');
+      if(form){form.querySelectorAll('input,textarea,button').forEach(function(control){control.disabled=true;});}
+      $('ja-review-status').textContent='Demo only — review submissions are disabled until a real published product is available.';
+      var turnstile=$('ja-review-turnstile');if(turnstile)turnstile.hidden=true;
+    }
     var pickup=$('product-feedback');pickup.setAttribute('data-preview','true');
     gallery(mock);
   }

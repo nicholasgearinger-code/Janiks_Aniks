@@ -28,7 +28,7 @@ Deno.serve(async req=>{
   }
   let photoPath:null|string=null;
   if(data.photo){
-    const match=/^data:(image\\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/.exec(String(data.photo));
+    const match=/^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/.exec(String(data.photo));
     if(!match)return response({error:'Use a JPG, PNG, or WebP photo'},400,origin);
     const bytes=Uint8Array.from(atob(match[2]),c=>c.charCodeAt(0));
     if(bytes.length>1048576||bytes.length<20)return response({error:'Photo must be under 1 MB'},400,origin);

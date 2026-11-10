@@ -3656,3 +3656,32 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 .ja-product-page .ja-related-heading h2{font-style:italic}
 .ja-product-page .ja-related-product{background:#fff9fb}
 @media(max-width:480px){.ja-product-page .ja-prepaid-banner{font-size:11px;line-height:1.5;margin-bottom:18px}.ja-prepaid-banner span{padding:0 4px}.ja-product-page .ja-pickup-top{gap:10px}.ja-product-page .ja-gcash-label{font-size:19px}.ja-product-page .ja-product-actions{grid-template-columns:1fr}}
+
+/* Product reviews: original Janiks Aniks coquette palette */
+.ja-product-page .ja-product-reviews{max-width:1120px;margin:42px auto 0;padding:26px 0 0;border-top:1px solid #f2cfda}
+.ja-product-page .ja-product-reviews h3{color:#983754;font-size:19px;margin:0 0 7px}
+.ja-product-page #ja-review-summary{font-size:14px;color:#ab4868;font-weight:700;margin:0 0 18px}
+.ja-product-page .ja-review-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr));gap:13px;margin-bottom:22px}
+.ja-product-page .ja-review-card{border:1px solid #f0cbd6;border-radius:17px;background:#fffafb;padding:17px;min-width:0}
+.ja-product-page .ja-review-card-stars{font-size:20px;letter-spacing:2px;color:#c34c70}
+.ja-product-page .ja-review-card p{color:#64404e;white-space:pre-line;overflow-wrap:anywhere;font-size:14px;line-height:1.6}
+.ja-product-page .ja-review-card small{color:#916476}
+.ja-product-page .ja-review-customer-photo{display:block;width:min(100%,220px);max-height:220px;object-fit:cover;margin-top:13px;border-radius:12px}
+.ja-product-page .ja-review-form-wrap{max-width:680px;padding:22px;border:1px solid #f0cbd6;border-radius:19px;background:#fff6f8}
+.ja-product-page .ja-review-form-wrap>p{font-size:13px;color:#77515f;line-height:1.6}
+.ja-product-page #ja-product-review-form{display:grid;gap:11px}
+.ja-product-page #ja-product-review-form label,.ja-product-page #ja-product-review-form legend{font-size:13px;font-weight:700;color:#793a51}
+.ja-product-page #ja-product-review-form input:not([type=radio]),.ja-product-page #ja-product-review-form textarea{width:100%;max-width:100%;padding:12px;border:1px solid #e8b9c8;border-radius:11px;background:white;color:#5d3545;font:inherit}
+.ja-product-page #ja-product-review-form fieldset{border:0;margin:0;padding:0}
+.ja-product-page .ja-rating-buttons{display:flex;gap:7px;margin-top:8px}
+.ja-product-page .ja-rating-buttons label{cursor:pointer;position:relative}
+.ja-product-page .ja-rating-buttons input{position:absolute;width:1px;height:1px;opacity:0}
+.ja-product-page .ja-rating-buttons span{font-size:28px;color:#d6a6b6;transition:color .15s}
+.ja-product-page .ja-rating-buttons label.selected span{color:#bf3a65}
+.ja-product-page .ja-rating-buttons input:focus-visible+span{outline:2px solid #a42e50;outline-offset:3px;border-radius:4px}
+.ja-product-page #ja-review-photo-preview{max-width:140px;max-height:140px;object-fit:cover;border-radius:12px}
+.ja-product-page #ja-review-send{border:0;border-radius:12px;background:#b3385e;color:white;min-height:45px;padding:11px 20px;cursor:pointer;font-weight:700}
+.ja-product-page #ja-review-send:disabled{opacity:.55;cursor:not-allowed}
+.ja-product-page #ja-review-status{font-size:13px;color:#805065;line-height:1.6;margin:0}
+@media(max-width:600px){.ja-product-page .ja-product-reviews{margin-top:30px}.ja-product-page .ja-review-form-wrap{padding:16px}}
+@media(prefers-reduced-motion:reduce){.ja-product-page .ja-rating-buttons span{transition:none}}

@@ -1,37 +1,45 @@
-# Reusable Janiks Aniks product page
+# Reusable Janiks Aniks product page — setup and editing
 
-Every published product uses the same live template at `product.html?slug=PRODUCT-SLUG`.
+Every product uses the same live layout at `product.html?slug=PRODUCT-SLUG`. No separate HTML file is required per item.
 
-## Editing a product — no code changes
-1. Sign in to your Store Manager and open **Products**.
-2. Create a product or edit an existing one.
-3. Update its **name, category, price, description, and main photo**. Set availability/stock as appropriate.
-4. When the listing is complete and ready to appear publicly, choose **Published** and save it.
-5. Open its product page from the storefront. Its name, image, description, price, category label, cart action, and related products are filled automatically from Supabase.
+## Sample mug preview
 
-**Safety:** Draft, out-of-stock, incomplete or unavailable products don't become purchasable. The GCash/pickup notice does not mean checkout or automatic payment processing is enabled. Existing checkout settings and manual verification remain unchanged.
+Open `https://janiksaniks.com/product.html?preview=sample-mug`.
 
-## What stays the same for every listing
-- Site navigation, mobile layout, page colors, and header
-- Quantity controls (1–99), Add to Cart, and account-based Save to Favorites
-- GCash/payment verification/store pickup notice
-- Optional related products from the same published category (up to two)
-- Existing privacy-conscious visitor and referral counters
+This is **only a design preview**, with original sample SVG illustrations and a clearly labeled example price. It is not added to Supabase, the public catalog, or the cart; **purchase and favorites buttons remain disabled**. Replace sample graphics with authentic, verified product photos when publishing real inventory.
 
-## Photos
-The existing Store Manager has one main photo field per product. The template intentionally **hides the thumbnail strip if there are no other photos**. It does not show fake product photos.
+## REQUIRED: Enable multiple photos once in Supabase
 
-The shared template can render an optional array of extra image URLs via `product.images` when future catalog management supports it. Multiple-photo upload/management is **not yet implemented** in Store Manager; it would require a follow-on feature.
+1. Open Supabase Dashboard → SQL Editor for the Janiks Aniks project.
+2. Copy the SQL from `supabase/product-multi-photos.sql` and run it.
+3. The command adds `public.products.image_urls`, an optional `text[]` column holding **up to five additional image URLs**. It preserves the existing `image_url` main photo, product records, user accounts, cart, orders, and permissions.
+4. Then refresh Store Manager and open **Products → Edit**. The new **Additional product photos** section is available.
+5. If a save reports that `image_urls` does not exist, the migration has not been run successfully; do not keep retrying uploads until the column exists.
 
-## Reviews and SEO
-The page intentionally hides the ratings row unless real product-specific rating/count data is available. Sitewide reviews are not misrepresented as product reviews.
+## Create or edit a real product
 
-The generic `product.html` route is currently set to `noindex,follow` so a JavaScript-rendered generic title cannot be indexed as hundreds of duplicate pages. If individual product SEO is desired, implement crawlable per-product URLs, unique static/SSR metadata and product JSON-LD before removing `noindex`.
+1. Go to Store Manager → Products → Add/Edit.
+2. Enter product name, category, price, description, stock/availability, and **main product photo**.
+3. In **Additional product photos**, select up to five JPG/PNG/WebP files (8 MB max each) or add HTTPS image URLs. Use ↑ and ↓ to change their order, × to remove them.
+4. Save the listing as a **Draft** while photos/pricing are being checked. Publish only when ready for customers.
+5. Product thumbnails appear automatically when additional photos exist. Clicking a thumbnail changes the large photo. One-photo products remain clean with no unused thumbnail strip.
+6. The main photo stays the cover photo for product listings and cart previews. Edit the main photo field to replace it.
 
-## Main source files
-- `product.html` — shared semantic layout and original navigation
-- `product-page.js` — gallery, quantity +/− controls, related products
-- `styles.css` — responsive template theme
-- `store.js` — original cart and live catalog rendering
-- `customer-favorites.js` — original account wishlist actions, integrated into template
-- `catalog.js` — loads the actual published products from Supabase
+## Shared behavior
+
+- Responsive pink/cream product template, existing site navigation, 1–99 quantity controls
+- Existing cart sync and account favorites
+- Existing GCash/manual payment verification and store-pickup-only workflow, **no checkout enablement**
+- Two automatically selected related published products from the same category, when available
+- Optional product-specific ratings only when actual ratings exist
+- Previously deployed visitor analytics and referral tracking are unaffected
+
+## Technical notes
+
+- `product.html`: shared layout; `product-page.js`: photo gallery and recommendations
+- `admin.html` and `admin.js`: photo uploads/reorder/remove and form validation
+- `catalog.js`: fetches `image_urls` with a backward-compatible fallback if migration is missing
+- `supabase/product-multi-photos.sql`: additive database change
+- `styles.css`, `admin.css`: responsive styling
+- Product pages currently remain `noindex,follow`; add unique crawlable product URLs and metadata before changing that.
+- Uploaded files are stored in the existing `product-images` Supabase Storage bucket. Removing a thumbnail from a product removes its URL from the listing, **not** the underlying object in Storage.

@@ -3634,3 +3634,25 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 }
 @media(max-width:370px){.ja-product-page .ja-product-actions{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ja-product-page *{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Product detail refinements: screenshot-inspired, catalog-backed and mobile-friendly. */
+.ja-product-page .ja-prepaid-banner{max-width:1120px;margin:0 auto 24px;padding:11px 16px;text-align:center;border-radius:12px;background:linear-gradient(90deg,#d98f9d,#e8aab7);color:#fff;font-weight:700;font-size:13px;letter-spacing:.02em}
+.ja-prepaid-banner span{padding:0 13px}
+.ja-product-page .ja-product-photo>img{object-fit:cover}
+.ja-product-page .ja-product-thumbnails{justify-content:center}
+.ja-product-page .ja-product-availability{margin:0;color:#51785a;font-size:13px;font-weight:700}
+.ja-product-page .ja-product-detail-tags{margin:0;display:flex;gap:7px;flex-wrap:wrap}
+.ja-product-page .ja-product-detail-tags span{background:#fff0f4;color:#9a3c59;padding:5px 11px;border:1px solid #f2d6df;border-radius:99px;font-size:12px}
+.ja-product-page .ja-product-pickup{background:linear-gradient(115deg,#fff3f6,#ffedf1);border-color:#f0c5d2}
+.ja-product-page .ja-pickup-top{display:flex;align-items:center;gap:16px;margin-bottom:9px}
+.ja-product-page .ja-gcash-label{font-weight:800;font-size:22px;letter-spacing:-.04em;color:#0759b8;white-space:nowrap}
+.ja-product-page .ja-pickup-divider{width:1px;background:#dfa0b1;height:42px;flex:0 0 1px}
+.ja-product-page .ja-pickup-message{line-height:1.5;font-weight:700;color:#764255}
+.ja-product-page .ja-product-extra{border-top:1px solid #edd1d9;margin-top:8px}
+.ja-product-page .ja-product-extra details{border-bottom:1px solid #edd1d9;padding:12px 1px}
+.ja-product-page .ja-product-extra summary{cursor:pointer;font-weight:700;color:#913753;list-style-position:outside;padding:3px 0}
+.ja-product-page .ja-product-extra details p{margin:10px 0 4px;font-size:13px;line-height:1.65;color:#674a56;white-space:pre-line}
+.ja-product-page .ja-product-extra a{color:#a32c54;font-weight:700;font-size:13px}
+.ja-product-page .ja-related-heading h2{font-style:italic}
+.ja-product-page .ja-related-product{background:#fff9fb}
+@media(max-width:480px){.ja-product-page .ja-prepaid-banner{font-size:11px;line-height:1.5;margin-bottom:18px}.ja-prepaid-banner span{padding:0 4px}.ja-product-page .ja-pickup-top{gap:10px}.ja-product-page .ja-gcash-label{font-size:19px}.ja-product-page .ja-product-actions{grid-template-columns:1fr}}

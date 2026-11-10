@@ -3562,3 +3562,7 @@ body .main-nav a[data-nav="contact"] span{color:#695526!important}
   outline-offset:2px!important;
  }
 }
+
+/* Category landing pages: preserve the existing visual scale for semantic H1 headings. */
+.category-feature h1,.seasonal h1,.color-browser h1,.fall-page .coming-soon h1{font-size:clamp(48px,9vw,64px);margin-bottom:12px}
+.category-feature h1{line-height:1.13}

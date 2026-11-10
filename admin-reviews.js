@@ -12,6 +12,8 @@ function render(){
   const stars=document.createElement('div');stars.className='review-stars';stars.textContent='★'.repeat(x.rating)+'☆'.repeat(5-x.rating);
   const title=document.createElement('strong');title.textContent=x.display_name+' · '+labels[x.status];
   const text=document.createElement('p');text.textContent=x.body;
+  if(x.product_slug){const product=document.createElement('small');product.textContent='Product: '+x.product_slug;card.appendChild(product);}
+  if(x.photo_path){const photo=document.createElement('small');photo.textContent='♡ Customer photo attached — displayed publicly only after approval.';card.appendChild(photo);}
   const date=document.createElement('small');date.textContent=new Date(x.created_at).toLocaleDateString();
   const actions=document.createElement('div');actions.className='review-moderation-actions';
   for(const [key,label] of [['approved','Approve'],['rejected','Reject spam'],['pending','Return to pending']]){
@@ -24,7 +26,7 @@ function render(){
  status(matches.length+' reviews shown.');
  if(!matches.length){const empty=document.createElement('p');empty.textContent='No reviews in this category.';host.append(empty);}
 }
-async function load(){if(!client)return;status('Loading customer reviews…');const result=await client.from('customer_reviews').select('id,display_name,rating,body,status,created_at').order('created_at',{ascending:false}).limit(200);if(result.error){status('Reviews unavailable: '+result.error.message+' — run supabase/reviews-and-visits.sql first.');return;}rows=result.data||[];render();refreshBadge();}
+async function load(){if(!client)return;status('Loading customer reviews…');const result=await client.from('customer_reviews').select('id,display_name,rating,body,status,created_at,product_slug,photo_path').order('created_at',{ascending:false}).limit(200);if(result.error){status('Reviews unavailable: '+result.error.message+' — run supabase/reviews-and-visits.sql first.');return;}rows=result.data||[];render();refreshBadge();}
 function open(){for(const name of ['overview','products','analytics','inventory','inquiries','orders','reviews']){const tab=$('tab-'+name),panel=$(name+'-panel');if(tab){tab.classList.toggle('active',name==='reviews');tab.setAttribute('aria-selected',String(name==='reviews'));}if(panel)panel.hidden=name!=='reviews';}load();}
 document.addEventListener('DOMContentLoaded',()=>{
  $('tab-reviews').addEventListener('click',open);

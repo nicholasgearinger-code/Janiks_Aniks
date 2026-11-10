@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Product details from Janiks Aniks."><title>Product | Janiks Aniks</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quicksand:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css?v=product-template-1"><meta name="robots" content="noindex,follow"></head><body><div class="gingham-strip" aria-hidden="true"></div>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Product details from Janiks Aniks."><title>Product | Janiks Aniks</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quicksand:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css?v=product-details-2"><meta name="robots" content="noindex,follow"></head><body><div class="gingham-strip" aria-hidden="true"></div>
 <header class="top" id="site-sidebar">
 <a class="brand" href="/" aria-label="Janiks Aniks home"><img src="images/IMG_5052.png" alt="Red cherries with a pink bow" width="100" height="100"></a>
 <a class="header-wordmark" href="/" aria-label="Janiks Aniks home"><img src="images/janiks-aniks-logo-horizontal-notag.png" alt="Janiks Aniks" width="300" height="90"></a>
@@ -15,7 +15,7 @@
 <a href="payments.html" data-nav="payments"><img class="nav-sticker" src="images/Kawaii%20Pink%20Credit%20Card%20Sticker.png" alt="" width="80" height="80" decoding="async"><span>Payments</span></a>
 <a href="visit.html" data-nav="visit"><img class="nav-sticker" src="images/Kawaii%20Pink%20Boutique%20Sticker.png" alt="" width="80" height="80" decoding="async"><span>Visit us</span></a>
 <a href="cart.html" data-nav="cart"><img class="nav-sticker" src="images/Kawaii%20Pastel%20Shopping%20Cart%20Sticker.png" alt="" width="80" height="80" decoding="async"><span>Cart</span><span class="cart-count" data-cart-count>0</span></a>
-</nav><div class="sidebar-note"><span class="sidebar-heart" aria-hidden="true">♡</span><span>Made with love</span></div></header><main class="inner-page cream ja-product-page" id="main-content">
+</nav><div class="sidebar-note"><span class="sidebar-heart" aria-hidden="true">♡</span><span>Made with love</span></div></header><main class="inner-page cream ja-product-page" id="main-content"><div class="ja-prepaid-banner">Prepaid orders only <span aria-hidden="true">♡</span> Store pickup after payment verification</div>
   <nav class="breadcrumb ja-product-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a id="product-collection-link" href="shop.html">Shop</a><span aria-hidden="true">›</span><span id="product-crumb">Product</span></nav>
   <div class="product-layout ja-product-layout">
     <div class="ja-product-gallery">
@@ -28,8 +28,10 @@
       <span class="ja-product-category" id="product-category-label">Our collection</span>
       <h1 id="product-name">Product details</h1>
       <p class="ja-product-rating" id="product-rating" hidden></p>
+      <p class="ja-product-availability" id="product-availability" hidden></p>
       <p class="product-price ja-product-price" id="product-price">Price to be confirmed</p>
       <p class="ja-product-description" id="product-description">Product photos and details will appear when this item is ready.</p>
+      <p class="ja-product-detail-tags" id="product-detail-tags" hidden></p>
       <div class="ja-product-purchase">
         <div class="ja-quantity-row"><label for="quantity">Quantity</label><div class="ja-quantity-control">
           <button type="button" id="quantity-minus" aria-label="Decrease quantity">−</button>
@@ -37,17 +39,18 @@
           <button type="button" id="quantity-plus" aria-label="Increase quantity">+</button>
         </div></div>
         <div class="ja-product-actions">
-          <button class="btn ja-product-add" id="add-to-cart" type="button" disabled>Add to cart</button>
+          <button class="btn ja-product-add" id="add-to-cart" type="button" disabled><span aria-hidden="true">🛒 </span>Add to cart</button>
           <button class="ja-product-favorite" id="product-favorite" type="button" disabled>♡ Save to favorites</button>
         </div>
         <p id="product-feedback" class="product-note ja-product-feedback" role="status" aria-live="polite">This item is not available for purchase yet.</p>
       </div>
-      <aside class="ja-product-pickup" aria-label="Payment and pickup information"><strong>♡ GCash &amp; store pickup</strong><p>Orders are prepaid with GCash. Pickup is available at our store only after payment is verified and your order is marked ready.</p><a href="payments.html">Payment and pickup details</a></aside>
+      <aside class="ja-product-pickup" aria-label="Payment and pickup information"><div class="ja-pickup-top"><span class="ja-gcash-label">GCash</span><span class="ja-pickup-divider" aria-hidden="true"></span><span class="ja-pickup-message">♡ Pay with GCash and pick up in store after payment is verified.</span></div><p>Prepaid orders only. We’ll confirm when your order is ready for pickup.</p><a href="payments.html">View payment &amp; pickup details</a></aside>
+      <div class="ja-product-extra" aria-label="Additional product information"><details open><summary>Product details</summary><p id="product-details-text">Product information will be available once this listing is published.</p></details><details><summary>Payment &amp; pickup</summary><p>GCash payment is required before pickup. After your payment is verified, wait for confirmation that your order is ready. We do not offer shipping or cash on delivery.</p><a href="payments.html">How payment works</a></details><details><summary>Need help?</summary><p>Have a question about this item? We’re happy to help before you place an order.</p><a href="contact.html">Contact our store</a></details></div>
     </section>
   </div>
   <section class="ja-product-related" id="product-related-section" aria-labelledby="related-products-title" hidden>
     <div class="ja-related-heading"><h2 id="related-products-title">You may also like ♡</h2><a href="shop.html" id="related-more-link">Explore more</a></div>
     <div id="product-related" class="ja-product-related-grid"></div>
   </section>
-</main><footer><a class="footer-brand" href="/" aria-label="Janiks Aniks home"><img src="images/PNG%20image.png" alt="Janiks Aniks" width="240" height="100"></a><p>Ayala Mall, Legazpi City<br>Albay, Philippines</p></footer><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="catalog.js?v=gallery-1"></script><script src="customer-favorites.js?v=product-template-1" defer></script><script src="cart-sync.js?v=2" defer></script><script src="store.js?v=product-template-1" defer></script><script src="product-page.js?v=gallery-preview-2" defer></script><script src="animations.js" defer></script>
+</main><footer><a class="footer-brand" href="/" aria-label="Janiks Aniks home"><img src="images/PNG%20image.png" alt="Janiks Aniks" width="240" height="100"></a><p>Ayala Mall, Legazpi City<br>Albay, Philippines</p></footer><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="catalog.js?v=gallery-1"></script><script src="customer-favorites.js?v=product-template-1" defer></script><script src="cart-sync.js?v=2" defer></script><script src="store.js?v=product-template-1" defer></script><script src="product-page.js?v=product-details-2" defer></script><script src="animations.js" defer></script>
 </body></html>

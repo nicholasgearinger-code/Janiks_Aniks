@@ -3956,7 +3956,7 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
     padding:14px 13px 8px!important;
     border:0!important;
     border-radius:0!important;
-    background:transparent url("images/janiks-aniks-desktop-scalloped-frame.svg") center/100% 100% no-repeat!important;
+    background:transparent url("images/janiks-aniks-desktop-scalloped-frame.svg?v=2") center/100% 100% no-repeat!important;
     box-shadow:none!important;
     color:inherit!important;
     text-decoration:none!important;
@@ -4001,4 +4001,14 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 }
 @media(prefers-reduced-motion:reduce){
   body #site-sidebar>a.brand{transition:none!important}
+}
+
+/* Boutique badge v2: balanced horizontal logo overlay, decorative frame remains clickable. */
+@media(min-width:851px){
+ body #site-sidebar>a.brand{padding:15px 17px 9px!important}
+ body #site-sidebar>a.brand::before{max-width:175px!important;height:34px!important}
+}
+@media(min-width:851px) and (max-width:1120px){
+ body #site-sidebar>a.brand{padding:12px 14px 8px!important}
+ body #site-sidebar>a.brand::before{max-width:142px!important;height:29px!important}
 }

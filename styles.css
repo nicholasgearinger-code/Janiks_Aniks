@@ -3739,3 +3739,96 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
     line-height:1.35;
   }
 }
+
+/* Seasonal Boutique Deluxe v4: actual SVG bows + unique seasonal motifs.
+   Scoped to Seasonal page; existing mug cards and mobile navigation are untouched. */
+.page-main .seasonal-page .season-card .ja-season-ornaments{display:none}
+@media(min-width:900px){
+ .page-main .seasonal-page .seasonal-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:980px;gap:18px}
+ .page-main .seasonal-page .seasonal-grid .season-card{
+   --ja-deco:#b77b93;position:relative;isolation:isolate;overflow:hidden;
+   min-height:0;padding:18px 15px 20px;gap:7px;border-radius:22px;
+   text-align:center;justify-content:center;
+   box-shadow:0 6px 0 rgba(124,68,88,.11),0 12px 24px rgba(124,68,88,.09)!important;
+   transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.christmas{--ja-deco:#af786c}
+ .page-main .seasonal-page .seasonal-grid .season-card.halloween{--ja-deco:#9b78bb}
+ .page-main .seasonal-page .seasonal-grid .season-card.valentines{--ja-deco:#c96b96}
+ .page-main .seasonal-page .seasonal-grid .season-card.spring{--ja-deco:#83a878}
+ .page-main .seasonal-page .seasonal-grid .season-card.summer{--ja-deco:#d0a04f}
+ .page-main .seasonal-page .seasonal-grid .season-card::before{
+   content:"";position:absolute;inset:9px;border:1.5px dashed rgba(255,255,255,.88);
+   border-radius:16px;pointer-events:none;z-index:0;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-ornaments{
+   display:block;position:absolute;inset:0;pointer-events:none;z-index:2;color:var(--ja-deco);
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-bow{
+   position:absolute;top:8px;right:10px;width:43px;height:29px;
+   filter:drop-shadow(0 2px 2px rgba(102,55,73,.17));
+   transform:rotate(9deg);
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-motif{
+   position:absolute;bottom:13px;left:13px;width:24px;height:24px;
+   color:var(--ja-deco);opacity:.75;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .season-artwork{
+   position:relative;z-index:1;width:116px;height:119px;margin:4px auto 2px;
+   object-fit:contain;filter:drop-shadow(0 6px 8px rgba(91,44,61,.13));
+   transition:transform .22s ease,filter .22s ease;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card strong{
+   position:relative;z-index:1;display:inline-block;align-self:center;
+   padding:6px 13px;border-radius:30px;
+   background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);
+   box-shadow:0 3px 8px rgba(110,54,75,.07);
+   font-size:17px;line-height:1.3;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card small{
+   position:relative;z-index:1;font-size:12px;line-height:1.4;max-width:27ch;margin:0 auto;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .text-link{
+   position:relative;z-index:1;font-size:12px;line-height:1.35;font-weight:700;
+   text-decoration:underline;text-underline-offset:3px;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card:hover,
+ .page-main .seasonal-page .seasonal-grid .season-card:focus-visible{
+   transform:translateY(-4px);
+   box-shadow:0 8px 0 rgba(124,68,88,.12),0 18px 30px rgba(124,68,88,.15)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card:hover .season-artwork,
+ .page-main .seasonal-page .seasonal-grid .season-card:focus-visible .season-artwork{
+   transform:translateY(-3px) scale(1.045);
+   filter:drop-shadow(0 9px 12px rgba(91,44,61,.19));
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.christmas{
+   background:radial-gradient(circle at 18% 22%,rgba(255,255,255,.72) 0 2px,transparent 3px),
+   radial-gradient(circle at 80% 72%,rgba(255,255,255,.5) 0 2px,transparent 3px),
+   linear-gradient(145deg,#faf2e9,#e8d2bf)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.halloween{
+   background:radial-gradient(circle at 20% 23%,rgba(255,255,255,.56) 0 2px,transparent 3px),
+   radial-gradient(circle at 75% 77%,rgba(255,255,255,.45) 0 2px,transparent 3px),
+   linear-gradient(145deg,#f7effe,#e7daf6)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.valentines{
+   background:radial-gradient(circle at 19% 22%,rgba(255,255,255,.55) 0 2px,transparent 3px),
+   radial-gradient(circle at 81% 72%,rgba(255,255,255,.42) 0 2px,transparent 3px),
+   linear-gradient(145deg,#fbe6ee,#efbfd3)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.spring{
+   background:radial-gradient(circle at 19% 22%,rgba(255,255,255,.8) 0 2px,transparent 3px),
+   radial-gradient(circle at 80% 73%,rgba(255,255,255,.56) 0 2px,transparent 3px),
+   linear-gradient(145deg,#f2faec,#dff2de)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card.summer{
+   background:radial-gradient(circle at 18% 22%,rgba(255,255,255,.76) 0 2px,transparent 3px),
+   radial-gradient(circle at 80% 75%,rgba(255,255,255,.55) 0 2px,transparent 3px),
+   linear-gradient(145deg,#fff9e6,#ffecb8)!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .page-main .seasonal-page .season-card,
+ .page-main .seasonal-page .season-artwork{transition:none!important}
+}

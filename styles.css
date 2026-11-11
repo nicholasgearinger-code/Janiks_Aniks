@@ -4339,3 +4339,225 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
   #site-sidebar .main-nav a[data-nav],
   #site-sidebar .main-nav a[data-nav] img.nav-sticker{transition:none!important}
 }
+
+/* Boutique Deluxe v12 — compact mobile Seasonal collections and expressive
+   original-logo homepage hero. Scoped to these two sections only. */
+
+/* Homepage welcome hero: layered gift-card edges and ribbon detail. */
+.page-main>.hero .hero-text{
+ position:relative;
+ isolation:isolate;
+ overflow:visible;
+ background:linear-gradient(145deg,rgba(255,253,249,.96),rgba(255,238,245,.90))!important;
+ border:2px solid #eeb9cb!important;
+ border-radius:30px!important;
+ box-shadow:0 6px 0 #e8bdce,0 14px 30px rgba(111,48,79,.13)!important;
+ padding:clamp(22px,3.3vw,39px)!important;
+}
+.page-main>.hero .hero-text::before{
+ content:"";position:absolute;inset:9px;
+ border:1.5px dashed rgba(209,123,153,.63);border-radius:21px;
+ pointer-events:none;z-index:-1;
+}
+.page-main>.hero .hero-text::after{
+ content:"";position:absolute;
+ top:-18px;left:50%;transform:translateX(-50%);
+ width:71px;height:48px;
+ background:url("images/nav-boutique-ribbon.svg") center/contain no-repeat;
+ filter:drop-shadow(0 4px 3px rgba(103,37,65,.16));
+ pointer-events:none;z-index:3;
+}
+.page-main>.hero .hero-brand-logo{
+ position:relative;z-index:1;
+ filter:drop-shadow(0 5px 7px rgba(117,40,77,.14));
+}
+.page-main>.hero .hero-title{position:relative;z-index:1;color:#79344f!important}
+.page-main>.hero .hero-subtitle{position:relative;z-index:1}
+.page-main>.hero .btn-primary{
+ position:relative;z-index:1;
+ background:linear-gradient(180deg,#c85a85,#a83c69)!important;
+ color:#fff!important;
+ border:1px solid #96305c!important;
+ border-radius:999px!important;
+ box-shadow:0 4px 0 #dca0b6,0 9px 16px rgba(120,47,77,.13)!important;
+ transition:transform .2s ease,box-shadow .2s ease!important;
+}
+@media(hover:hover){
+ .page-main>.hero .btn-primary:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 6px 0 #dca0b6,0 12px 20px rgba(120,47,77,.18)!important;
+ }
+}
+@media(max-width:850px){
+ /* Seasonal header: sticker and heading are no longer oversized on phones. */
+ .page-main:has(>.seasonal-page)>.collection-page-header,
+ .page-main:has(>.standalone-section.seasonal-page)>.collection-page-header{
+  padding:4px 12px 0!important;gap:3px!important;
+ }
+ .page-main:has(>.standalone-section.seasonal-page)>.collection-page-header .page-sticker{
+  width:clamp(68px,20vw,94px)!important;
+  max-width:94px!important;
+  margin:0 auto!important;
+ }
+ .page-main>.standalone-section.seasonal-page{
+  padding:8px 12px 34px!important;
+ }
+ .page-main .seasonal-page>.seasonal{
+  padding:0!important;
+  margin:0 auto!important;
+ }
+ .page-main .seasonal-page>.seasonal>h1{
+  font-size:clamp(29px,7.8vw,39px)!important;
+  line-height:1.1!important;
+  margin:2px auto 6px!important;
+ }
+ .page-main .seasonal-page>.seasonal>p{
+  font-size:13px!important;
+  line-height:1.4!important;
+  max-width:38ch!important;
+  margin:0 auto 16px!important;
+ }
+ .page-main .seasonal-page .seasonal-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:13px!important;
+  max-width:490px!important;
+  width:100%!important;
+  margin:0 auto!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card{
+  position:relative!important;isolation:isolate;
+  display:grid!important;
+  grid-template-columns:90px minmax(0,1fr)!important;
+  grid-template-rows:auto auto auto auto!important;
+  column-gap:12px!important;
+  row-gap:4px!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  text-align:left!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:142px!important;
+  padding:14px 16px!important;
+  border-width:2px!important;
+  border-radius:20px!important;
+  overflow:visible!important;
+  box-shadow:0 5px 0 var(--ja-showcase-soft,#eac3cb),0 9px 17px rgba(89,45,67,.11)!important;
+  text-decoration:none!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card::before{
+  content:"";display:block;position:absolute;
+  inset:7px;border:1.5px dashed rgba(255,255,255,.86);
+  border-radius:14px;z-index:0;pointer-events:none;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-stage{
+  display:grid!important;place-items:center!important;
+  grid-column:1!important;grid-row:1/5!important;
+  position:relative!important;z-index:1;
+  width:86px!important;height:100px!important;
+  margin:0!important;
+  align-self:center!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-halo{
+  display:block!important;position:absolute!important;
+  width:83px!important;height:84px!important;
+  border:2px solid #fffefbe8!important;
+  outline:2px solid var(--ja-showcase-soft,#eac3cb)!important;
+  border-radius:43%!important;
+  background:radial-gradient(circle at 45% 35%,#fffefb,#fff9f5a8 70%,#ffffff32)!important;
+  box-shadow:0 4px 9px rgba(96,53,71,.11)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .season-artwork{
+  position:relative!important;z-index:2!important;
+  width:84px!important;height:91px!important;max-width:84px!important;
+  object-fit:contain!important;margin:0!important;
+  filter:drop-shadow(0 4px 3px rgba(101,57,74,.17))!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-edition{
+  display:block!important;position:relative;z-index:1;
+  grid-column:2!important;grid-row:1!important;
+  font-size:9px!important;line-height:1.2!important;
+  font-weight:800!important;letter-spacing:.09em!important;
+  color:var(--ja-showcase-deep,#935b6d)!important;
+  text-transform:uppercase;
+  margin:0!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card strong{
+  grid-column:2!important;grid-row:2!important;z-index:1!important;
+  display:block!important;justify-self:start!important;align-self:center!important;
+  font-size:clamp(16px,4vw,19px)!important;line-height:1.2!important;
+  padding:4px 9px!important;margin:0!important;
+  border-radius:10px!important;
+  color:var(--ja-showcase-deep,#935b6d)!important;
+  background:rgba(255,255,255,.76)!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  box-shadow:0 2px 0 var(--ja-showcase-soft,#eac3cb)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card small{
+  display:block!important;
+  grid-column:2!important;grid-row:3!important;
+  z-index:1!important;max-width:none!important;
+  font-size:11px!important;line-height:1.25!important;
+  text-align:left!important;margin:0!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .text-link{
+  display:inline-flex!important;align-items:center;justify-content:center;
+  grid-column:2!important;grid-row:4!important;
+  justify-self:start!important;
+  position:relative!important;z-index:1!important;
+  min-height:32px!important;
+  padding:6px 11px!important;margin:2px 0 0!important;
+  border-radius:11px!important;
+  background:var(--ja-showcase-deep,#935b6d)!important;
+  border:1px solid rgba(255,255,255,.8)!important;
+  box-shadow:0 3px 0 var(--ja-showcase-soft,#eac3cb)!important;
+  color:white!important;text-decoration:none!important;
+  font-size:11px!important;font-weight:800!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-ornaments{
+  display:block!important;position:absolute!important;inset:0!important;
+  z-index:3!important;pointer-events:none!important;
+  color:var(--ja-showcase-deep,#935b6d)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-bow{
+  display:block!important;position:absolute!important;
+  width:36px!important;height:26px!important;
+  top:-8px!important;right:8px!important;
+  transform:rotate(12deg)!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-motif{
+  display:block!important;position:absolute!important;
+  width:19px!important;height:19px!important;
+  bottom:13px!important;left:12px!important;opacity:.65!important;
+ }
+ .page-main>.hero .hero-text{
+  border-radius:24px!important;
+  padding:28px 17px 20px!important;
+ }
+ .page-main>.hero .hero-text::before{inset:7px;border-radius:16px}
+ .page-main>.hero .hero-text::after{width:49px;height:35px;top:-13px}
+}
+@media(max-width:390px){
+ .page-main .seasonal-page .seasonal-grid .season-card{
+  grid-template-columns:78px minmax(0,1fr)!important;
+  column-gap:9px!important;
+  padding:12px 11px!important;
+  min-height:133px!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-stage{
+  width:74px!important;height:86px!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-halo{
+  width:72px!important;height:73px!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card .season-artwork{
+  width:72px!important;height:78px!important;
+ }
+ .page-main .seasonal-page .seasonal-grid .season-card strong{font-size:15px!important}
+ .page-main .seasonal-page .seasonal-grid .season-card .ja-season-edition{font-size:8px!important}
+ .page-main .seasonal-page .seasonal-grid .season-card .text-link{font-size:10px!important;min-height:30px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-main>.hero .btn-primary{transition:none!important}
+ .page-main .seasonal-page .seasonal-grid .season-card .season-artwork{transition:none!important}
+}

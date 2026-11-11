@@ -3935,3 +3935,70 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 @media(prefers-reduced-motion:reduce){
  .page-main .seasonal-page .seasonal-grid .season-card .text-link{transition:none!important}
 }
+
+/* Desktop home brand — scalloped coquette label, no HOME wording.
+   Keeps the official horizontal Janiks Aniks wordmark and cherry mark. */
+@media (min-width:851px){
+  body #site-sidebar>a.brand,
+  body #site-sidebar>a.brand:hover,
+  body #site-sidebar>a.brand:focus-visible{
+    position:relative!important;
+    box-sizing:border-box!important;
+    display:inline-flex!important;
+    justify-content:center!important;
+    align-items:center!important;
+    flex:0 0 auto!important;
+    width:clamp(163px,17vw,224px)!important;
+    min-width:0!important;
+    height:64px!important;
+    min-height:64px!important;
+    margin:0!important;
+    padding:14px 13px 8px!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent url("images/janiks-aniks-desktop-scalloped-frame.svg") center/100% 100% no-repeat!important;
+    box-shadow:none!important;
+    color:inherit!important;
+    text-decoration:none!important;
+    overflow:visible!important;
+    transition:filter .18s ease,transform .18s ease!important;
+  }
+  body #site-sidebar>a.brand::before{
+    content:""!important;
+    display:block!important;
+    position:relative!important;
+    z-index:2!important;
+    flex:0 1 auto!important;
+    width:100%!important;
+    max-width:190px!important;
+    height:37px!important;
+    background:url("images/janiks-aniks-logo-horizontal-notag.png") center/contain no-repeat!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    filter:none!important;
+    clip-path:none!important;
+    opacity:1!important;
+  }
+  body #site-sidebar>a.brand::after{
+    content:none!important;display:none!important;
+  }
+  body #site-sidebar>a.brand>img{display:none!important}
+  body #site-sidebar>a.brand:hover,
+  body #site-sidebar>a.brand:focus-visible{
+    transform:translateY(-2px)!important;
+    filter:drop-shadow(0 5px 5px rgba(154,70,102,.20))!important;
+  }
+  body #site-sidebar>a.brand:focus-visible{
+    outline:2px solid #a43664!important;
+    outline-offset:3px!important;
+    border-radius:14px!important;
+  }
+}
+@media(min-width:851px) and (max-width:1120px){
+  body #site-sidebar>a.brand{width:163px!important;height:56px!important;min-height:56px!important;padding:12px 10px 7px!important}
+  body #site-sidebar>a.brand::before{height:32px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body #site-sidebar>a.brand{transition:none!important}
+}

@@ -4239,3 +4239,103 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  .page-main .home-shortcuts a[href],
  .page-main .home-shortcuts a[href] img.card-icon{transition:none!important}
 }
+
+/* Mobile navigation — matching Boutique Deluxe collection-card finish.
+   Keep original navigation order, scroll mechanics, labels and pastel colors. */
+@media(max-width:850px){
+  #site-sidebar .main-nav a[data-nav]{
+    position:relative!important;
+    isolation:isolate;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+    border:2px solid var(--mobile-nav-edge,#dca4b8)!important;
+    border-radius:19px!important;
+    background-color:var(--mobile-nav-fill,#f6c3d5)!important;
+    background-image:
+      radial-gradient(circle at 90% 77%,rgba(255,255,255,.30) 0 2px,transparent 2.7px),
+      linear-gradient(120deg,rgba(255,255,255,.20),transparent 76%)!important;
+    box-shadow:0 5px 0 color-mix(in srgb,var(--mobile-nav-edge,#dca4b8) 72%,white),
+               0 8px 13px rgba(92,43,68,.08)!important;
+    padding-right:clamp(32px,8vw,43px)!important;
+    transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+  }
+  /* Stitched inside frame is decorative only: never intercept touch events. */
+  #site-sidebar .main-nav a[data-nav]::before,
+  #site-sidebar .main-nav a[data-nav][aria-current="page"]::before{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    inset:7px!important;
+    width:auto!important;
+    height:auto!important;
+    background:transparent!important;
+    border:1.5px dashed rgba(255,255,255,.82)!important;
+    border-radius:12px!important;
+    flex:none!important;
+    pointer-events:none!important;
+    transform:none!important;
+    z-index:0!important;
+  }
+  /* A real SVG ribbon takes the place of the old text-only corner symbol. */
+  #site-sidebar .main-nav a[data-nav]::after,
+  #site-sidebar .main-nav a[data-nav]:nth-child(3n+2)::after,
+  #site-sidebar .main-nav a[data-nav]:nth-child(3n)::after{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    top:-7px!important;
+    right:10px!important;
+    left:auto!important;
+    width:37px!important;
+    height:26px!important;
+    background: url("images/nav-boutique-ribbon.svg") center/contain no-repeat!important;
+    opacity:1!important;
+    filter:drop-shadow(0 2px 2px rgba(88,39,60,.16));
+    flex:none!important;
+    margin:0!important;
+    pointer-events:none!important;
+    transform:rotate(9deg)!important;
+    z-index:3!important;
+  }
+  /* The cart retains its quantity bubble rather than a secondary flourish. */
+  #site-sidebar .main-nav a[data-nav="cart"]::after{display:none!important}
+  #site-sidebar .main-nav a[data-nav] img.nav-sticker{
+    position:relative!important;
+    z-index:1!important;
+    box-sizing:border-box!important;
+    object-fit:contain!important;
+    background:radial-gradient(circle at 45% 38%,rgba(255,255,255,.96),rgba(255,252,249,.62) 72%,rgba(255,255,255,.2))!important;
+    padding:3px!important;
+    border:2px solid rgba(255,255,255,.92)!important;
+    outline:1.5px solid color-mix(in srgb,var(--mobile-nav-edge,#dca4b8) 75%,white)!important;
+    border-radius:43%!important;
+    box-shadow:0 3px 0 rgba(95,49,72,.13),0 5px 10px rgba(95,49,72,.12)!important;
+    filter:none!important;
+    transition:transform .18s ease!important;
+  }
+  #site-sidebar .main-nav a[data-nav] > span{
+    position:relative!important;
+    z-index:1!important;
+  }
+  #site-sidebar .main-nav a[data-nav]:active{
+    transform:translateY(2px)!important;
+    box-shadow:0 2px 0 var(--mobile-nav-edge,#dca4b8)!important;
+  }
+  #site-sidebar .main-nav a[data-nav]:focus-visible{
+    outline:3px solid var(--mobile-nav-ink,#763d55)!important;
+    outline-offset:3px!important;
+  }
+}
+@media(hover:hover) and (max-width:850px){
+  #site-sidebar .main-nav a[data-nav]:hover img.nav-sticker{
+    transform:scale(1.045) rotate(-3deg)!important;
+  }
+}
+@media(max-width:380px){
+  #site-sidebar .main-nav a[data-nav]::after{width:31px!important;height:23px!important;right:7px!important}
+  #site-sidebar .main-nav a[data-nav]{padding-right:31px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #site-sidebar .main-nav a[data-nav],
+  #site-sidebar .main-nav a[data-nav] img.nav-sticker{transition:none!important}
+}

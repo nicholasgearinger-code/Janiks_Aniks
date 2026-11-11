@@ -3694,3 +3694,11 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 .catalog-card.ja-demo-catalog-card .ja-demo-badge{display:inline-block;width:auto;background:#f9dce5;border-radius:99px;padding:5px 10px;color:#8d3552;font-size:11px;font-weight:700;letter-spacing:.04em}
 .catalog-card.ja-demo-catalog-card .ja-demo-copy{font-size:13px;line-height:1.5;color:#795463}
 .catalog-card.ja-demo-catalog-card .catalog-card-actions>a{width:100%;text-align:center}
+
+/* Spring and Summer seasonal collection cards, consistent with the existing pastel card system. */
+.seasonal-grid .season-card.spring{background:linear-gradient(145deg,#f2faec,#dff2de)!important;border-color:#bcdcb6!important;color:#44684d}
+.seasonal-grid .season-card.summer{background:linear-gradient(145deg,#fff8df,#ffedbd)!important;border-color:#ebd69b!important;color:#806037}
+.seasonal-grid .season-card.spring,.seasonal-grid .season-card.summer{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none}
+.seasonal-grid .season-card.spring .text-link,.seasonal-grid .season-card.summer .text-link{text-decoration:underline;text-underline-offset:3px}
+.seasonal-grid .season-card.spring:hover,.seasonal-grid .season-card.spring:focus-visible{border-color:#8bb78d!important;box-shadow:0 9px 24px rgba(70,120,76,.14)}
+.seasonal-grid .season-card.summer:hover,.seasonal-grid .season-card.summer:focus-visible{border-color:#d1b76b!important;box-shadow:0 9px 24px rgba(160,118,46,.14)}

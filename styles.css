@@ -4114,3 +4114,21 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 @media(prefers-reduced-motion:reduce){
  body #site-sidebar>a.brand{transition:none!important}
 }
+
+/* Desktop logo refinement v9: original horizontal brand artwork in the matching
+   pastel navigation pill. No glossy badge artwork or separate HOME label. */
+@media(min-width:851px){
+ body #site-sidebar>a.brand::before{
+  content:""!important;
+  display:block!important;
+  flex:1 1 auto!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  background:transparent url("images/janiks-aniks-logo-horizontal-notag.png") center/contain no-repeat!important;
+  opacity:1!important;
+  filter:none!important;
+ }
+ body #site-sidebar>a.brand::after{content:none!important;display:none!important}
+ body #site-sidebar>a.brand>img{display:none!important}
+}

@@ -4012,3 +4012,44 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  body #site-sidebar>a.brand{padding:12px 14px 8px!important}
  body #site-sidebar>a.brand::before{max-width:142px!important;height:29px!important}
 }
+
+/* Official uploaded glossy boutique badge: desktop Home link only.
+   Render the single PNG as-is, with no duplicate CSS lettering or frame. */
+@media(min-width:851px){
+ body #site-sidebar>a.brand,
+ body #site-sidebar>a.brand:hover,
+ body #site-sidebar>a.brand:focus-visible{
+  box-sizing:border-box!important;
+  flex:0 0 auto!important;
+  display:inline-block!important;
+  width:clamp(175px,18vw,240px)!important;
+  height:70px!important;min-height:70px!important;
+  padding:0!important;margin:0!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent url("images/Glossy%20Pink%20Janiks%20Aniks%20Badge.png") center/contain no-repeat!important;
+  overflow:visible!important;
+  text-decoration:none!important;
+ }
+ body #site-sidebar>a.brand::before,
+ body #site-sidebar>a.brand::after{content:none!important;display:none!important}
+ body #site-sidebar>a.brand>img{display:none!important}
+ body #site-sidebar>a.brand:hover{
+  transform:translateY(-2px)!important;
+  filter:drop-shadow(0 5px 5px rgba(154,70,102,.20))!important;
+ }
+ body #site-sidebar>a.brand:focus-visible{
+  outline:2px solid #a43664!important;
+  outline-offset:3px!important;
+ }
+}
+@media(min-width:851px) and (max-width:1120px){
+ body #site-sidebar>a.brand,
+ body #site-sidebar>a.brand:hover,
+ body #site-sidebar>a.brand:focus-visible{
+  width:175px!important;height:56px!important;min-height:56px!important;
+  padding:0!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ body #site-sidebar>a.brand{transition:none!important}
+}

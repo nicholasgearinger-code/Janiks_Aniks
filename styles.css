@@ -4132,3 +4132,110 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  body #site-sidebar>a.brand::after{content:none!important;display:none!important}
  body #site-sidebar>a.brand>img{display:none!important}
 }
+
+/* Janiks Aniks homepage collection cards — Boutique Deluxe v10.
+   Preserves the seven original illustrations, colors, layout, links and copy. */
+.page-main .home-shortcuts a[href]{
+ --ja-accent:var(--home-card-ink,#884762);
+ --ja-ribbon:var(--home-card-edge,#dca4b8);
+ position:relative;isolation:isolate;overflow:visible;
+ border:2px solid var(--home-card-edge,#dca4b8)!important;
+ border-radius:23px!important;
+ box-shadow:0 6px 0 color-mix(in srgb,var(--home-card-edge,#dca4b8) 70%,white),0 12px 19px rgba(93,45,66,.11)!important;
+ background-image:radial-gradient(circle at 94% 19%,rgba(255,255,255,.36) 0 2px,transparent 2.8px),
+  linear-gradient(135deg,rgba(255,255,255,.17),transparent 80%)!important;
+ padding:16px 19px!important;
+ min-height:134px;
+ transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease!important;
+}
+.page-main .home-shortcuts a[href]::before{
+ content:"";position:absolute;inset:7px;
+ border:2px dashed rgba(255,255,255,.78);
+ border-radius:16px;pointer-events:none;z-index:0;
+}
+.page-main .home-shortcuts a[href]::after{
+ content:"";position:absolute;inset:3px;border-radius:19px;
+ border:1px solid rgba(255,255,255,.62);pointer-events:none;z-index:0;
+}
+.page-main .home-shortcuts a[href] img.card-icon{
+ position:relative;z-index:1;
+ box-sizing:border-box;
+ grid-column:1;grid-row:1 / 4;
+ background:radial-gradient(circle at 45% 35%,#fffefaed,#fffcf9a0 64%,#ffffff26 90%);
+ border:3px double rgba(255,255,255,.94);
+ outline:2px solid color-mix(in srgb,var(--home-card-edge,#dca4b8) 75%,white);
+ border-radius:42%;
+ padding:5px;
+ box-shadow:0 4px 0 rgba(111,67,83,.11),0 8px 14px rgba(111,67,83,.11);
+ filter:drop-shadow(0 2px 2px rgba(77,35,49,.14))!important;
+ transition:transform .2s ease,filter .2s ease!important;
+}
+.page-main .home-shortcuts a[href]>span:not(.ja-home-bow):not(.ja-home-sparkle){
+ position:relative;z-index:2;
+ justify-self:start;
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:32px;min-height:22px;padding:2px 8px;
+ border:1px solid rgba(255,255,255,.85);
+ border-radius:999px;
+ background:rgba(255,251,249,.64);
+ color:var(--home-card-ink,#763d55)!important;
+ font-weight:800;letter-spacing:.08em!important;
+}
+.page-main .home-shortcuts a[href] strong{
+ position:relative;z-index:1;
+ color:var(--home-card-ink,#763d55)!important;
+ font-weight:800;
+ text-shadow:0 1px 0 rgba(255,255,255,.64);
+}
+.page-main .home-shortcuts a[href] small{
+ position:relative;z-index:1;
+ color:var(--home-card-ink,#763d55)!important;
+ opacity:.85;
+}
+.page-main .home-shortcuts a[href] .ja-home-bow{
+ display:block;position:absolute;
+ z-index:3;top:-12px;right:21px;
+ width:43px;height:29px;
+ color:var(--home-card-edge,#dca4b8);
+ pointer-events:none;filter:drop-shadow(0 3px 2px rgba(93,45,66,.18));
+ transform:rotate(9deg);
+}
+.page-main .home-shortcuts a[href] .ja-home-bow svg{display:block;width:100%;height:100%}
+.page-main .home-shortcuts a[href] .ja-home-sparkle{
+ display:block;position:absolute;
+ z-index:2;top:12px;right:13px;
+ color:var(--home-card-ink,#763d55);
+ font-size:23px;line-height:1;
+ opacity:.47;pointer-events:none;
+}
+@media(hover:hover){
+ .page-main .home-shortcuts a[href]:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 8px 0 var(--home-card-edge,#dca4b8),0 17px 25px rgba(93,45,66,.16)!important;
+ }
+ .page-main .home-shortcuts a[href]:hover img.card-icon{
+  transform:rotate(-3deg) scale(1.055);
+  filter:drop-shadow(0 4px 3px rgba(77,35,49,.18))!important;
+ }
+}
+.page-main .home-shortcuts a[href]:focus-visible{
+ outline:3px solid var(--home-card-ink,#763d55)!important;
+ outline-offset:3px!important;
+ box-shadow:0 7px 0 var(--home-card-edge,#dca4b8),0 16px 24px rgba(93,45,66,.15)!important;
+}
+@media(max-width:650px){
+ .page-main .home-shortcuts a[href]{
+  min-height:108px;
+  padding:12px 13px!important;
+  border-radius:19px!important;
+ }
+ .page-main .home-shortcuts a[href]::before{inset:6px;border-width:1px;border-radius:13px}
+ .page-main .home-shortcuts a[href]::after{border-radius:16px}
+ .page-main .home-shortcuts a[href] .ja-home-bow{width:34px;height:23px;right:14px;top:-9px}
+ .page-main .home-shortcuts a[href] .ja-home-sparkle{font-size:16px;top:11px;right:9px}
+ .page-main .home-shortcuts a[href] img.card-icon{padding:3px;border-width:2px}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-main .home-shortcuts a[href],
+ .page-main .home-shortcuts a[href] img.card-icon{transition:none!important}
+}

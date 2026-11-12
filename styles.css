@@ -4561,3 +4561,22 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  .page-main>.hero .btn-primary{transition:none!important}
  .page-main .seasonal-page .seasonal-grid .season-card .season-artwork{transition:none!important}
 }
+
+/* Boutique balance v13: let the original character stickers be the decoration.
+   Remove repeated overlay ribbons without changing imagery, navigation or layout. */
+.page-main .home-shortcuts a[href] .ja-home-bow,
+.page-main .seasonal-page .seasonal-grid .season-card .ja-season-bow{
+ display:none!important;
+}
+.page-main>.hero .hero-text::after{
+ content:none!important;
+ display:none!important;
+}
+@media(max-width:850px){
+ #site-sidebar .main-nav a[data-nav]::after,
+ #site-sidebar .main-nav a[data-nav]:nth-child(3n+2)::after,
+ #site-sidebar .main-nav a[data-nav]:nth-child(3n)::after{
+  content:none!important;
+  display:none!important;
+ }
+}

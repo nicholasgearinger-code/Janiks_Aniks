@@ -266,6 +266,18 @@
     if(!session){showOnly('login-panel');$('sign-out').hidden=true;return;}
     var result=await client.from('store_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
     if(result.error || !result.data){showOnly('access-denied');$('sign-out').hidden=false;return;}
+    // This browser was authenticated AND confirmed in store_admins. Exclude its
+    // future storefront visits and referral tallies; leave the flag in place
+    // after sign-out so ordinary owner browsing doesn't count as customers.
+    try {
+      localStorage.setItem('ja-analytics-owner-excluded-v1','1');
+      var exclusionNotice=$('owner-tracking-exclusion');
+      if(exclusionNotice)exclusionNotice.textContent='✓ Your visits from this browser are excluded from future visitor and referral counts. Sign in to Store Manager on other browsers/devices to exclude those too.';
+    } catch (error) {
+      var exclusionNotice=$('owner-tracking-exclusion');
+      if(exclusionNotice)exclusionNotice.textContent='⚠ This browser could not save owner tracking exclusion. Allow site storage, then sign in again.';
+      console.warn('[Janiks analytics] Could not save owner exclusion on this browser.');
+    }
     $('sign-out').hidden=false;showOnly('dashboard');if(window.JaniksInventory)window.JaniksInventory.init(client);await loadProducts();if(window.JaniksOverview)window.JaniksOverview.init(client);if(window.JaniksReviews)window.JaniksReviews.init(client);
   }
   async function signOut() { if(window.JaniksOverview)window.JaniksOverview.clear();if(window.JaniksReviews)window.JaniksReviews.clear(); await client.auth.signOut(); showOnly('login-panel');$('sign-out').hidden=true; }

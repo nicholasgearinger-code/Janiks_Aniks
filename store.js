@@ -14,6 +14,14 @@
   /* Anonymous daily browser visit tally. No IP, page URL, email, or account ID
      is included in the request. Failed calls are NOT cached as success. */
   function countVisit(){
+    // Store Manager sets this only after verified membership in store_admins.
+    // It persists after sign-out so normal owner browsing stays excluded.
+    try{
+      if(localStorage.getItem('ja-analytics-owner-excluded-v1')==='1'){
+        sessionStorage.setItem('ja-visit-last-result','excluded-owner-browser');
+        return;
+      }
+    }catch(_){}
     var cfg=window.JANIKS_SUPABASE_CONFIG||{};
     if(!cfg.projectUrl){console.warn('[Janiks visits] Missing Supabase URL');return;}
     function record(status){try{sessionStorage.setItem('ja-visit-last-result',status);}catch(_){}}
@@ -59,6 +67,9 @@
      Never send raw referring URLs, campaign tags, user data or URL parameters.
      Disabled until referral-analytics.sql and referral-visit are deployed. */
   function countReferral(){
+    try{
+      if(localStorage.getItem('ja-analytics-owner-excluded-v1')==='1')return;
+    }catch(_){}
     var cfg=window.JANIKS_SUPABASE_CONFIG||{};
     if(cfg.referralTrackingEnabled!==true||!cfg.projectUrl||!cfg.publishableKey)return;
     try{

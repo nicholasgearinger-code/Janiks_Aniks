@@ -4580,3 +4580,116 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
   display:none!important;
  }
 }
+
+/* Shop by Color SEO: visible HTML collection links with a genuinely useful
+   mobile-friendly browsing surface (instead of dropdown-only navigation). */
+.page-main .color-page .ja-color-discovery{
+ max-width:1040px;
+ margin:34px auto 0;
+ padding:0 12px;
+ text-align:center;
+ color:#285c61;
+}
+.page-main .color-page .ja-color-discovery h2{
+ font-size:clamp(27px,3.7vw,37px)!important;
+ line-height:1.15;
+ margin:0 0 12px;
+ color:#285c61!important;
+}
+.page-main .color-page .ja-color-discovery-intro{
+ max-width:65ch;
+ margin:0 auto 22px;
+ line-height:1.6;
+ color:#43666a!important;
+ font-size:15px;
+}
+.page-main .color-page .ja-color-discovery-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:15px;
+ margin:0 auto;
+}
+.page-main .color-page a.ja-color-tile{
+ --color-fill:#f9d4e3;--color-edge:#e9a7c2;--color-ink:#71364f;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:flex-start;
+ text-align:center;
+ gap:8px;
+ min-width:0;
+ min-height:196px;
+ padding:17px 14px 16px;
+ border:2px solid var(--color-edge);
+ border-radius:22px;
+ background:var(--color-fill);
+ box-shadow:0 5px 0 color-mix(in srgb,var(--color-edge) 60%,white),0 10px 16px rgba(60,59,75,.08);
+ color:var(--color-ink);
+ text-decoration:none;
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+.page-main .color-page .ja-color-tile.ja-color-yellow{--color-fill:#fff0c2;--color-edge:#e8cb8a;--color-ink:#72552f}
+.page-main .color-page .ja-color-tile.ja-color-green{--color-fill:#d9ecdf;--color-edge:#afd3bd;--color-ink:#356249}
+.page-main .color-page .ja-color-tile.ja-color-white{--color-fill:#fffdf7;--color-edge:#dfd7c9;--color-ink:#695b52}
+.page-main .color-page .ja-color-tile.ja-color-coral{--color-fill:#f9d6c7;--color-edge:#e4ad9d;--color-ink:#824e3e}
+.page-main .color-page .ja-color-tile.ja-color-colorful{--color-fill:#e3d9f8;--color-edge:#bba8dc;--color-ink:#5c4586}
+.page-main .color-page .ja-color-swatch{
+ display:block;
+ flex:0 0 48px;
+ width:48px;height:48px;
+ border-radius:50%;
+ background:var(--color-fill);
+ border:5px solid rgba(255,255,255,.87);
+ outline:2px solid var(--color-edge);
+ box-shadow:0 3px 8px rgba(78,62,80,.12);
+}
+.page-main .color-page .ja-color-colorful .ja-color-swatch{
+ background:conic-gradient(#efbfd3 0 20%,#fff0c2 20% 40%,#c9e6d0 40% 60%,#bee7e3 60% 80%,#d5c1f2 80% 100%);
+}
+.page-main .color-page .ja-color-tile strong{
+ font-size:clamp(17px,1.9vw,22px);
+ line-height:1.22;color:var(--color-ink)!important;
+}
+.page-main .color-page .ja-color-tile small{
+ color:var(--color-ink)!important;opacity:.86;
+ font-size:13px;line-height:1.4;
+}
+.page-main .color-page .ja-color-explore{
+ margin-top:auto;
+ padding-top:8px;
+ font-size:12px;
+ font-weight:800;
+ text-decoration:underline;
+ text-underline-offset:3px;
+ color:var(--color-ink)!important;
+}
+.page-main .color-page .ja-color-shopping-note{
+ max-width:67ch;margin:23px auto 0;
+ font-size:14px;line-height:1.7;color:#43666a!important;
+}
+.page-main .color-page .ja-color-shopping-note a{color:#285c61;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+@media(hover:hover){
+ .page-main .color-page a.ja-color-tile:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 0 var(--color-edge),0 13px 21px rgba(60,59,75,.12);
+ }
+}
+.page-main .color-page a.ja-color-tile:focus-visible{
+ outline:3px solid var(--color-ink);outline-offset:3px;
+}
+@media(max-width:700px){
+ .page-main .color-page .ja-color-discovery{padding:0 2px;margin-top:26px}
+ .page-main .color-page .ja-color-discovery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .page-main .color-page a.ja-color-tile{padding:14px 9px;min-height:174px;gap:7px;border-radius:17px}
+ .page-main .color-page .ja-color-tile strong{font-size:17px}
+ .page-main .color-page .ja-color-tile small{font-size:12px}
+ .page-main .color-page .ja-color-swatch{width:39px;height:39px;flex-basis:39px}
+ .page-main .color-page .ja-color-explore{font-size:11px}
+}
+@media(max-width:350px){
+ .page-main .color-page .ja-color-discovery-grid{grid-template-columns:1fr}
+ .page-main .color-page a.ja-color-tile{min-height:150px}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-main .color-page a.ja-color-tile{transition:none!important}
+}

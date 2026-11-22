@@ -4796,3 +4796,57 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
 .page-main .ja-story-gallery:not(:has(> .ja-story-photo:not([hidden]))) .ja-story-gallery-empty{
  display:block;
 }
+
+/* Homepage Story v17 — gallery as a full-width photographic feature rather
+   than small thumbnails squeezed into the right-side text column. */
+.page-main .ja-story .ja-story-gallery-wide{
+ grid-column:1 / -1;
+ min-width:0;
+ width:100%;
+ margin-top:clamp(10px,1.8vw,24px);
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-gallery-heading{
+ margin:0 0 17px;
+ align-items:center;
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-gallery-heading h3{
+ font-size:clamp(22px,2.6vw,32px)!important;
+ line-height:1.2;
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-gallery{
+ gap:18px;
+ padding:7px 5px 22px;
+ scroll-padding-inline:5px;
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-photo{
+ flex:0 0 clamp(250px,27vw,370px);
+ border-width:6px;
+ border-radius:22px;
+ box-shadow:0 5px 12px rgba(103,52,75,.13);
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-photo img{
+ height:clamp(285px,30vw,420px);
+ object-fit:cover;
+}
+.page-main .ja-story .ja-story-gallery-wide .ja-story-photo figcaption{
+ padding:12px 13px 14px;
+ font-size:13px;
+ line-height:1.35;
+}
+@media(max-width:850px){
+ .page-main .ja-story .ja-story-gallery-wide{grid-column:1;margin-top:6px}
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-gallery{gap:13px;padding:5px 3px 19px}
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-photo{
+  flex-basis:clamp(230px,71vw,340px);
+  border-width:5px;
+  border-radius:19px;
+ }
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-photo img{
+  height:clamp(290px,87vw,420px);
+ }
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-gallery-heading h3{font-size:23px!important}
+}
+@media(max-width:390px){
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-photo{flex-basis:78vw}
+ .page-main .ja-story .ja-story-gallery-wide .ja-story-photo img{height:92vw}
+}

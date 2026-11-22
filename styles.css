@@ -4783,3 +4783,16 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  .page-main .ja-story-photo img{height:155px}
 }
 @media(prefers-reduced-motion:reduce){.page-main .ja-story-button{transition:none!important}}
+
+/* The story-photo files may be uploaded after the page itself deploys.
+   Keep an accessible, friendly state rather than an empty photo rail. */
+.page-main .ja-story-gallery .ja-story-gallery-empty{
+ display:none;flex:1 1 100%;margin:0;
+ padding:19px 18px;border-radius:15px;
+ border:1px dashed #d8b2c0;background:#fffaf8;
+ color:#865d70;font-size:13px;line-height:1.55;
+ text-align:center;
+}
+.page-main .ja-story-gallery:not(:has(> .ja-story-photo:not([hidden]))) .ja-story-gallery-empty{
+ display:block;
+}

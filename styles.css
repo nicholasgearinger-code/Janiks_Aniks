@@ -4850,3 +4850,27 @@ body .ja-product-page .ja-related-heading h2{font-family:'Quicksand',sans-serif!
  .page-main .ja-story .ja-story-gallery-wide .ja-story-photo{flex-basis:78vw}
  .page-main .ja-story .ja-story-gallery-wide .ja-story-photo img{height:92vw}
 }
+
+/* Story gallery-only v18: after removing the redundant featured photo, let the
+   introduction lead naturally into one full-width photo gallery. */
+.page-main .ja-story{
+ grid-template-columns:minmax(0,1fr)!important;
+ gap:22px!important;
+}
+.page-main .ja-story .ja-story-copy{
+ max-width:74ch;
+ margin:0 auto;
+ text-align:center;
+}
+.page-main .ja-story .ja-story-actions{
+ justify-content:center;
+}
+.page-main .ja-story .ja-story-gallery-wide{
+ grid-column:1!important;
+ margin-top:6px;
+}
+@media(max-width:850px){
+ .page-main .ja-story{gap:18px!important}
+ .page-main .ja-story .ja-story-copy{text-align:left;margin:0}
+ .page-main .ja-story .ja-story-actions{justify-content:flex-start}
+}
